@@ -1,7 +1,7 @@
 .divider {
     width: calc(100% - 14px);
     height: 1px;
-    border-top: 1px solid #e4e4e4;
+    border-top: 1px solid var(--color_grey);
     opacity: 0.4;
     align-self: center;
     box-sizing: border-box;
@@ -26,8 +26,8 @@
     transform: rotate(45deg);
 }
 
-.diamond_large { width: 14px; height: 14px; background: #19ac5b; }
-.diamond_small { width: 8px; height: 8px; background: #6b957e; }
+.diamond_large { width: 14px; height: 14px; background: var(--color_green); }
+.diamond_small { width: 8px; height: 8px; background: var(--color_green_grey); }
 
 .diamond:nth-child(1) { top: 20px; left: 10px; }
 .diamond:nth-child(2) { top: 20px; right: 10px; }
@@ -41,9 +41,9 @@
     font-size: 10px;
     width: 18px;
     height: 18px;
-    background: #6b957e;
+    background: var(--color_green_grey);
     border-radius: 50%;
-    color: #242424;
+    color: var(--color_black);
 }
 
 .logo_expand_spacer, .nav_expand_spacer {
@@ -67,25 +67,25 @@
 
 .logo_text p {
     font-size: 14px;
-    color: #f4f4f4;
+    color: var(--color_white);
 }
 
 .nav_text p {
     font-size: 13px;
-    color: #f4f4f4;
+    color: var(--color_white);
 }
 
 .logo_text p strong {
-    color: #19ac5b;
+    color: var(--color_green);
 }
 
 nav {
-    position: absolute;
+    position: relative;
     left: 0;
     top: 0;
     width: 60px;
     height: 100%;
-    background: #242424;
+    background: var(--color_black);
 }
 
 .nav_spacer, .nav_footer_spacer {
@@ -105,7 +105,7 @@ nav {
 .nav_spacer li .nav_icon, .nav_footer_spacer li .nav_icon {
     position: relative;
     font-size: 16px;
-    color: #f4f4f4;
+    color: var(--color_white);
     width: 60px;
     height: 40px;
 }
@@ -115,8 +115,8 @@ nav {
     border-radius: 50%;
     width: 12px;
     height: 12px;
-    background: #19ac5b;
-    color: #242424;
+    background: var(--color_green);
+    color: var(--color_black);
     left: 32px;
     top: 6px;
     font-size: 7px;
@@ -128,7 +128,7 @@ nav {
     left: calc(100% + 1px);
     width: 0px;
     height: calc(100% - 10px);
-    background: #6b957e;
+    background: var(--color_green_grey);
 }
 
 .nav_footer_spacer {
@@ -137,8 +137,8 @@ nav {
 }
 
 .nav_footer_spacer li .nav_icon {
-    color: #19ac5b;
+    color: var(--color_green);
 }
 
-.accent_selected { background: #19ac5b!important; width: 4px!important; }
-.text_selected { color: #6b957e!important; }
+.accent_selected { background: var(--color_green)!important; width: 4px!important; }
+.text_selected { color: var(--color_green_grey)!important; }

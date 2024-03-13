@@ -1,8 +1,5 @@
 var selected_date = new Date();
 
-const next_button = document.querySelector("#next_month");
-const prev_button = document.querySelector("#prev_month");
-
 const calculateDate = (date, value) => {
 
     const month = date.getMonth() + 1;
@@ -23,6 +20,9 @@ const calculateDate = (date, value) => {
 
 const addHandlersCal = () => {
 
+    const next_button = document.querySelector(".cal_header #next_month");
+    const prev_button = document.querySelector(".cal_header #prev_month");
+
     next_button.addEventListener("click", () => {
 
         selected_date = new Date(calculateDate(selected_date, 1));
@@ -36,13 +36,6 @@ const addHandlersCal = () => {
         createDays(selected_date);
 
     });
-
-}
-
-const removeHandlersCal = () => {
-
-    next_button.removeEventListener("click");
-    prev_button.removeEventListener("click");
 
 }
 

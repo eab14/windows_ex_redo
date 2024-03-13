@@ -1,30 +1,33 @@
+:root {
+    --color_green: #19ac5b;
+    --color_green_grey: #6b957e;
+    --color_black: #242424;
+    --color_grey: #e4e4e4;
+    --color_white: #f4f4f4;
+}
+
 body {
     width: 100vw;
     height: 100vh;
     font-family: "Poppins";
 }
 
-/*
-
-- - colors
-
-green: #19ac5b
-green-grey: #6b957e
-black-grey: #242424
-grey-white: #e4e4e4
-white: #f4f4f4
-
-*/
-
 .flex { display: flex; }
 .row { flex-direction: row; }
 .col { flex-direction: column; }
 .center { justify-content: center; align-items: center; }
+.wrap { flex-wrap: wrap; }
 
 main {
     position: relative;
     width: 100%;
     height: 100%;
+}
+
+section {
+    position: relative;
+    width: 100%;
+    height: fit-content;
 }
 
 a:link, a:hover, a:visited {

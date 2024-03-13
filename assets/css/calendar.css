@@ -14,7 +14,7 @@
 .cal_header_spacer .cal_header {
     width: 100%;
     justify-content: space-around;
-    background: #e4e4e4;
+    background: var(--color_black);
     height: fit-content;
 }
 
@@ -22,8 +22,8 @@
     width: 100%;
     height: 14px;
     margin-top: 2px;
-    background: #8b8b8b;
-    color: #fff;
+    background: var(--color_green);
+    color: var(--color_white);
     font-size: 10px;
 }
 
@@ -34,6 +34,7 @@
 #cal_spacer .cal_header h2 {
     font-size: 14px;
     font-weight: 700;
+    color: var(--color_white);
 }
 
 .cal_header h3 {
@@ -43,17 +44,19 @@
     margin-left: 8px;
     top: -4px;
     width: fit-content;
+    color: var(--color_green_grey);
 }
 
 #cal_spacer .cal_header span {
     width: 30px;
     height: 30px;
+    color: var(--color_green_grey);
 }
 
 #cal_spacer .cal_header span:hover {
     cursor: pointer;
     transition: 0.3s;
-    color: #888;
+    color: var(--color_green);
 }
 
 #cal_spacer .cal_content {
@@ -83,4 +86,4 @@
     font-weight: bold;
 }
 
-.empty { background: #999!important; }
+.empty { background: var(--color_green_grey)!important; }

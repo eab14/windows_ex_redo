@@ -110,7 +110,7 @@ const animation = () => {
 
         for (let j = 0; j < blocks.length; j++) {
 
-            TweenMax.to(blocks[j], block_variation, { delay: block_variation + row_variation, opacity: 1, transformOrigin:"50% 50%", ease:Power1.easeInOut });
+            gsap.to(blocks[j], block_variation, { delay: block_variation + row_variation, opacity: 1, transformOrigin:"50% 50%", ease:Power1.easeInOut });
             block_variation += 0.10;
 
         }

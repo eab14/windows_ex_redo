@@ -1,4 +1,4 @@
-var exp_click = false;
+var nav_exp_click = false;
 
 const addHandlersNav = () => {
 
@@ -13,8 +13,8 @@ const addHandlersNav = () => {
 
     logo.addEventListener("click", function() {
 
-        exp_click = (exp_click) ? false : true;
-        clickLogo(this, exp_click);
+        nav_exp_click = (nav_exp_click) ? false : true;
+        clickLogo(this, nav_exp_click);
 
     })
     
@@ -91,14 +91,12 @@ const clickNavLink = (array, input) => {
 const hoverLogo = (input) => {
 
     const diamond = input.querySelectorAll(".diamond");
-    const indicator = input.querySelector(".logo_indicator");
 
     const tl = gsap.timeline({ paused: true });
 
     tl.fromTo(diamond[0], { scale: 1 }, { duration: 0.3, scale: 1.05, background: "#6b957e" }, 0);
     tl.fromTo([ diamond[2], diamond[3] ], { scale: 1 }, { duration: 0.3, delay: 0.15, scale: 1.1, background: "#19ac5b" }, 0);
     tl.fromTo(diamond[1], { scale: 1 }, { duration: 0.3, delay: 0.3, scale: 1.05, background: "#6b957e" }, 0);
-    // tl.fromTo(indicator, { opacity: 0 }, { duration: 0.3, delay: 0.25, opacity: 1, ease:Power1.easeInOut }, 0);
     tl.play();
 
     input.addEventListener("mouseleave", function() {

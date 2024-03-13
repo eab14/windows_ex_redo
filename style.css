@@ -1,0 +1,32 @@
+body {
+    width: 100vw;
+    height: 100vh;
+    font-family: "Poppins";
+}
+
+/*
+
+- - colors
+
+green: #19ac5b
+green-grey: #6b957e
+black-grey: #242424
+grey-white: #e4e4e4
+white: #f4f4f4
+
+*/
+
+.flex { display: flex; }
+.row { flex-direction: row; }
+.col { flex-direction: column; }
+.center { justify-content: center; align-items: center; }
+
+main {
+    position: relative;
+    width: 100%;
+    height: 100%;
+}
+
+a:link, a:hover, a:visited {
+    text-decoration: none;
+}

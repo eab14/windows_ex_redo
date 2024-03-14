@@ -26,6 +26,7 @@ main {
 }
 
 section {
+    position: relative;
     width: 100%;
     height: 100vh;
     overflow: hidden;
@@ -37,10 +38,12 @@ section #content_spacer {
     width: calc(100% - 20px);
     padding: 20px 0;
     overflow-y: auto;
+    overflow-x: hidden;
     margin-left: 20px;
 }
+
 section #taskbar_spacer {
-    position: fixed;
+    position: absolute;
     bottom: 0;
     width: 100%;
     overflow: hidden;
@@ -48,7 +51,37 @@ section #taskbar_spacer {
     box-sizing: border-box;
     border-top: 1px solid var(--color_grey);
     height: 41px;
-    padding-top: 4px;
+    padding: 4px 40px 0 40px;
+}
+
+.taskbar_util {
+    position: absolute;
+    width: 30px;
+    height: 100%;
+    z-index: 5;
+}
+
+.taskbar_util:hover {
+    background: var(--color_black);
+    color: var(--color_green);
+    transition: 0.3s;
+    opacity: 0.7;
+    cursor: pointer;
+}
+
+.taskbar_util span {
+    font-size: 14px;
+    color: var(--color_green_grey);
+}
+
+#taskbar_prev {
+    left: 0;
+    top: 0;
+}
+
+#taskbar_next {
+    right: 0;
+    top: 0;
 }
 
 a:link, a:hover, a:visited {

@@ -43,19 +43,24 @@ const minimizeWindow = (input, initial_width) => {
 
     gsap.to(input, 0.2, { width: 280 });
     gsap.to(content, 0.2,  { opacity: 0, height: 0, transformOrigin: "50% 50%" });
+    gsap.to(input, 0.2, { opacity: 0 });
+    gsap.to(input, 0.2, { delay: 0.2, opacity: 1 });
+    
 
     minimizeButton.style.pointerEvents = "none";
 
     if (input.classList.contains('video_resize')) input.style.resize = "none";
 
-    setTimeout(() => {
+    let finish = setTimeout(() => {
 
         maximizeButton.style.pointerEvents = "all";
         maximizeButton.addEventListener("click", function() { maximizeWindow(input, initial_width, content_height); });
-        taskbar.appendChild(input)
+        input.style.margin = "0 5px";
+        taskbar.appendChild(input);
+
+        clearTimeout(finish);
         
     }, 200);
-
 
 }
 
@@ -67,6 +72,7 @@ const maximizeWindow = (input, initial_width, initial_height) => {
     let maximizeButton = input.querySelector(".max");
 
     content_spacer.appendChild(input);
+    input.style.margin = "0 10px 20px 10px";
 
     gsap.to(input, 0.2, { width: initial_width });
     gsap.to(content, 0.2,  { opacity: 1, height: initial_height, transformOrigin: "50% 50%" });

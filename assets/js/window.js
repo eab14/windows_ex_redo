@@ -39,7 +39,7 @@ const minimizeWindow = (input, initial_width) => {
     let minimizeButton = input.querySelector(".min");
     let maximizeButton = input.querySelector(".max");
 
-    let taskbar = document.getElementById("taskbar_spacer");
+    let taskbar = document.getElementById("taskbar_placer");
 
     gsap.to(input, 0.2, { width: 280 });
     gsap.to(content, 0.2,  { opacity: 0, height: 0, transformOrigin: "50% 50%" });

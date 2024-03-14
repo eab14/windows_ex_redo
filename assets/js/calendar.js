@@ -98,11 +98,11 @@ const createDays = (date) => {
 
     }
 
-    animation();
+    animationCal();
 
 }
 
-const animation = () => {
+const animationCal = () => {
 
     const rows = document.querySelectorAll(".cal_content_line");
 

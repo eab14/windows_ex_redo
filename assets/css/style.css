@@ -27,8 +27,28 @@ main {
 
 section {
     width: 100%;
-    padding: 20px 20px 60px 20px; /* top right bottom left */
+    height: 100vh;
+    overflow: hidden;
+}
+
+section #content_spacer {
+    position: relative;
+    height: calc(100vh - 70px);
+    width: calc(100% - 20px);
+    padding: 20px 0;
     overflow-y: auto;
+    margin-left: 20px;
+}
+section #taskbar_spacer {
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    overflow: hidden;
+    background: var(--color_white);
+    box-sizing: border-box;
+    border-top: 1px solid var(--color_grey);
+    height: 41px;
+    padding-top: 4px;
 }
 
 a:link, a:hover, a:visited {

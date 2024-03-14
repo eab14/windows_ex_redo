@@ -39,6 +39,8 @@ const minimizeWindow = (input, initial_width) => {
     let minimizeButton = input.querySelector(".min");
     let maximizeButton = input.querySelector(".max");
 
+    let taskbar = document.getElementById("taskbar_spacer");
+
     gsap.to(input, 0.2, { width: 280 });
     gsap.to(content, 0.2,  { opacity: 0, height: 0, transformOrigin: "50% 50%" });
 
@@ -50,6 +52,7 @@ const minimizeWindow = (input, initial_width) => {
 
         maximizeButton.style.pointerEvents = "all";
         maximizeButton.addEventListener("click", function() { maximizeWindow(input, initial_width, content_height); });
+        taskbar.appendChild(input)
         
     }, 200);
 
@@ -59,8 +62,11 @@ const minimizeWindow = (input, initial_width) => {
 const maximizeWindow = (input, initial_width, initial_height) => {
 
     let content = input.querySelector(".window_content");
+    let content_spacer = document.getElementById("content_spacer");
     let minimizeButton = input.querySelector(".min");
     let maximizeButton = input.querySelector(".max");
+
+    content_spacer.appendChild(input);
 
     gsap.to(input, 0.2, { width: initial_width });
     gsap.to(content, 0.2,  { opacity: 1, height: initial_height, transformOrigin: "50% 50%" });

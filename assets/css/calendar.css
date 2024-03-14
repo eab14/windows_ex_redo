@@ -1,9 +1,10 @@
+/* Calendar needs fixed similar to nav, 1px spacer sometimes seen as 2px, changed to border, likely need nth-child on first or last */
+
 #cal_spacer {
-    position: absolute;
+    position: relative;
     width: 300px;
-    left: 20px;
-    top: 20px;
     height: fit-content;
+    margin-top: 2px;
 }
 
 #cal_spacer .cal_header_spacer {
@@ -74,7 +75,7 @@
     position: relative;
     width: calc((100% / 7) - 2px);
     height: 40px;
-    background: #d4d4d4;
+    background: var(--color_grey);
     opacity: 0;
 }
 
@@ -87,3 +88,4 @@
 }
 
 .empty { background: var(--color_green_grey)!important; }
+.current { background: var(--color_green)!important; }

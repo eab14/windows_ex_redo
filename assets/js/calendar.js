@@ -41,6 +41,9 @@ const addHandlersCal = () => {
 
 const createDays = (date) => {
 
+    const current_date = new Date();
+    const str_current = `${current_date.getFullYear()}-${current_date.getMonth() + 1}-${current_date.getDate()}`;
+
     const content = document.querySelector(".cal_content");
     content.innerHTML = '';
 
@@ -75,7 +78,7 @@ const createDays = (date) => {
         for (let j = 0; j < 7; j++) {
 
             const box = document.createElement('div');
-            box.className = "box";
+            (`${date.getFullYear()}-${date.getMonth() + 1}-${day}` === str_current) ? box.className = "box current" : box.className = "box";
 
             if ((i === 0 && j < start_day) || (i === lines_amount - 1 && day > days)) { box.className = "box empty"; line.append(box); }
 

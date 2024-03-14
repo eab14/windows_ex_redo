@@ -119,7 +119,7 @@ const clickLogo = (input, selected) => {
         icon.innerHTML = `<i class="fa-solid fa-chevron-left"></i>`;
         gsap.to(icon, 0.2, { opacity: 0 })
         gsap.to(icon, 0.2, { delay: 0.2, opacity: 1, background: "#19ac5b" })
-        gsap.to(nav, 0.3, { width: 200 })
+        gsap.to(nav, 0.3, { minWidth: 200 })
         gsap.to(text, 0.3, { width: "calc(100% - 60px)" })
         gsap.to(logo_p, 0.3, { delay: 0.15, left: "-19px", opacity: 1 })
 
@@ -142,7 +142,7 @@ const clickLogo = (input, selected) => {
         icon.innerHTML = `<i class="fa-solid fa-chevron-right"></i>`;
         gsap.to(icon, 0.2, { opacity: 0 })
         gsap.to(icon, 0.2, { delay: 0.2, opacity: 1, background: "#6b957e" })
-        gsap.to(nav, 0.3, { width: 60 })
+        gsap.to(nav, 0.3, { minWidth: 60 })
         gsap.to(text, 0.3, { width: 0 })
         gsap.to(logo_p, 0.2, { opacity: 0, left: "-30px" })
 

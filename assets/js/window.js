@@ -20,8 +20,11 @@ function minimizeWindow(input, initial_width, initial_height) {
 
     let content = input.querySelector(".window_content");
     content.style.opacity = 0;
+    content.style.height = 0;
 
-    gsap.to(input, 0.3, { y: window.innerHeight - 70, width: initial_width - 20 })
+    gsap.to(input, 0.3, { width: 300 });
+
+    input.removeEventListener("click");
 
 }
 

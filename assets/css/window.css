@@ -1,0 +1,60 @@
+.window {
+    position: relative;
+    width: fit-content;
+    margin: 0 20px;
+    margin-bottom: 20px;
+}
+
+.window_header {
+    position: relative;
+    height: 34px;
+    min-width: 300px;
+    background: var(--color_black);
+}
+
+.window_header span {
+    width: 4px;
+    height: calc(100% - 16px);
+    background: var(--color_green_grey);
+    align-self: center;
+    margin: 0 14px;
+}
+
+.window_header .window_utilities {
+    position: absolute;
+    right: 0;
+    align-self: center;
+    justify-self: flex end;
+    width: fit-content;
+    height: 100%;
+}
+
+.window_utilities .icon {
+    position: relative;
+    color: var(--color_grey);
+    width: 36px;
+    height: 100%;
+    font-size: 14px;
+}
+
+.window_utilities .icon:hover {
+    cursor: pointer;
+    transition: 0.3s;
+    background: var(--color_green);
+}
+
+.window_header h2 {
+    font-size: 16px;
+    font-family: "Roboto", sans-serif;
+    color: var(--color_white);
+    align-self: center;
+}
+
+.window_content {
+    position: relative;
+    width: 100%;
+    box-sizing: border-box;
+    margin-top: 2px;
+    padding: 2px;
+    border: 1px solid var(--color_grey);
+}

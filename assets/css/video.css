@@ -1,5 +1,5 @@
 .video_resize {
-    overflow: auto;
+    overflow: hidden;
     resize: both;
     scrollbar-width: none;
 }

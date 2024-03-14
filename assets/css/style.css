@@ -9,6 +9,7 @@
 body {
     width: 100vw;
     height: 100vh;
+    overflow: hidden;
     font-family: "Poppins";
 }
 
@@ -21,15 +22,20 @@ body {
 main {
     position: relative;
     width: 100%;
-    height: fit-content;
+    height: 100vh;
 }
 
 section {
-    padding: 20px;
-    overflow: hidden;
-    height: 100%;
+    width: 100%;
+    padding: 20px 20px 60px 20px; /* top right bottom left */
+    overflow-y: auto;
 }
 
 a:link, a:hover, a:visited {
     text-decoration: none;
 }
+
+::-webkit-scrollbar { width: 10px; }
+::-webkit-scrollbar-track { background: var(--color_black); }
+::-webkit-scrollbar-thumb { background: var(--color_green_grey); }
+::-webkit-scrollbar-thumb:hover { background: var(--color_green); }

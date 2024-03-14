@@ -3,11 +3,12 @@
     width: fit-content;
     margin: 0 20px;
     margin-bottom: 20px;
+    min-width: 300px;
 }
 
 .window_header {
     position: relative;
-    height: 32px;
+    min-height: 32px;
     min-width: 300px;
     background: var(--color_black);
 }

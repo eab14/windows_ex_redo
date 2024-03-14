@@ -34,6 +34,8 @@ const addHandlersWindow = () => {
 const minimizeWindow = (input, initial_width) => {
 
     let content = input.querySelector(".window_content");
+    let content_height = content.offsetHeight;
+
     let minimizeButton = input.querySelector(".min");
     let maximizeButton = input.querySelector(".max");
 
@@ -45,26 +47,21 @@ const minimizeWindow = (input, initial_width) => {
     setTimeout(() => {
 
         maximizeButton.style.pointerEvents = "all";
-
-        maximizeButton.addEventListener("click", function() {
-
-            maximizeWindow(input, initial_width);
-    
-        });
+        maximizeButton.addEventListener("click", function() { maximizeWindow(input, initial_width, content_height); });
         
     }, 200);
 
 
 }
 
-const maximizeWindow = (input, initial_width) => {
+const maximizeWindow = (input, initial_width, initial_height) => {
 
     let content = input.querySelector(".window_content");
     let minimizeButton = input.querySelector(".min");
     let maximizeButton = input.querySelector(".max");
 
     gsap.to(input, 0.2, { width: initial_width });
-    gsap.to(content, 0.2,  { opacity: 1, height: "fit-content", transformOrigin: "50% 50%" });
+    gsap.to(content, 0.2,  { opacity: 1, height: initial_height, transformOrigin: "50% 50%" });
 
     maximizeButton.style.pointerEvents = "none";
 

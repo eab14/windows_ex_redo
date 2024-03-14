@@ -47,6 +47,9 @@ const createDays = (date) => {
     const content = document.querySelector(".cal_content");
     content.innerHTML = '';
 
+    const window_content = content.parentNode.parentNode;
+    window_content.style.height = "fit-content";
+
     const leap_year = date.getFullYear() % 4 === 0;
 
     const month = date.getMonth();

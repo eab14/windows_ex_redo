@@ -7,17 +7,17 @@
 
 .window_header {
     position: relative;
-    height: 34px;
+    height: 32px;
     min-width: 300px;
     background: var(--color_black);
 }
 
 .window_header span {
-    width: 4px;
+    width: 3px;
     height: calc(100% - 16px);
     background: var(--color_green_grey);
     align-self: center;
-    margin: 0 14px;
+    margin: 0 12px;
 }
 
 .window_header .window_utilities {
@@ -34,7 +34,7 @@
     color: var(--color_grey);
     width: 36px;
     height: 100%;
-    font-size: 14px;
+    font-size: 12px;
 }
 
 .window_utilities .icon:hover {

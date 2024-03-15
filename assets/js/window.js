@@ -23,7 +23,20 @@ const addHandlersWindow = () => {
         closeButton[i].addEventListener("click", function() {
 
             let input = this.parentNode.parentNode.parentNode;
+            let title = input.querySelector("h2").textContent;
+
             input.style.display = "none";
+
+            switch (title) {
+
+                case "Calendar": calendar_clicked = false; break;
+                case "Music": music_clicked = false; break;
+                case "Video": video_clicked = false; break;
+            
+                default:
+                    break;
+
+            }
 
         });
 

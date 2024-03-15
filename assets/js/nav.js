@@ -1,5 +1,9 @@
 var nav_exp_click = false;
 
+var music_clicked = false;
+var video_clicked = false;
+var calendar_clicked = false;
+
 const addHandlersNav = () => {
 
     const logo = document.querySelector(".logo_spacer");
@@ -36,10 +40,56 @@ const addHandlersNav = () => {
 
         nav_links[i].addEventListener("click", function() {
 
-            const icon = this.querySelector('.nav_icon');
+            const title = this.querySelector("p").textContent;
             clickNavLink(nav_links, this);
+            appendPage(title);
 
         });
+
+    }
+
+}
+
+const appendPage = (title) => {
+
+    const content = document.getElementById("content_spacer");
+
+    switch (title) {
+
+        case "Calendar":
+
+            if (!music_clicked) {
+
+                content.innerHTML += calendar_string; 
+                createDays(selected_date);
+                calendar_clicked = true;
+
+            }
+
+        break;
+
+        case "Music":
+
+            if (!music_clicked) {
+
+                content.innerHTML += music_string; 
+                musicPlayer();
+                music_clicked = true;
+
+            }
+
+        break;
+
+        case "Video":
+
+            if (!video_clicked) {
+
+                content.innerHTML += video_string;
+                video_clicked = true;
+
+            }
+
+        break;
 
     }
 

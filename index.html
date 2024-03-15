@@ -14,6 +14,7 @@
     <link rel="stylesheet" href="./assets/css/video.css" />
     <link rel="stylesheet" href="./assets/css/test.css" />
     <link rel="stylesheet" href="./assets/css/taskbar.css" />
+    <link rel="stylesheet" href="./assets/css/music.css" />
 
     <script src="https://kit.fontawesome.com/19ea3e05d8.js" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js" integrity="sha512-7eHRwcbYkK4d9g/6tD/mhkf++eoTHwpNM9woBxtPUBWm67zeAfFC+HrdoE2GanKeocly/VxeLvIqwvCdk7qScg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
@@ -215,6 +216,73 @@
 
         <div id="content_spacer" class="flex row wrap">
 
+            <div class="window flex col video_resize">
+
+                <div class="flex row window_header">
+
+                    <span class="flex"></span>
+
+                    <h2>Video</h2>
+
+                    <div class="flex row window_utilities">
+
+                        <div class="flex center icon min"><i class="fa-solid fa-minus"></i></div>
+                        <div class="flex center icon max"><i class="fa-solid fa-window-maximize"></i></div>
+                        <div class="flex center icon close"><i class="fa-solid fa-xmark"></i></div>
+
+                    </div>
+
+                </div>
+
+                <div class="flex col window_content">
+
+                    <video src="./assets/video/clean_your_eyes_with_bleach.mp4" controls></video>
+
+                </div>
+
+            </div>
+
+            <div class="window flex col">
+
+                <div class="flex row window_header">
+
+                    <span class="flex"></span>
+
+                    <h2>Music</h2>
+
+                    <div class="flex row window_utilities">
+
+                        <div class="flex center icon min"><i class="fa-solid fa-minus"></i></div>
+                        <div class="flex center icon max"><i class="fa-solid fa-window-maximize"></i></div>
+                        <div class="flex center icon close"><i class="fa-solid fa-xmark"></i></div>
+
+                    </div>
+
+                </div>
+
+                <div class="flex col window_content">
+            
+                    <canvas id="visualizer" class="flex"></canvas>
+
+                    <div id="music_controls" class="flex row">
+
+                        <div id="music_slider"><input type="range"></div>
+
+                        <p id="time_left" class="flex music_time">0:00</p>
+                        <p id="time_right" class="flex music_time">0:00</p>
+
+                        <div id="music_play_button" class="flex center">
+
+                            <span><i class="fa-solid fa-play"></i></span>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
             <div class="window flex col">
 
                 <div class="flex row window_header">
@@ -265,32 +333,6 @@
                         <div class="cal_content flex col"></div>
             
                     </div>
-
-                </div>
-
-            </div>
-
-            <div class="window flex col video_resize">
-
-                <div class="flex row window_header">
-
-                    <span class="flex"></span>
-
-                    <h2>Video</h2>
-
-                    <div class="flex row window_utilities">
-
-                        <div class="flex center icon min"><i class="fa-solid fa-minus"></i></div>
-                        <div class="flex center icon max"><i class="fa-solid fa-window-maximize"></i></div>
-                        <div class="flex center icon close"><i class="fa-solid fa-xmark"></i></div>
-
-                    </div>
-
-                </div>
-
-                <div class="flex col window_content">
-
-                    <video src="./assets/video/clean_your_eyes_with_bleach.mp4" controls></video>
 
                 </div>
 
@@ -356,60 +398,6 @@
 
                     <span class="flex"></span>
 
-                    <h2>Database</h2>
-
-                    <div class="flex row window_utilities">
-
-                        <div class="flex center icon min"><i class="fa-solid fa-minus"></i></div>
-                        <div class="flex center icon max"><i class="fa-solid fa-window-maximize"></i></div>
-                        <div class="flex center icon close"><i class="fa-solid fa-xmark"></i></div>
-
-                    </div>
-
-                </div>
-
-                <div class="flex col window_content">
-
-            
-                    <div class="test_3"></div>
-
-                </div>
-
-            </div>
-
-            <div class="window flex col">
-
-                <div class="flex row window_header">
-
-                    <span class="flex"></span>
-
-                    <h2>Music</h2>
-
-                    <div class="flex row window_utilities">
-
-                        <div class="flex center icon min"><i class="fa-solid fa-minus"></i></div>
-                        <div class="flex center icon max"><i class="fa-solid fa-window-maximize"></i></div>
-                        <div class="flex center icon close"><i class="fa-solid fa-xmark"></i></div>
-
-                    </div>
-
-                </div>
-
-                <div class="flex col window_content">
-
-            
-                    <div class="test_4"></div>
-
-                </div>
-
-            </div>
-
-            <div class="window flex col">
-
-                <div class="flex row window_header">
-
-                    <span class="flex"></span>
-
                     <h2>Settings</h2>
 
                     <div class="flex row window_utilities">
@@ -426,6 +414,33 @@
 
             
                     <div class="test_5"></div>
+
+                </div>
+
+            </div>
+
+            <div class="window flex col">
+
+                <div class="flex row window_header">
+
+                    <span class="flex"></span>
+
+                    <h2>Database</h2>
+
+                    <div class="flex row window_utilities">
+
+                        <div class="flex center icon min"><i class="fa-solid fa-minus"></i></div>
+                        <div class="flex center icon max"><i class="fa-solid fa-window-maximize"></i></div>
+                        <div class="flex center icon close"><i class="fa-solid fa-xmark"></i></div>
+
+                    </div>
+
+                </div>
+
+                <div class="flex col window_content">
+
+            
+                    <div class="test_3"></div>
 
                 </div>
 
@@ -459,5 +474,6 @@
     <script src="./assets/js/calendar.js"></script>
     <script src="./assets/js/window.js"></script>
     <script src="./assets/js/taskbar.js"></script>
+    <script src="./assets/js/audio.js"></script>
 
 </html>

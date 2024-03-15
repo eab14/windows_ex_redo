@@ -73,6 +73,7 @@ const maximizeWindow = (input, initial_width, initial_height) => {
 
     content_spacer.appendChild(input);
     input.style.margin = "0 10px 20px 10px";
+    input.style.transform = "translate(0px,0px)";
 
     gsap.to(input, 0.2, { width: initial_width });
     gsap.to(content, 0.2,  { opacity: 1, height: initial_height, transformOrigin: "50% 50%" });

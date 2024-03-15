@@ -46,6 +46,7 @@
 .window_header h2 {
     font-size: 14px;
     font-family: "Roboto", sans-serif;
+    font-weight: bold;
     color: var(--color_white);
     align-self: center;
 }

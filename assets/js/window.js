@@ -1,20 +1,27 @@
-const addHandlersWindow = () => {
+const addHandlersWindow = (str) => {
 
     const minimizeButton = document.querySelectorAll('.window_utilities .min');
     const closeButton = document.querySelectorAll('.window_utilities .close');
 
     const maximizeButton = document.querySelectorAll('.window_utilities .max');
 
-    for (let i = 0; i < minimizeButton.length; i++) maximizeButton[i].style.pointerEvents = "none";
-
     for (let i = 0; i < minimizeButton.length; i++) {
 
-        minimizeButton[i].addEventListener("click", function() {
+        let input = minimizeButton[i].parentNode.parentNode.parentNode;
+        let title = input.querySelector("h2").textContent;
+        
 
-            let input = this.parentNode.parentNode.parentNode;
-            minimizeWindow(input, input.offsetWidth);
+        if (title === str) {
+            
+            minimizeButton[i].addEventListener("click", function() {
+                
+                minimizeWindow(input, input.offsetWidth);
+                maximizeButton[i].style.pointerEvents = "none";
+                console.log(this);
 
-        });
+            });
+
+        }
 
     }
 
@@ -25,16 +32,17 @@ const addHandlersWindow = () => {
             let input = this.parentNode.parentNode.parentNode;
             let title = input.querySelector("h2").textContent;
 
-            input.style.display = "none";
+            input.parentNode.removeChild(input);
 
             switch (title) {
 
+                case "Account": account_clicked = false; break;
                 case "Calendar": calendar_clicked = false; break;
+                case "Database": database_clicked = false; break;
+                case "Messages": messages_clicked = false; break;
                 case "Music": music_clicked = false; break;
+                case "Settings": settings_clicked = false; break;
                 case "Video": video_clicked = false; break;
-            
-                default:
-                    break;
 
             }
 
@@ -97,4 +105,7 @@ const maximizeWindow = (input, initial_width, initial_height) => {
 
 }
 
-addHandlersWindow();
+addHandlersWindow("Database");
+addHandlersWindow("Messages");
+addHandlersWindow("Settings");
+addHandlersWindow("Account");

@@ -1,8 +1,12 @@
 var nav_exp_click = false;
 
-var music_clicked = false;
-var video_clicked = false;
+var account_clicked = false;
 var calendar_clicked = false;
+var database_clicked = false;
+var messages_clicked = false;
+var music_clicked = false;
+var settings_clicked = false;
+var video_clicked = false;
 
 const addHandlersNav = () => {
 
@@ -56,6 +60,18 @@ const appendPage = (title) => {
 
     switch (title) {
 
+        case "Account":
+
+            if (!account_clicked) {
+
+                content.innerHTML += account_string;
+                addHandlersWindow(title);
+                account_clicked = true;
+
+            }
+
+        break;
+
         case "Calendar":
 
             if (!calendar_clicked) {
@@ -63,8 +79,32 @@ const appendPage = (title) => {
                 content.innerHTML += calendar_string; 
                 createDays(selected_date);
                 addHandlersCal();
-                addHandlersWindow();
+                addHandlersWindow(title);
                 calendar_clicked = true;
+
+            }
+
+        break;
+
+        case "Database":
+
+            if (!database_clicked) {
+
+                content.innerHTML += database_string;
+                addHandlersWindow(title);
+                database_clicked = true;
+
+            }
+
+        break;
+
+        case "Messages":
+
+            if (!messages_clicked) {
+
+                content.innerHTML += messages_string;
+                addHandlersWindow(title);
+                messages_clicked = true;
 
             }
 
@@ -76,8 +116,20 @@ const appendPage = (title) => {
 
                 content.innerHTML += music_string; 
                 musicPlayer();
-                addHandlersWindow();
+                addHandlersWindow(title);
                 music_clicked = true;
+
+            }
+
+        break;
+
+        case "Settings":
+
+            if (!settings_clicked) {
+
+                content.innerHTML += settings_string;
+                addHandlersWindow(title);
+                settings_clicked = true;
 
             }
 
@@ -88,7 +140,7 @@ const appendPage = (title) => {
             if (!video_clicked) {
 
                 content.innerHTML += video_string;
-                addHandlersWindow();
+                addHandlersWindow(title);
                 video_clicked = true;
 
             }

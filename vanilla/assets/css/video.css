@@ -1,0 +1,6 @@
+.video_resize {
+    /* overflow: hidden;
+    resize: both;
+    scrollbar-width: none; */
+    object-fit: cover;
+}

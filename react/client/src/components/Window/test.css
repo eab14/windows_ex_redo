@@ -2,6 +2,8 @@
     width: 380px;
     height: 240px;
     background: var(--color_black);
+    color: var(--color_white);
+    font-size: 12px;
 }
 
 .test_2 {

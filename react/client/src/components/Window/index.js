@@ -3,33 +3,35 @@ import './test.css';
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faWindowMaximize, faMinus, faXmark } from '@fortawesome/free-solid-svg-icons';
+import Test from './Account/Test';
+import Calendar from './Calendar';
 
-const Window = () => {
+const Window = (props) => {
 
   return (
 
-    <div class="window flex col">
+    <div className="window flex col">
 
-        <div class="flex row window_header">
+        <div className="flex row window_header">
 
-            <span class="flex"></span>
+            <span className="flex"></span>
 
-            <h2>Account</h2>
+            <h2>{props.selected}</h2>
 
-            <div class="flex row window_utilities">
+            <div className="flex row window_utilities">
 
-                <div class="flex center icon min"><FontAwesomeIcon icon={faMinus} /></div>
-                <div class="flex center icon max"><FontAwesomeIcon icon={faWindowMaximize} /></div> 
-                <div class="flex center icon close"><FontAwesomeIcon icon={faXmark} /></div>
+                <div className="flex center icon min"><FontAwesomeIcon icon={faMinus} /></div>
+                <div className="flex center icon max"><FontAwesomeIcon icon={faWindowMaximize} /></div> 
+                <div className="flex center icon close"><FontAwesomeIcon icon={faXmark} /></div>
 
             </div>
 
         </div>
 
-        <div class="flex col window_content">
+        <div className="flex col window_content">
 
-
-            <div class="test_1"></div>
+            { props.selected === "Account" && <Test /> }
+            { props.selected === "Calendar" && <Calendar /> }
 
         </div>
 

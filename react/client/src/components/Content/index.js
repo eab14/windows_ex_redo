@@ -4,17 +4,20 @@ import Window from '../Window';
 const Content = () => {
 
   return (
+
     <section className="flex col">
 
         <div id="content_spacer" className="flex row wrap">
 
-          <Window />
+          <Window selected="Account" />
+          <Window selected="Calendar" />
 
         </div>
 
         <Taskbar />
 
     </section>
+
   );
 
 }

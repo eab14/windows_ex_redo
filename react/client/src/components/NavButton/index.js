@@ -88,8 +88,7 @@ const NavButton = (props) => {
 
                     <div className="nav_text flex center">
 
-                    { props.text === "Home" ? <p class="text_selected">{props.text}</p> : <p>{props.text}</p> }
-                        
+                    { props.text === "Home" ? <p className="text_selected">{props.text}</p> : <p>{props.text}</p> }
                         
                     </div>
 

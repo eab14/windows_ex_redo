@@ -1,0 +1,91 @@
+/* Calendar needs fixed similar to nav, 1px spacer sometimes seen as 2px, changed to border, likely need nth-child on first or last */
+
+#cal_spacer {
+    position: relative;
+    width: 300px;
+    height: fit-content;
+    margin-top: 2px;
+}
+
+#cal_spacer .cal_header_spacer {
+    position: relative;
+    width: calc(100% - 4px);
+}
+
+.cal_header_spacer .cal_header {
+    width: 100%;
+    justify-content: space-around;
+    background: var(--color_black);
+    height: fit-content;
+}
+
+.cal_header_spacer .cal_day_header {
+    width: 100%;
+    height: 14px;
+    margin-top: 2px;
+    background: var(--color_green);
+    color: var(--color_white);
+    font-size: 10px;
+}
+
+.cal_header_spacer .cal_day_header span {
+    width: calc(100% / 7);
+}
+
+#cal_spacer .cal_header h2 {
+    font-size: 14px;
+    font-weight: 700;
+    color: var(--color_white);
+}
+
+.cal_header h3 {
+    position: relative;
+    font-size: 10px;
+    font-weight: normal;
+    margin-left: 8px;
+    top: -4px;
+    width: fit-content;
+    color: var(--color_green_grey);
+}
+
+#cal_spacer .cal_header span {
+    width: 30px;
+    height: 30px;
+    color: var(--color_green_grey);
+}
+
+#cal_spacer .cal_header span:hover {
+    cursor: pointer;
+    transition: 0.3s;
+    color: var(--color_green);
+}
+
+#cal_spacer .cal_content {
+    margin-top: 2px;
+    width: 100%;
+    height: fit-content;
+}
+
+.cal_content .cal_content_line {
+    justify-content: space-evenly;
+    margin-bottom: 2px;
+}
+
+.cal_content .cal_content_line .box {
+    position: relative;
+    width: calc((100% / 7) - 2px);
+    height: 40px;
+    background: var(--color_grey);
+    opacity: 1;
+}
+
+.box h3 {
+    position: absolute;
+    top: 4px;
+    right: 4px;
+    font-size: 11px;
+    font-weight: bold;
+}
+
+.empty { background: var(--color_green_grey)!important; }
+.current { background: var(--color_green)!important; }

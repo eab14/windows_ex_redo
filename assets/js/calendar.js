@@ -126,6 +126,3 @@ const animationCal = () => {
     }
 
 }
-
-createDays(selected_date);
-addHandlersCal();

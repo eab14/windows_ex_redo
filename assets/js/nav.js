@@ -58,10 +58,12 @@ const appendPage = (title) => {
 
         case "Calendar":
 
-            if (!music_clicked) {
+            if (!calendar_clicked) {
 
                 content.innerHTML += calendar_string; 
                 createDays(selected_date);
+                addHandlersCal();
+                addHandlersWindow();
                 calendar_clicked = true;
 
             }
@@ -74,6 +76,7 @@ const appendPage = (title) => {
 
                 content.innerHTML += music_string; 
                 musicPlayer();
+                addHandlersWindow();
                 music_clicked = true;
 
             }
@@ -85,6 +88,7 @@ const appendPage = (title) => {
             if (!video_clicked) {
 
                 content.innerHTML += video_string;
+                addHandlersWindow();
                 video_clicked = true;
 
             }

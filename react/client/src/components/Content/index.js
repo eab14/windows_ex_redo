@@ -1,7 +1,10 @@
 import Taskbar from '../Taskbar';
 import Window from '../Window';
+import { useWindowsEX } from '../../context/WindowContext';
 
 const Content = () => {
+
+  const { windows } = useWindowsEX();
 
   return (
 
@@ -9,8 +12,7 @@ const Content = () => {
 
         <div id="content_spacer" className="flex row wrap">
 
-          <Window selected="Account" />
-          <Window selected="Calendar" />
+          { windows.map(window => <Window key={window} selected={window} />) }
 
         </div>
 

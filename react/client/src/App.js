@@ -3,14 +3,17 @@ import './assets/css/style.css';
 
 import Content from './components/Content';
 import Nav from './components/Nav';
+import { WindowProvider } from './context/WindowContext';
 
 function App() {
 
   return (
     <main className="flex">
 
-      <Nav />
-      <Content />
+      <WindowProvider>
+        <Nav />
+        <Content />
+      </WindowProvider>
 
     </main>
   );

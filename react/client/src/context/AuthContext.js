@@ -7,7 +7,7 @@ export const useAuth = () => useContext(AuthContext);
 
 export const AuthProvider = ({ children }) => {
 
-    const [ client, setClient ] = useState(null);
+    const [ user, setUser ] = useState(null);
     // const [ loading, setLoading ] = useState(true);
 
     useEffect(() => {
@@ -16,8 +16,8 @@ export const AuthProvider = ({ children }) => {
 
         if (token) {
 
-            axios.get('/api/clients/verify', { headers: { Authorization: `Bearer ${token}` } })
-                .then(response => setClient(response.data.email))
+            axios.get('/api/users/verify', { headers: { Authorization: `Bearer ${token}` } })
+                .then(response => setUser(response.data.email))
                 .catch(error => {
                     console.error('Token invalid');
                     localStorage.removeItem('token');
@@ -31,10 +31,10 @@ export const AuthProvider = ({ children }) => {
 
         try {
 
-            const response = await axios.post('/api/login', { email, password });
+            const response = await axios.post('/api/users/login', { email, password });
             const token = response.data.access_token;
             localStorage.setItem('token', token);
-            setClient(email);
+            setUser(email);
 
         } 
         
@@ -45,12 +45,12 @@ export const AuthProvider = ({ children }) => {
     const logout = async () => {
 
         localStorage.removeItem('token');
-        setClient(null);
+        setUser(null);
 
     }
 
     const context = {
-        client,
+        user,
         login,
         logout
     }

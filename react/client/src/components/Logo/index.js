@@ -94,6 +94,7 @@ const Logo = () => {
     }
 
     return (
+
         <div className="logo_spacer flex center row" ref={logoRef} onClick={navHandler} onMouseEnter={logoHover} onMouseLeave={logoExit}>
 
             <div className="logo_expand_spacer flex row">
@@ -124,6 +125,7 @@ const Logo = () => {
             
 
         </div>
+        
     );
 
 }

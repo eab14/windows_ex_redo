@@ -1,0 +1,21 @@
+{
+  "name": "windows_ex_redo",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "concurrently \"cd server && node server.js\" \"cd client && npm start\"",
+    "server-install": "cd server && npm install",
+    "client-install": "cd client && npm install",
+    "client-test": "cd client && npm run test",
+    "client-cypress": "cd client && npm run cypress",
+    "seeds": "cd server && node seeds",
+    "install": "npm run server-install && npm run client-install"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "concurrently": "^8.2.2"
+  }
+}

@@ -67,6 +67,7 @@ const Calendar = () => {
     
             for (let j = 0; j < 7; j++) {
     
+                // Append Box component here
                 const box = document.createElement('div');
                 (`${date.getFullYear()}-${date.getMonth() + 1}-${day}` === str_current) ? box.className = "box current" : box.className = "box";
     

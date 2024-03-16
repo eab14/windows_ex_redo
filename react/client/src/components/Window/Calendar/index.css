@@ -2,7 +2,7 @@
 
 #cal_spacer {
     position: relative;
-    width: 300px;
+    width: 296px;
     height: fit-content;
     margin-top: 2px;
 }
@@ -74,16 +74,20 @@
 .cal_content .cal_content_line .box {
     position: relative;
     width: calc((100% / 7) - 2px);
-    height: 40px;
+    height: 32px;
     background: var(--color_grey);
     opacity: 1;
+}
+
+.cal_day_header span {
+    font-size: 9px;
 }
 
 .box h3 {
     position: absolute;
     top: 4px;
     right: 4px;
-    font-size: 11px;
+    font-size: 10px;
     font-weight: bold;
 }
 

@@ -5,10 +5,13 @@ import { useRef } from 'react';
 
 import { gsap, Power1 } from 'gsap';
 import { useGSAP } from '@gsap/react';
+import { useWindowsEX } from '../../context/WindowContext';
 
 gsap.registerPlugin(useGSAP);
 
 const NavButton = (props) => {
+
+    const { windows, status } = useWindowsEX();
 
     const linkRef = useRef(null);
 
@@ -47,6 +50,8 @@ const NavButton = (props) => {
             selected_text.classList.add("text_selected");
 
         }
+
+        
 
     }
 

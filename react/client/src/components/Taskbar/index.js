@@ -9,7 +9,7 @@ import { useWindowsEX } from '../../context/WindowContext';
 const Taskbar = () => {
 
     const { windows, status } = useWindowsEX();
-	const array = windows.filter(window => status.find(([windowName, status]) => windowName === window && status === "min")).map(window => <Window key={window} selected={window} />);
+	const array = windows.filter(window => status.find(([name, status]) => name === window && status === "min")).map(window => <Window key={window} selected={window} />);
 
     return (
 

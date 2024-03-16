@@ -3,17 +3,42 @@ import './test.css';
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faWindowMaximize, faMinus, faXmark } from '@fortawesome/free-solid-svg-icons';
+
 import Test from './Account/Test';
 import Calendar from './Calendar';
+import Music from './Music';
+
 import { useWindowsEX } from '../../context/WindowContext';
 
 const Window = (props) => {
 
-	const { status, setStatus } = useWindowsEX();
+	const { status, setStatus, sortWindows } = useWindowsEX();
 	const windowStatus = status.find(([ name ]) => name === props.selected);
 
-	const minClick = () => setStatus(prevStatus => prevStatus.map(([name, currentStatus]) =>  name === props.selected ? [name, "min"] : [name, currentStatus]));
-	const maxClick = () => setStatus(prevStatus => prevStatus.map(([name, currentStatus]) =>  name === props.selected ? [name, "max"] : [name, currentStatus]));
+	const minClick = () => {
+
+		setStatus(prev => {
+
+		  const updated = prev.map(([name, current]) => name === props.selected ? [name, "min"] : [name, current]);
+		  sortWindows(updated);
+		  return updated;
+
+		});
+
+	};
+
+	const maxClick = () => {
+
+		setStatus(prev => {
+
+			const updated = prev.map(([name, current]) => name === props.selected ? [name, "max"] : [name, current]);
+			sortWindows(updated);
+			return updated;
+  
+		});
+
+	}
+
 	const closeClick = () => setStatus(prevStatus => prevStatus.filter(([name]) => name !== props.selected));
 
 	return (
@@ -70,6 +95,7 @@ const Window = (props) => {
 
 							{ props.selected === "Account" && <Test /> }
 							{ props.selected === "Calendar" && <Calendar /> }
+							{ props.selected === "Music" && <Music /> }
 
 						</div>
 

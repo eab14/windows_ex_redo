@@ -4,7 +4,7 @@ import { useWindowsEX } from '../../context/WindowContext';
 const Content = () => {
 
   	const { windows, status } = useWindowsEX();
-	const array = windows.filter(window => status.find(([windowName, status]) => windowName === window && status === "max")).map(window => <Window key={window} selected={window} />);
+	const array = windows.filter(window => status.find(([name, status]) => name === window && status === "max")).map(window => <Window key={window} selected={window} />);
 
 	return (
 

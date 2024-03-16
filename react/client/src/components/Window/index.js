@@ -5,37 +5,79 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faWindowMaximize, faMinus, faXmark } from '@fortawesome/free-solid-svg-icons';
 import Test from './Account/Test';
 import Calendar from './Calendar';
+import { useWindowsEX } from '../../context/WindowContext';
 
 const Window = (props) => {
 
-  return (
+	const { status, setStatus } = useWindowsEX();
+	const windowStatus = status.find(([ name ]) => name === props.selected);
 
-    <div className="window flex col">
+	const minClick = () => setStatus(prevStatus => prevStatus.map(([name, currentStatus]) =>  name === props.selected ? [name, "min"] : [name, currentStatus]));
+	const maxClick = () => setStatus(prevStatus => prevStatus.map(([name, currentStatus]) =>  name === props.selected ? [name, "max"] : [name, currentStatus]));
+	const closeClick = () => setStatus(prevStatus => prevStatus.filter(([name]) => name !== props.selected));
 
-        <div className="flex row window_header">
+	return (
 
-            <span className="flex"></span>
+		<>
 
-            <h2>{props.selected}</h2>
+			{ 
+			
+				(windowStatus && windowStatus[1] === "min") &&
 
-            <div className="flex row window_utilities">
+					<div className="window flex col">
 
-                <div className="flex center icon min"><FontAwesomeIcon icon={faMinus} /></div>
-                <div className="flex center icon max"><FontAwesomeIcon icon={faWindowMaximize} /></div> 
-                <div className="flex center icon close"><FontAwesomeIcon icon={faXmark} /></div>
+						<div className="flex row window_header">
 
-            </div>
+							<span className="flex"></span>
 
-        </div>
+							<h2>{props.selected}</h2>
 
-        <div className="flex col window_content">
+							<div className="flex row window_utilities">
+								
+								<div className="flex center icon max" onClick={maxClick}><FontAwesomeIcon icon={faWindowMaximize} /></div> 
+								<div className="flex center icon close" onClick={closeClick}><FontAwesomeIcon icon={faXmark} /></div>
 
-            { props.selected === "Account" && <Test /> }
-            { props.selected === "Calendar" && <Calendar /> }
+							</div>
 
-        </div>
+						</div>
 
-    </div>
+					</div>
+				
+			}
+
+			{ 
+			
+				(windowStatus && windowStatus[1] === "max") &&
+
+					<div className="window flex col">
+
+						<div className="flex row window_header">
+
+							<span className="flex"></span>
+
+							<h2>{props.selected}</h2>
+
+							<div className="flex row window_utilities">
+
+								<div className="flex center icon min" onClick={minClick}><FontAwesomeIcon icon={faMinus} /></div>
+								<div className="flex center icon close" onClick={closeClick}><FontAwesomeIcon icon={faXmark} /></div>
+
+							</div>
+
+						</div>
+
+						<div className="flex col window_content">
+
+							{ props.selected === "Account" && <Test /> }
+							{ props.selected === "Calendar" && <Calendar /> }
+
+						</div>
+
+					</div>
+				
+			}
+
+		</>
 
   );
 

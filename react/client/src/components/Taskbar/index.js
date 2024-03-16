@@ -1,9 +1,15 @@
 import './index.css';
 
+import Window from '../Window';
+
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faChevronRight, faChevronLeft } from '@fortawesome/free-solid-svg-icons';
+import { useWindowsEX } from '../../context/WindowContext';
 
 const Taskbar = () => {
+
+    const { windows, status } = useWindowsEX();
+	const array = windows.filter(window => status.find(([windowName, status]) => windowName === window && status === "min")).map(window => <Window key={window} selected={window} />);
 
     return (
 
@@ -14,6 +20,8 @@ const Taskbar = () => {
             </div>
 
             <div id="taskbar_placer" className="flex row">
+
+                { array }
 
             </div>
 

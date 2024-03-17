@@ -10,6 +10,7 @@ import Music from './Music';
 import Database from './Database';
 import Settings from './Settings';
 import Messages from './Messages';
+import Calculator from './Calculator';
 
 import { useWindowsEX } from '../../context/WindowContext';
 
@@ -83,6 +84,7 @@ const Window = (props) => {
 					{ props.selected === "Database" && <Database /> }
 					{ props.selected === "Settings" && <Settings /> }
 					{ props.selected === "Messages" && <Messages /> }
+					{ props.selected === "Calculator" && <Calculator /> }
 
 				</div>
 

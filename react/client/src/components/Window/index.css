@@ -18,6 +18,7 @@
     height: 20px;
     align-self: center;
     margin: 0 8px 0 8px;
+    opacity: 0.8;
 }
 
 .window_header span .m_diamond:nth-child(1) {
@@ -73,9 +74,9 @@
 }
 
 .window_header h2 {
-    font-size: 14px;
+    font-size: 13px;
     font-family: "Roboto", sans-serif;
-    font-weight: bold;
+    font-weight: 500;
     color: var(--color_white);
     align-self: center;
 }

@@ -7,13 +7,13 @@ export const useWindowsEX = () => useContext(WindowContext);
 
 export const WindowProvider = ({ children }) => {
 
-    const [ windows, setWindows ] = useState([ <Window key="1" selected="Account" />, <Window key="2" selected="Calendar" />, <Window key="3" selected="Music" /> ]);
+    const [ windows, setWindows ] = useState([ <Window key="Calculator" selected="Calculator" />, <Window key="Calendar" selected="Calendar" />, <Window key="Music" selected="Music" />, <Window key="Account" selected="Account" /> ]);
     const [ status, setStatus ] = useState([])
     // const [ music, setMusic ] = useState({ paused: true });
 
     useEffect(() => {
 
-        let array = [ [ "Account", "min" ], [ "Calendar", "max" ], [ "Music", "max" ] ];
+        let array = [ [ "Calculator", "max" ], [ "Calendar", "max" ], [ "Music", "max" ], [ "Account", "min" ] ];
         // sortWindows(array);
         setStatus(array);
 
@@ -23,11 +23,11 @@ export const WindowProvider = ({ children }) => {
 
         array.sort((a, b) => {
 
-          if (a[1] === "max" && b[1] === "max") return 0;
-          if (a[1] === "max") return -1;
-          if (b[1] === "max") return 1;
+            if (a[1] === "max" && b[1] === "max") return 0;
+            if (a[1] === "max") return -1;
+            if (b[1] === "max") return 1;
 
-          return 0;
+            return 0;
 
         });
       

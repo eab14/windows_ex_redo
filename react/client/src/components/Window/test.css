@@ -10,22 +10,29 @@
     width: 520px;
     height: 320px;
     background: var(--color_green);
+    color: var(--color_white);
+    font-size: 12px;
 }
 
 .test_3 {
     width: 720px;
     height: 400px;
     background: var(--color_green_grey);
+    color: var(--color_white);
+    font-size: 12px;
 }
 
 .test_4 {
     width: 450px;
     height: 220px;
     background: var(--color_grey);
+    font-size: 12px;
 }
 
 .test_5 {
     width: 630px;
     height: 340px;
     background: var(--color_black);
+    color: var(--color_white);
+    font-size: 12px;
 }

@@ -1,19 +1,17 @@
-import Window from '../Window';
 import { useWindowsEX } from '../../context/WindowContext';
 
 const Content = () => {
 
-  	const { windows, status } = useWindowsEX();
-	const array = windows.filter(window => status.find(([name, status]) => name === window && status === "max")).map(window => <Window key={window} selected={window} />);
+    const { windows, status } = useWindowsEX();
+	const array = windows.filter(w => status.find(([name, status]) => name === w.props.selected && status === "max")).map(w => w);
 
-	return (
+    return (
+        <div id="content_spacer" className="flex row wrap">
 
-		<div id="content_spacer" className="flex row wrap">
-			{ array }
-		</div>
+            { array }
 
-	);
-
-}
+        </div>
+    );
+};
 
 export default Content;

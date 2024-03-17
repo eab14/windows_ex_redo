@@ -13,11 +13,40 @@
 }
 
 .window_header span {
-    width: 3px;
-    height: calc(100% - 16px);
-    background: var(--color_green_grey);
+    position: relative;
+    width: 20px;
+    height: 20px;
     align-self: center;
-    margin: 0 12px;
+    margin: 0 8px 0 8px;
+}
+
+.window_header span .m_diamond:nth-child(1) {
+    position: absolute;
+    height: 8px;
+    width: 8px;
+    background: var(--color_green_grey);
+    top: calc(50% - 4px);
+    transform: rotate(45deg);
+}
+
+.window_header span .m_diamond:nth-child(2) {
+    position: absolute;
+    height: 5px;
+    width: 5px;
+    background: var(--color_green);
+    top: calc(50% - 8px);
+    left: 8px;
+    transform: rotate(45deg);
+}
+
+.window_header span .m_diamond:nth-child(3) {
+    position: absolute;
+    height: 5px;
+    width: 5px;
+    background: var(--color_green);
+    bottom: calc(50% - 8px);
+    left: 8px;
+    transform: rotate(45deg);
 }
 
 .window_header .window_utilities {
@@ -37,7 +66,7 @@
     font-size: 12px;
 }
 
-.window_utilities .icon:hover {
+.window_utilities .icon:hover { 
     cursor: pointer;
     transition: 0.3s;
     background: var(--color_green);
@@ -63,4 +92,9 @@
 .none {
     display: none;
     width: 300px;
+}
+
+.full {
+    display: flex;
+    width: fit-content;
 }

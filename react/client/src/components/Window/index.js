@@ -7,20 +7,24 @@ import { faWindowMaximize, faMinus, faXmark } from '@fortawesome/free-solid-svg-
 import Test from './Account/Test';
 import Calendar from './Calendar';
 import Music from './Music';
+import Database from './Database';
+import Settings from './Settings';
+import Messages from './Messages';
 
 import { useWindowsEX } from '../../context/WindowContext';
 
+
+
 const Window = (props) => {
 
-	const { status, setStatus, sortWindows } = useWindowsEX();
-	const windowStatus = status.find(([ name ]) => name === props.selected);
+	const { status, setStatus, setWindows } = useWindowsEX();
+	const ws = status.find(([ name ]) => name === props.selected);
 
 	const minClick = () => {
 
 		setStatus(prev => {
 
 		  const updated = prev.map(([name, current]) => name === props.selected ? [name, "min"] : [name, current]);
-		  sortWindows(updated);
 		  return updated;
 
 		});
@@ -32,76 +36,57 @@ const Window = (props) => {
 		setStatus(prev => {
 
 			const updated = prev.map(([name, current]) => name === props.selected ? [name, "max"] : [name, current]);
-			sortWindows(updated);
 			return updated;
   
 		});
 
 	}
 
-	const closeClick = () => setStatus(prevStatus => prevStatus.filter(([name]) => name !== props.selected));
+	const closeClick = () => {
+
+		setStatus(prevStatus => prevStatus.filter(([name]) => name !== props.selected));
+		setWindows(prevWindows => prevWindows.filter(window => window.props.selected !== props.selected));
+
+	};
 
 	return (
 
 		<>
 
-			{ 
-			
-				(windowStatus && windowStatus[1] === "min") &&
+			<div className="window flex col">
 
-					<div className="window flex col">
+				<div className="flex row window_header">
 
-						<div className="flex row window_header">
+					<span className="flex">
+						<i className="m_diamond"></i>
+						<i className="m_diamond"></i>
+						<i className="m_diamond"></i>
+					</span>
 
-							<span className="flex"></span>
+					<h2>{props.selected}</h2>
 
-							<h2>{props.selected}</h2>
-
-							<div className="flex row window_utilities">
-								
-								<div className="flex center icon max" onClick={maxClick}><FontAwesomeIcon icon={faWindowMaximize} /></div> 
-								<div className="flex center icon close" onClick={closeClick}><FontAwesomeIcon icon={faXmark} /></div>
-
-							</div>
-
-						</div>
+					<div className="flex row window_utilities">
+						
+						{ (ws && ws[1] === "max") && <div className="flex center icon min" onClick={minClick}><FontAwesomeIcon icon={faMinus} /></div> }
+						{ (ws && ws[1] === "min") && <div className="flex center icon max" onClick={maxClick}><FontAwesomeIcon icon={faWindowMaximize} /></div> }
+						<div className="flex center icon close" onClick={closeClick}><FontAwesomeIcon icon={faXmark} /></div>
 
 					</div>
-				
-			}
 
-			{ 
-			
-				(windowStatus && windowStatus[1] === "max") &&
+				</div>
 
-					<div className="window flex col">
+				<div className={`flex col window_content ${ (ws[1] === "max") ? 'full' : 'none'}`}>
 
-						<div className="flex row window_header">
+					{ props.selected === "Account" && <Test /> }
+					{ props.selected === "Calendar" && <Calendar /> }
+					{ props.selected === "Music" && <Music /> }
+					{ props.selected === "Database" && <Database /> }
+					{ props.selected === "Settings" && <Settings /> }
+					{ props.selected === "Messages" && <Messages /> }
 
-							<span className="flex"></span>
+				</div>
 
-							<h2>{props.selected}</h2>
-
-							<div className="flex row window_utilities">
-
-								<div className="flex center icon min" onClick={minClick}><FontAwesomeIcon icon={faMinus} /></div>
-								<div className="flex center icon close" onClick={closeClick}><FontAwesomeIcon icon={faXmark} /></div>
-
-							</div>
-
-						</div>
-
-						<div className="flex col window_content">
-
-							{ props.selected === "Account" && <Test /> }
-							{ props.selected === "Calendar" && <Calendar /> }
-							{ props.selected === "Music" && <Music /> }
-
-						</div>
-
-					</div>
-				
-			}
+			</div>
 
 		</>
 

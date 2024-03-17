@@ -1,3 +1,5 @@
+import Window from '../Window';
+
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faUser, faHome, faVideo, faCalendar, faComment, faTableList, faMusic, faGear } from '@fortawesome/free-solid-svg-icons';
 import { faGithub } from "@fortawesome/free-brands-svg-icons"
@@ -11,7 +13,7 @@ gsap.registerPlugin(useGSAP);
 
 const NavButton = (props) => {
 
-    const { windows, status } = useWindowsEX();
+    const { windows, setStatus, setWindows } = useWindowsEX();
 
     const linkRef = useRef(null);
 
@@ -51,6 +53,15 @@ const NavButton = (props) => {
 
         }
 
+        if (!windows.find(window => window.props.selected === props.text)) {
+
+            const w = <Window key={props.text} selected={props.text} />;
+            const s = [props.text, "max"];
+
+            setWindows(prevWindows => [ ...prevWindows, w ]);
+            setStatus(prevStatus => [ ...prevStatus, s ]);
+
+        }
         
 
     }

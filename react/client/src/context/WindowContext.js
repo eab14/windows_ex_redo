@@ -1,4 +1,5 @@
 import { createContext, useContext, useEffect, useState } from "react";
+import Window from "../components/Window";
 
 const WindowContext = createContext();
 
@@ -6,13 +7,14 @@ export const useWindowsEX = () => useContext(WindowContext);
 
 export const WindowProvider = ({ children }) => {
 
-    const [ windows, setWindows ] = useState([ "Account", "Calendar", "Music" ]);
+    const [ windows, setWindows ] = useState([ <Window key="1" selected="Account" />, <Window key="2" selected="Calendar" />, <Window key="3" selected="Music" /> ]);
     const [ status, setStatus ] = useState([])
+    // const [ music, setMusic ] = useState({ paused: true });
 
     useEffect(() => {
 
         let array = [ [ "Account", "min" ], [ "Calendar", "max" ], [ "Music", "max" ] ];
-        sortWindows(array);
+        // sortWindows(array);
         setStatus(array);
 
     }, [])
@@ -28,9 +30,6 @@ export const WindowProvider = ({ children }) => {
           return 0;
 
         });
-
-        const sortedWindows = array.map(([name, _]) => name);
-        setWindows(sortedWindows);
       
         return array;
 

@@ -91,6 +91,7 @@ const Music = () => {
             cancelAnimationFrame(rAF.current);
 
         }
+
     };
 
     const handleSliderChange = (e) => {
@@ -123,13 +124,13 @@ const Music = () => {
             <div id="music_controls" className="flex row">
 
                 <div id="music_slider">
-                    <input type="range" value={sliderValue} max={song.duration} onChange={handleSliderChange} />
+                    <input type="range" value={sliderValue} max={`${song.duration}`} onChange={handleSliderChange} />
                 </div>
 
                 <p id="time_left" className="flex music_time">{timeLeft}</p>
                 <p id="time_right" className="flex music_time">{timeRight}</p>
 
-                <div id="music_main_controls" class="flex row">
+                <div id="music_main_controls" className="flex row">
 
                     <div id="music_back_button" className="flex center">
 
@@ -141,7 +142,7 @@ const Music = () => {
 
                         <span>
 
-                            { song.paused ? <FontAwesomeIcon icon={faPlay} /> : <FontAwesomeIcon icon={faPause} /> }
+                            <span>{song.paused ? <FontAwesomeIcon icon={faPlay} /> : <FontAwesomeIcon icon={faPause} />}</span>
 
                         </span>
 

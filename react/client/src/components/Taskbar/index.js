@@ -1,7 +1,5 @@
 import './index.css';
 
-import Window from '../Window';
-
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faChevronRight, faChevronLeft } from '@fortawesome/free-solid-svg-icons';
 import { useWindowsEX } from '../../context/WindowContext';
@@ -9,7 +7,7 @@ import { useWindowsEX } from '../../context/WindowContext';
 const Taskbar = () => {
 
     const { windows, status } = useWindowsEX();
-	const array = windows.filter(window => status.find(([name, status]) => name === window && status === "min")).map(window => <Window key={window} selected={window} />);
+    const array = windows.filter(w => status.find(([name, status]) => name === w.props.selected && status === "min")).map(w => w);
 
     return (
 

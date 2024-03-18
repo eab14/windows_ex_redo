@@ -4,7 +4,6 @@ import './test.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faWindowMaximize, faMinus, faXmark } from '@fortawesome/free-solid-svg-icons';
 
-import Test from './Account/Test';
 import Calendar from './Calendar';
 import Music from './Music';
 import Database from './Database';
@@ -13,6 +12,8 @@ import Messages from './Messages';
 import Calculator from './Calculator';
 
 import { useWindowsEX } from '../../context/WindowContext';
+import Gallery from './Gallery';
+import Login from './Account/Login';
 
 
 
@@ -78,13 +79,14 @@ const Window = (props) => {
 
 				<div className={`flex col window_content ${ (ws[1] === "max") ? 'full' : 'none'}`}>
 
-					{ props.selected === "Account" && <Test /> }
+					{ props.selected === "Account" && <Login /> }
 					{ props.selected === "Calendar" && <Calendar /> }
 					{ props.selected === "Music" && <Music /> }
 					{ props.selected === "Database" && <Database /> }
 					{ props.selected === "Settings" && <Settings /> }
 					{ props.selected === "Messages" && <Messages /> }
 					{ props.selected === "Calculator" && <Calculator /> }
+					{ props.selected === "Gallery" && <Gallery /> }
 
 				</div>
 

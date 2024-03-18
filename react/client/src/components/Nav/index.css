@@ -131,6 +131,7 @@ nav {
     width: 0px;
     height: calc(100% - 10px);
     background: var(--color_green_grey);
+    border-radius: 0 3px 3px 0;
 }
 
 .nav_footer_spacer {

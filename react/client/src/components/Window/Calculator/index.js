@@ -45,7 +45,7 @@ const Calculator = () => {
     return (
         <div id="calculator" className="flex col">
 
-            <div className="display flex center" readOnly>{result}</div>
+            <div className="display flex" readOnly>{result}</div>
             <div className="buttons flex row">
 
                 <div className="calc_numbers flex col">

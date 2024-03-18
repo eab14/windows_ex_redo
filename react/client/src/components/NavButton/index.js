@@ -1,7 +1,7 @@
 import Window from '../Window';
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faUser, faHome, faVideo, faCalendar, faComment, faTableList, faMusic, faGear } from '@fortawesome/free-solid-svg-icons';
+import { faUser, faHome, faVideo, faCalendar, faComment, faTableList, faMusic, faGear, faImages, faCalculator } from '@fortawesome/free-solid-svg-icons';
 import { faGithub } from "@fortawesome/free-brands-svg-icons"
 import { useRef } from 'react';
 
@@ -99,6 +99,9 @@ const NavButton = (props) => {
                         { props.text === "Video" && <FontAwesomeIcon icon={faVideo} /> }
                         { props.text === "Settings" && <FontAwesomeIcon icon={faGear} /> }
                         { props.text === "Github" && <FontAwesomeIcon icon={faGithub} /> }
+                        { props.text === "Gallery" && <FontAwesomeIcon icon={faImages} /> }
+                        { props.text === "Calculator" && <FontAwesomeIcon icon={faCalculator} /> }
+                        
                             
                     </span>
 

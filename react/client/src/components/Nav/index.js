@@ -34,6 +34,10 @@ const Nav = () => {
             <div className="flex divider"></div>
             <NavButton text="Video" />
             <div className="flex divider"></div>
+            <NavButton text="Gallery" />
+            <div className="flex divider"></div>
+            <NavButton text="Calculator" />
+            <div className="flex divider"></div>
             <NavButton text="Settings" />
             <div className="flex divider"></div>
 

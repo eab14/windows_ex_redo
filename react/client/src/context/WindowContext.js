@@ -13,7 +13,7 @@ export const WindowProvider = ({ children }) => {
 
     useEffect(() => {
 
-        let array = [ [ "Calculator", "max" ], [ "Calendar", "max" ], [ "Music", "max" ], [ "Account", "min" ] ];
+        let array = [ [ "Calculator", "min" ], [ "Calendar", "min" ], [ "Music", "min" ], [ "Account", "max" ] ];
         // sortWindows(array);
         setStatus(array);
 

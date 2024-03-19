@@ -2,15 +2,16 @@ import './index.css';
 import n1 from './n_1.mp3';
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faPause, faPlay, faBackward, faForward } from '@fortawesome/free-solid-svg-icons';
+import { faPause, faPlay, faBackward, faForward, faVolumeHigh } from '@fortawesome/free-solid-svg-icons';
 import { useEffect, useRef, useState } from 'react';
 
 const Music = () => {
 
-    const [song] = useState(new Audio(n1));
-    const [sliderValue, setSliderValue] = useState(0);
-    const [timeLeft, setTimeLeft] = useState('0:00');
-    const [timeRight, setTimeRight] = useState('0:00');
+    const [ song ] = useState(new Audio(n1));
+    const [ info ] = useState({ title: "Number One", artist: "Hazel Fernandes feat. Shiro Sagisu" }) 
+    const [ sliderValue, setSliderValue ] = useState(0);
+    const [ timeLeft, setTimeLeft ] = useState('0:00');
+    const [ timeRight, setTimeRight ] = useState('0:00');
 
     const canvasRef = useRef(null);
     const rAF = useRef(null);
@@ -154,6 +155,20 @@ const Music = () => {
 
                     </div>
 
+                </div>
+
+                <div id="music_info" className="flex col">
+                    <p>{info.title}</p>
+                    <p>{info.artist}</p>
+                </div>
+
+                <div id="music_volume" className="flex">
+                    <div className="volume_icon">
+                        <span><FontAwesomeIcon icon={faVolumeHigh} /></span>
+                    </div>
+                    <div className="volume_block"></div>
+                    <div className="volume_block"></div>
+                    <div className="volume_block white"></div>
                 </div>
 
             </div>

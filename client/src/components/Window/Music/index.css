@@ -80,3 +80,46 @@
     color: var(--color_green_grey);
     font-size: 16px;
 }
+
+#music_info {
+    margin-left: 20px;
+    justify-content: center;
+}
+
+#music_info p:nth-child(1) {
+    color: var(--color_white);
+    font-size: 14px;
+}
+
+#music_info p:nth-child(2) {
+    color: var(--color_green_grey);
+    font-size: 12px;
+}
+
+#music_volume {
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    flex-direction: column-reverse;
+}
+
+#music_volume .volume_icon {
+    font-size: 12px;
+    color: var(--color_white);
+    width: 24px;
+    height: 20px;
+    margin-top: 6px;
+}
+
+#music_volume .volume_block {
+    position: relative;
+    width: 8px;
+    height: 6px;
+    background: var(--color_green);
+    right: -6px;
+    margin-top: 2px;
+}
+
+#music_volume .white {
+    background: var(--color_white);
+}

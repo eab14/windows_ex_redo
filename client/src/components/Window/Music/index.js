@@ -2,7 +2,7 @@ import './index.css';
 import n1 from './n_1.mp3';
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faPause, faPlay, faBackward, faForward, faVolumeHigh } from '@fortawesome/free-solid-svg-icons';
+import { faPause, faPlay, faBackward, faForward, faVolumeHigh, faRepeat, faShuffle } from '@fortawesome/free-solid-svg-icons';
 import { useEffect, useRef, useState } from 'react';
 
 const Music = () => {
@@ -162,13 +162,18 @@ const Music = () => {
                     <p>{info.artist}</p>
                 </div>
 
+                <div id="music_utils" className="flex row">
+                    <span><FontAwesomeIcon icon={faRepeat} /></span>
+                    <span><FontAwesomeIcon icon={faShuffle} /></span>
+                </div>
+
                 <div id="music_volume" className="flex">
                     <div className="volume_icon">
                         <span><FontAwesomeIcon icon={faVolumeHigh} /></span>
                     </div>
                     <div className="volume_block"></div>
                     <div className="volume_block"></div>
-                    <div className="volume_block white"></div>
+                    <div className="volume_block block_grey"></div>
                 </div>
 
             </div>

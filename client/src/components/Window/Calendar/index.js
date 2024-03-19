@@ -1,8 +1,10 @@
 import './index.css';
 
-import { useEffect } from 'react';
+import { useCallback, useEffect } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCaretLeft, faCaretRight } from '@fortawesome/free-solid-svg-icons';
+
+import { gsap, Power1 } from 'gsap';
 
 import { useWindowsEX } from '../../../context/WindowContext';
 
@@ -28,7 +30,7 @@ const Calendar = () => {
 
     }
 
-    const createDays = (date) => {
+    const createDays = useCallback((date) => {
 
         const current_date = new Date();
         const str_current = `${current_date.getFullYear()}-${current_date.getMonth() + 1}-${current_date.getDate()}`;
@@ -88,6 +90,31 @@ const Calendar = () => {
     
         }
 
+        animateCal();
+
+    }, [])
+
+    const animateCal = () => {
+
+        const rows = document.querySelectorAll('.cal_content_line');
+        let row_variation = 0.04;
+
+        for (let i = 0; i < rows.length; i++) {
+            
+            let blocks = rows[i].querySelectorAll('.box');
+            let block_variation = 0.05;
+
+            for (let j = 0; j < blocks.length; j++) {
+                
+                gsap.to(blocks[j], { delay: block_variation+ row_variation, opacity: 1, transformOrigin: "50% 50%", ease:Power1.easeInOut, duration: block_variation });
+                block_variation += 0.05;
+                
+            }
+         
+            row_variation += 0.04;
+            
+        }
+
     }
 
     const prevMonth = () => {
@@ -108,7 +135,7 @@ const Calendar = () => {
 
         createDays(date);
 
-    }, [date])
+    }, [date, createDays])
 
     return (
 

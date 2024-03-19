@@ -10,13 +10,12 @@ import Database from './Database';
 import Settings from './Settings';
 import Messages from './Messages';
 import Calculator from './Calculator';
-
-import { useWindowsEX } from '../../context/WindowContext';
 import Gallery from './Gallery';
 import Login from './Account/Login';
 import Register from './Account/Register';
+import PasswordGen from './PasswordGen';
 
-
+import { useWindowsEX } from '../../context/WindowContext';
 
 const Window = (props) => {
 
@@ -89,6 +88,7 @@ const Window = (props) => {
 					{ props.selected === "Messages" && <Messages /> }
 					{ props.selected === "Calculator" && <Calculator /> }
 					{ props.selected === "Gallery" && <Gallery /> }
+					{ props.selected === "Password Generator" && <PasswordGen /> }
 
 				</div>
 

@@ -40,7 +40,7 @@ const Button = (props) => {
 
             </div>
 
-            <button onMouseEnter={buttonHover} onMouseLeave={reverseButton}>{props.text}</button>
+            <button onMouseEnter={buttonHover} onMouseLeave={reverseButton} onClick={props.onClick}>{props.text}</button>
 
         </div>
     )

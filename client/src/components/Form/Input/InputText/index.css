@@ -1,0 +1,62 @@
+.general_input {
+    position: relative;
+    width: fit-content;
+    height: fit-content;
+    margin-bottom: 14px;
+}
+
+.general_input input {
+    position: relative;
+    padding: 3px 12px;
+    border: 1px solid var(--color_white);
+    outline: none;
+    height: 30px;
+    width: 200px;
+    background: var(--color_black);
+    color: var(--color_white);
+    font-family: "Roboto", sans-serif;
+    font-size: 12px;
+    border-radius: 6px;
+}
+
+.general_input .border {
+    position: absolute;
+    box-sizing: border-box;
+    border-top: 1px solid var(--color_white);
+    overflow: hidden;
+}
+
+.general_input .border_overlay {
+    position: absolute;
+    left: 10px;
+    top: 0;
+    height: 1px;
+    width: 200px;
+    background: var(--color_black);
+    z-index: 2;
+}
+
+.general_input .border_top_left {
+    top: 0;
+    left: 0;
+    height: 1px;
+    width: calc(50%);
+}
+
+.general_input .border_top_right {
+    top: 0;
+    right: 0;
+    height: 1px;
+    width: calc(50%);
+}
+
+.general_input_placeholder {
+    position: absolute;
+    color: var(--color_white);
+    opacity: 1;
+    z-index: 9;
+    font-size: 12px;
+    font-weight: bold;
+    pointer-events: none;
+    left: 14px;
+}

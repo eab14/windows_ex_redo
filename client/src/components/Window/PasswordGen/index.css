@@ -1,0 +1,12 @@
+.pwg_spacer {
+    min-width: 300px;
+    background: var(--color_black);
+    color: var(--color_white);
+    font-size: 12px;
+    height: fit-content;
+}
+
+.pwg_line {
+    height: 40px;
+    margin: 10px 0;
+}

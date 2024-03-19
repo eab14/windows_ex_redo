@@ -2,22 +2,12 @@ import { useRef } from 'react';
 import './index.css';
 
 import { gsap, Power1 } from 'gsap';
-import { useGSAP } from '@gsap/react';
-
-gsap.registerPlugin(useGSAP);
+import Button from '../../../Form/Button/Button';
 
 const Login = () => {
 
     const userRef = useRef();
     const passRef = useRef();
-    const buttonRef = useRef();
-
-    useGSAP(() => { 
-
-        let hoverCtx = gsap.context(() => { gsap.to(".button_overlay", { width: "100%" }) }, buttonRef);
-        return () => hoverCtx.revert();
-
-    }, []);
 
     const focusHandler = ({ currentTarget }) => {
 
@@ -47,30 +37,6 @@ const Login = () => {
     
         }
     
-    }
-
-    const buttonHover = ({ currentTarget }) => {
-
-        const overlay = currentTarget.parentNode.querySelector(".border_background");
-        const borders = overlay.querySelectorAll(".button_overlay");
-    
-        gsap.to(borders[0], { duration: 0.14, width: 0 })
-        gsap.to(borders[1], { delay: 0.14, duration: 0.14, width: 0 })
-        gsap.to(borders[2], { duration: 0.14, width: 0 })
-        gsap.to(borders[3], { delay: 0.14, duration: 0.14, width: 0 })
-
-    }
-
-    const reverseButton = ({ currentTarget }) => {
-
-        const overlay = currentTarget.parentNode.querySelector(".border_background");
-        const borders = overlay.querySelectorAll(".button_overlay");
-
-        gsap.to(borders[0], { duration: 0.14, delay: 0.14, width: "calc(50% + 2px)" })
-        gsap.to(borders[1], { duration: 0.14, width: "calc(50% + 2px)" })
-        gsap.to(borders[2], { duration: 0.14, delay: 0.14, width: "calc(50% + 2px)" })
-        gsap.to(borders[3], { duration: 0.14, width: "calc(50% + 2px)" })
-
     }
 
     return (
@@ -125,20 +91,7 @@ const Login = () => {
 
                 <div className="flex row center">
 
-                    <div ref={buttonRef} className="flex row center login_button">
-
-                        <div className="flex center border_background">
-
-                            <span className="button_overlay"></span>
-                            <span className="button_overlay"></span>
-                            <span className="button_overlay"></span>
-                            <span className="button_overlay"></span>
-
-                        </div>
-
-                        <button onMouseEnter={buttonHover} onMouseLeave={reverseButton}>Login</button>
-
-                    </div>
+                    <Button text="Login" />
 
                 </div>
 

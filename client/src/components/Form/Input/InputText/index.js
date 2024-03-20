@@ -34,6 +34,8 @@ const InputText = (props) => {
     
     }
 
+    const handleChange = (event) => (props.onChange) && props.onChange(event.target.value);
+
     return (
         <div className="flex row center general_input">
 
@@ -46,7 +48,7 @@ const InputText = (props) => {
 
             <p className="general_input_placeholder">{props.placeholder}</p>
 
-            <input type={props.type} onBlur={blurHandler} onFocus={focusHandler} />
+            <input type={props.type} onBlur={blurHandler} onFocus={focusHandler} onChange={handleChange}/>
 
         </div>
     )

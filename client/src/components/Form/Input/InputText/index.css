@@ -15,7 +15,8 @@
     background: var(--color_black);
     color: var(--color_white);
     font-family: "Roboto", sans-serif;
-    font-size: 12px;
+    font-size: 13px;
+    font-weight: 500;
     border-radius: 6px;
 }
 
@@ -59,4 +60,10 @@
     font-weight: bold;
     pointer-events: none;
     left: 14px;
+}
+
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  appearance: none;
+  margin: 0;
 }

@@ -60,7 +60,7 @@
 
 <tr>
 <td>Password Gen</td>
-<td style="width: 100px; height: 30px; background: red;"></td>
+<td style="width: 100px; height: 30px; background: green;"></td>
 </tr>
 
 <tr>

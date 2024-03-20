@@ -7,8 +7,9 @@
 }
 
 .pwg_display {
-    width: 100%;
-    height: 34px;
+    width: 300px;
+    min-height: 34px;
+    padding: 10px 20px;
     background: var(--color_black);
     border-bottom: 1px solid var(--color_white);
     box-sizing: border-box;
@@ -18,6 +19,10 @@
 .pwg_display p {
     font-weight: bold;
     letter-spacing: 1px;
+    max-width: 180px;
+    line-height: 14px;
+    word-wrap: break-word;
+    overflow-wrap: break-word;
 }
 
 .pwg_input_line p {
@@ -25,8 +30,8 @@
     letter-spacing: 1px;
     width: 120px;
     text-align: left;
-    font-size: 10px;
-    font-weight: 500;
+    font-size: 11px;
+    font-weight: bold;
 }
 
 .pwg_display .icon {
@@ -50,6 +55,15 @@
     width: 100%;
     align-items: center;
     height: 40px;
+}
+
+.pwg_info_line {
+    margin: 10px 0;
+}
+
+.pwg_info_line p {
+    color: var(--color_grey);
+    font-size: 12px;
 }
 
 .pwg_input_line label {
@@ -97,4 +111,8 @@
 
 .pwg_line:last-child {
     margin-top: 20px;
+}
+
+.pwg_text_input {
+    margin-top: 10px;
 }

@@ -26,7 +26,7 @@ const Register = () => {
 
                 </div>
 
-                <InputText type="password" placeholder="Email" />
+                <InputText type="email" placeholder="Email" />
 
                 <InputText type="password" placeholder="Password" />
 

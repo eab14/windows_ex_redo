@@ -1,0 +1,28 @@
+.general_check_label {
+    position: relative;
+    width: 42px;
+    height: 18px;
+    background: var(--color_white);
+    border: 1px solid var(--color_grey);
+    box-sizing: border-box;
+    border-radius: 5px;
+    opacity: 0.89;
+}
+
+.general_check_label:hover {
+    cursor: pointer;
+}
+
+.general_check_label span {
+    position: absolute;
+    left: 2px;
+    width: 20px;
+    height: calc(100% - 4px);
+    background: linear-gradient(var(--color_green), var(--color_green_grey));
+    /* background: linear-gradient(#c23e3e, #7d2828); */
+    border-radius: 4px;
+}
+
+.general_check {
+    display: none;
+}

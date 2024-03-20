@@ -1,11 +1,13 @@
-import { useRef } from 'react';
+import './index.css';
+
+import { useCallback, useEffect, useRef } from 'react';
 import { gsap } from 'gsap';
 
 const InputCheckBox = (props) => {
 
     const checkRef = useRef();
 
-    const labelHandler = () => {
+    const labelHandler = useCallback (() => {
 
         const checkbox = checkRef.current;
         let q = gsap.utils.selector(checkbox.parentNode);
@@ -18,16 +20,18 @@ const InputCheckBox = (props) => {
 
         (props.onChange) && props.onChange(checkbox.checked);
 
-    }
+    }, [props])
+
+    useEffect(() => labelHandler(), [ labelHandler ])
 
     return (
-        <>
-        <input className="flex" type="checkbox" ref={checkRef} id={props.id} checked={props.status} onChange={labelHandler} />
+        <div className="flex">
+            <input className="flex general_check" type="checkbox" ref={checkRef} id={props.id} checked={props.status} onChange={labelHandler} />
 
-        <label className="flex row center" htmlFor={props.id}>
-            <span className="flex"></span>
-        </label>
-        </>
+            <label className="flex row center general_check_label" htmlFor={props.id}>
+                <span className="flex"></span>
+            </label>
+        </div>
     )
 
 }

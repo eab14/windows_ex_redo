@@ -80,7 +80,7 @@ const PasswordGen = () => {
 
                 <div className="flex center pwg_text_input">
 
-                    <InputText type="number" placeholder="Password Length" charLength={4} onChange={handlePasswordLengthChange} />
+                    <InputText type="number" placeholder="Password Length" onChange={handlePasswordLengthChange} />
 
                 </div>
 
@@ -128,7 +128,7 @@ const PasswordGen = () => {
 
             </div>
 
-            <div className="flex row center pwg_line">
+            <div className="flex row center pwg_line_button">
 
                 <Button text="Generate" onClick={() => generatePassword(passwordLength)} />
 

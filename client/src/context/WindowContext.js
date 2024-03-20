@@ -11,24 +11,23 @@ export const WindowProvider = ({ children }) => {
         <Window key="Calculator" selected="Calculator" />, 
         <Window key="Calendar" selected="Calendar" />, 
         <Window key="Music" selected="Music" />, 
-        <Window key="Account" selected="Account" />, 
-        <Window key="Register" selected="Register" />, 
+        <Window key="Account" selected="Account" />,
         <Window key="Password Generator" selected="Password Generator" />
     ]);
 
     const [ status, setStatus ] = useState([])
     // const [ music, setMusic ] = useState({ paused: true });
     const [ date, setDate ] = useState(new Date())
+    const [ account, setAccount ] = useState("login")
 
     useEffect(() => {
 
         let array = [ 
-            [ "Calculator", "min" ], 
-            [ "Calendar", "min" ], 
-            [ "Music", "min" ], 
-            [ "Account", "max" ], 
-            [ "Register", "max" ],
-            [ "Password Generator", "max" ]
+            [ "Calculator", "max" ], 
+            [ "Calendar", "max" ], 
+            [ "Music", "max" ], 
+            [ "Account", "max" ],
+            [ "Password Generator", "min" ]
         ];
         // sortWindows(array);
         setStatus(array);
@@ -58,7 +57,9 @@ export const WindowProvider = ({ children }) => {
         setStatus,
         sortWindows,
         date, 
-        setDate
+        setDate,
+        account,
+        setAccount
     }
 
     return (

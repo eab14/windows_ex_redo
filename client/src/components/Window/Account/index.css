@@ -37,14 +37,38 @@
 .diamond:nth-child(3) { top: 12px; }
 .diamond:nth-child(4) { top: 36px; }
 
-/* Animation coords */
+.register_terms {
+    height: 40px;
+    width: 100%;
+}
 
-/* .button_overlay:nth-child(1) { background: red; }
-.button_overlay:nth-child(2) { background: blue; }
-.button_overlay:nth-child(3) { background: green; }
-.button_overlay:nth-child(4) { background: yellow; } */
+.register_terms p {
+    font-size: 10px;
+    color: var(--color_grey);
+    margin-left: 20px;
+}
 
-/* .button_overlay:nth-child(1) { top: -2px; right: 50%; }
-.button_overlay:nth-child(2) { top: -2px; right: -2px; }
-.button_overlay:nth-child(3) { top: calc(50%); right: 50%; }
-.button_overlay:nth-child(4) { top: calc(50%); right: -2px; } */
+/* CSS voodoo I dont like -.- */
+
+#page_change_account {
+    position: relative;
+    height: 40px;
+}
+
+#page_change_account:hover {
+    cursor: pointer;
+}
+
+#page_change_account p {
+    color: var(--color_grey);
+    font-size: 13px;
+    font-weight: bold;
+    margin-right: 10px;
+    height: 20px;
+}
+
+#page_change_account span {
+    width: 20px;
+    height: 20px;
+    color: var(--color_green_grey);
+}

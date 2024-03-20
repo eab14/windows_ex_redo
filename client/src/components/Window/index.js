@@ -11,11 +11,11 @@ import Settings from './Settings';
 import Messages from './Messages';
 import Calculator from './Calculator';
 import Gallery from './Gallery';
-import Login from './Account/Login';
-import Register from './Account/Register';
+import Account from './Account';
 import PasswordGen from './PasswordGen';
 
 import { useWindowsEX } from '../../context/WindowContext';
+
 
 const Window = (props) => {
 
@@ -79,8 +79,7 @@ const Window = (props) => {
 
 				<div className={`flex col window_content ${ (ws[1] === "max") ? 'full' : 'none'}`}>
 
-					{ props.selected === "Account" && <Login /> }
-					{ props.selected === "Register" && <Register /> }
+					{ props.selected === "Account" && <Account /> }
 					{ props.selected === "Calendar" && <Calendar /> }
 					{ props.selected === "Music" && <Music /> }
 					{ props.selected === "Database" && <Database /> }

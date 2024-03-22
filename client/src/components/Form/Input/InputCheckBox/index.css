@@ -15,9 +15,9 @@
 
 .general_check_label span {
     position: absolute;
-    left: 2px;
+    left: 1px;
     width: 20px;
-    height: calc(100% - 4px);
+    height: calc(100% - 2px);
     background: linear-gradient(var(--color_green), var(--color_green_grey));
     /* background: linear-gradient(#c23e3e, #7d2828); */
     border-radius: 4px;

@@ -13,7 +13,7 @@ const InputCheckBox = (props) => {
         let q = gsap.utils.selector(checkbox.parentNode);
 
         gsap.to(q("label span"), {
-            x: !checkbox.checked ? 18 : 0,
+            x: !checkbox.checked ? 19 : 0,
             background: !checkbox.checked ? "linear-gradient(#c23e3e, #7d2828)" : "linear-gradient(#19ac5b, #6b957e)",
             duration: 0.2
         });

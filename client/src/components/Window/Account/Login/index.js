@@ -1,16 +1,37 @@
 import '../index.css';
 
+import { useState } from 'react';
+
 import Button from '../../../Form/Button';
 import InputText from '../../../Form/Input/InputText';
 import { useWindowsEX } from '../../../../context/WindowContext';
+import { useAuth } from '../../../../context/AuthContext';
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faRightFromBracket } from '@fortawesome/free-solid-svg-icons';
 
 const Login = () => {
 
+    const { login } = useAuth();
     const { setAccount } = useWindowsEX();
+
+    const [username, setUsername] = useState('');
+    const [password, setPassword] = useState('');
+
     const handleRegister = () => setAccount("register")
+
+    const handleUsernameChange = (value) => setUsername(value);
+    const handlePasswordChange = (value) => setPassword(value);
+
+    const handleSubmit = async (e) => {
+
+        e.preventDefault();
+        try { await login(username, password) } 
+        catch (error) { console.error('Login failed:', error); }
+
+        setAccount("panel");
+
+    };
 
     return (
 
@@ -18,7 +39,7 @@ const Login = () => {
 
             <div className="flex row"></div>
 
-            <form>
+            <form onSubmit={handleSubmit}>
 
                 <div className="login_logo_spacer flex center row">
 
@@ -33,13 +54,13 @@ const Login = () => {
 
                 </div>
 
-                <InputText type="text" placeholder="Username" />
+                <InputText type="text" placeholder="Username" onChange={handleUsernameChange}/>
 
-                <InputText type="password" placeholder="Password" />
+                <InputText type="password" placeholder="Password" onChange={handlePasswordChange}/>
 
                 <div className="flex row center">
 
-                    <Button text="Login" />
+                    <Button text="Login" type="submit" />
 
                 </div>
 

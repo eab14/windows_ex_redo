@@ -1,5 +1,6 @@
 import { createContext, useContext, useState, useEffect } from "react";
 import axios from 'axios';
+import { useWindowsEX } from "./WindowContext";
 
 const AuthContext = createContext();
 
@@ -8,6 +9,7 @@ export const useAuth = () => useContext(AuthContext);
 export const AuthProvider = ({ children }) => {
 
     const [ user, setUser ] = useState(null);
+    const { setAccount } = useWindowsEX();
     // const [ loading, setLoading ] = useState(true);
 
     useEffect(() => {
@@ -17,24 +19,26 @@ export const AuthProvider = ({ children }) => {
         if (token) {
 
             axios.get('/api/users/verify', { headers: { Authorization: `Bearer ${token}` } })
-                .then(response => setUser(response.data.email))
+                .then(response => { setUser(response.data.email); console.log(response.data); })
                 .catch(error => {
                     console.error('Token invalid');
                     localStorage.removeItem('token');
+                    setUser(null);
                 });
 
         }
 
-    }, []);
+    }, [ setAccount ]);
 
     const login = async (email, password) => {
 
         try {
 
             const response = await axios.post('/api/users/login', { email, password });
-            const token = response.data.access_token;
+            const token = response.data.token;
             localStorage.setItem('token', token);
-            setUser(email);
+
+            setUser(response.data.email);
 
         } 
         

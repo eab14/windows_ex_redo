@@ -1,8 +1,11 @@
 import './index.css';
 
+import { useState } from 'react';
 import { gsap, Power1 } from 'gsap';
 
 const InputText = (props) => {
+
+    const [value, setValue] = useState('');
 
     const focusHandler = ({ currentTarget }) => {
 
@@ -34,7 +37,10 @@ const InputText = (props) => {
     
     }
 
-    const handleChange = (event) => (props.onChange) && props.onChange(event.target.value);
+    const handleChange = (event) => {
+        setValue(event.target.value);
+        (props.onChange) && props.onChange(event.target.value);
+    }
 
     return (
         <div className="flex row center general_input">
@@ -48,7 +54,7 @@ const InputText = (props) => {
 
             <p className="general_input_placeholder">{props.placeholder}</p>
 
-            <input type={props.type} onBlur={blurHandler} onFocus={focusHandler} onChange={handleChange}/>
+            <input type={props.type} onBlur={blurHandler} onFocus={focusHandler} onChange={handleChange} value={value} />
 
         </div>
     )

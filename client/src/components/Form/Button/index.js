@@ -27,7 +27,7 @@ const Button = (props) => {
     const reverseButton = ({ currentTarget }) => {
 
         const overlay = currentTarget.parentNode.querySelector(".button_overlay");
-        gsap.to(overlay, { duration: 0.3, width: "calc(100% + 4px" })
+        gsap.to(overlay, { duration: 0.3, width: "calc(100% + 4px)" })
 
     }
 
@@ -40,7 +40,7 @@ const Button = (props) => {
 
             </div>
 
-            <button onMouseEnter={buttonHover} onMouseLeave={reverseButton} onClick={props.onClick}>{props.text}</button>
+            <button type={props.type} onMouseEnter={buttonHover} onMouseLeave={reverseButton} onClick={props.onClick}>{props.text}</button>
 
         </div>
     )

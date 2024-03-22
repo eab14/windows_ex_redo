@@ -1,58 +1,66 @@
 const { User } = require('../models');
 const bcrypt = require('bcrypt');
 const passportJWT = require('passport-jwt');
+const jwt = require('jsonwebtoken');
 
 let ExtractJwt = passportJWT.ExtractJwt;
 let JwtStrategy = passportJWT.Strategy;
 
 let jwtOptions = {
     jwtFromRequest: ExtractJwt.fromAuthHeaderWithScheme('jwt'),
-    secretOrKey: '&0y7$noP#5rt99&GB%Pz7j2b1vkzaB0RKs%^N^0zOP89NT04mPuaM!&G8cbNZOtH',
+    secretOrKey: 'secret_test',
 };
 
 let strategy = new JwtStrategy(jwtOptions, function (jwt_payload, next) {
 
-    if (jwt_payload) {
+    (jwt_payload) && 
 
         next(null, {
             _id: jwt_payload._id,
             username: jwt_payload.username,
+            email: jwt_payload.email,
             role: jwt_payload.role,
         });
+ 
+    
+    (!jwt_payload) && next(null, false);
 
-    } else {
-        next(null, false);
-    }
 });
-
-const withAuth = (req, res, next) => {
-
-    if (req.session.user) { next(); } 
-    else { res.status(401).json('You are not logged in'); }
-
-}
 
 const userAuth = (req, res, next) => {
 
-}
+    const token = req.headers.authorization;
+    if (!token) {
+        return res.status(401).json('Unauthorized: No token provided');
+    } else {
+        jwt.verify(token.split(' ')[1], jwtOptions.secretOrKey, (err, decoded) => {
+            if (err) {
+                console.error('JWT verification error:', err.message);
+                return res.status(401).json('Unauthorized: Invalid token');
+            } else {
+                req.user = decoded;
+                next();
+            }
+        });
+    }
+    
+};
 
 const checkUser = (data) => {
 
     return new Promise(function (resolve, reject) {
 
-        User.find({ username: data.username })
-            .limit(1)
-            .exec()
-            .then((users) => {
+        User.findOne({ email: data.email })
+            .then((user) => {
 
-                if (users.length == 0) reject("Unable to find user " + data.username);
+                if (!user) reject("Unable to find email " + data.email);
 
                 else {
 
-                    bcrypt.compare(data.password, users[0].password).then((res) => {
+                    bcrypt.compare(data.password, user.password).then((res) => {
 
-                        if (res === true) resolve(users[0]);
-                        else reject("Incorrect password for user " + data.username);
+                        if (res === true) resolve(user);
+                        else reject("Incorrect password for email " + data.email);
 
                     });
 
@@ -60,14 +68,13 @@ const checkUser = (data) => {
                 
             })
             
-            .catch((err) => reject("Unable to find user " + data.username));
+            .catch((err) => reject("Unable to find user " + data.email));
 
     });
 
 };
 
-module.exports = { 
-    withAuth,
+module.exports = {
     userAuth,
     checkUser,
     strategy,

@@ -20,7 +20,7 @@ const FileSchema = new Schema(
         },
 
         description : {
-            type: String
+            type: Object
         },
 
         type : {
@@ -31,7 +31,14 @@ const FileSchema = new Schema(
         size : {
             type: Number,
             required: true
-        }
+        },
+
+        sharedUsers : [
+            {
+                type : Schema.Types.ObjectId,
+                ref : 'User',
+            }
+        ]
 
     },
 

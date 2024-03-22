@@ -51,14 +51,13 @@ const userController = {
 
                 let payload = {
                     _id: user._id,
-                    username: user.username
+                    username: user.username,
+                    email: user.email
                 };
-
-                req.session.user = user;
 
                 let token = jwt.sign(payload, jwtOptions.secretOrKey);
 
-                res.json({ message: 'login successful', token: token });
+                res.json({ message: 'login successful', email: user.email, token: token });
 
             })
 
@@ -66,9 +65,15 @@ const userController = {
 
     },
 
+    verifyUser(req, res) {
+
+        res.json(req.user);
+
+    },
+
     logoutUser(req, res) {
 
-        if (req.session.user) req.session.destroy(() => res.status(204).end());
+        if (req.user) req.user.destroy(() => res.status(204).end());
         else res.status(404).end();
 
     },

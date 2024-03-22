@@ -16,7 +16,6 @@ import PasswordGen from './PasswordGen';
 
 import { useWindowsEX } from '../../context/WindowContext';
 
-
 const Window = (props) => {
 
 	const { status, setStatus, setWindows } = useWindowsEX();

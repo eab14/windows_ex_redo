@@ -79,6 +79,10 @@
     border-right: 1px solid var(--color_white);
 }
 
+.cal_content .cal_content_line:last-child {
+    border-bottom: none;
+}
+
 .cal_content .cal_content_line .box:last-child {
     border-right: none;
 }

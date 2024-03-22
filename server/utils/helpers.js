@@ -1,4 +1,5 @@
 const isEmailValid = (input) => /^([a-z0-9_\.-]+)@([\da-z\.-]+)\.([a-z\.]){2,6}$/.test(input);
+const removeAt = (email) => email.replace(/@(.*)$/, '');
 
 function formatDate() {
 
@@ -14,5 +15,6 @@ function formatDate() {
 
 module.exports = { 
     isEmailValid,
+    removeAt,
     formatDate
 }

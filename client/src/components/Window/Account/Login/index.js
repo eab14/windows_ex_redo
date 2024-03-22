@@ -29,8 +29,6 @@ const Login = () => {
         try { await login(username, password) } 
         catch (error) { console.error('Login failed:', error); }
 
-        setAccount("panel");
-
     };
 
     return (

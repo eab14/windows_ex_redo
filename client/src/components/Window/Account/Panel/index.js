@@ -13,7 +13,7 @@ const Panel = () => {
         { user ? 
         
         
-            <div class="flex center test_1">
+            <div className="flex center test_1">
 
                 <Button onClick={logout} text="Logout" />
             

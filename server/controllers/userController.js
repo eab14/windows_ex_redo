@@ -1,6 +1,7 @@
 const { User } = require('../models');
 const { checkUser, jwtOptions } = require('../utils/auth');
 const jwt = require('jsonwebtoken');
+const { removeAt } = require('../utils/helpers');
 
 const userController = {
 
@@ -22,7 +23,7 @@ const userController = {
 
     postUser({ body }, res) {
 
-        User.create(body)
+        User.create({ username: removeAt(body.email), email: body.email, password: body.password })
             .then(data => res.json(data))
             .catch(err => res.json(err))
 

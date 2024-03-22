@@ -19,7 +19,7 @@ export const AuthProvider = ({ children }) => {
         if (token) {
 
             axios.get('/api/users/verify', { headers: { Authorization: `Bearer ${token}` } })
-                .then(response => { setUser(response.data.email); console.log(response.data); })
+                .then(response => setUser(response.data.email))
                 .catch(error => {
                     console.error('Token invalid');
                     localStorage.removeItem('token');
@@ -39,12 +39,27 @@ export const AuthProvider = ({ children }) => {
             localStorage.setItem('token', token);
 
             setUser(response.data.email);
+            setAccount("panel");
+            
 
         } 
         
-        catch (error) { console.error('Login failed:', error.response.data.message); }
+        catch (error) { console.error('Login failed :', error.response.data.message); }
 
     };
+
+    const register = async (email, password) => {
+
+        try {
+
+            await axios.post('/api/users', { email, password });
+            await login(email, password);
+
+        }
+
+        catch (error) { console.error('Register failed :', error.response.data.message); }
+
+    }
 
     const logout = async () => {
 
@@ -56,6 +71,7 @@ export const AuthProvider = ({ children }) => {
     const context = {
         user,
         login,
+        register,
         logout
     }
 

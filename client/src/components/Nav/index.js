@@ -26,6 +26,8 @@ const Nav = () => {
             <div className="flex divider"></div>
             <NavButton text="Calendar" />
             <div className="flex divider"></div>
+            <NavButton text="Weather"/>
+            <div className="flex divider"></div>
             <NavButton text="Messages" />
             <div className="flex divider"></div>
             <NavButton text="Database" />

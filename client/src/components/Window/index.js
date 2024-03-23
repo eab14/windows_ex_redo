@@ -13,6 +13,7 @@ import Calculator from './Calculator';
 import Gallery from './Gallery';
 import Account from './Account';
 import PasswordGen from './PasswordGen';
+import Weather from './Weather'
 
 import { useWindowsEX } from '../../context/WindowContext';
 
@@ -87,6 +88,7 @@ const Window = (props) => {
 					{ props.selected === "Calculator" && <Calculator /> }
 					{ props.selected === "Gallery" && <Gallery /> }
 					{ props.selected === "Password Generator" && <PasswordGen /> }
+					{ props.selected === "Weather" && <Weather /> }
 
 				</div>
 

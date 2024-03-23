@@ -3,11 +3,6 @@ import './index.css';
 import NavButton from '../NavButton';
 import Logo from '../Logo';
 
-import { gsap } from 'gsap';
-import { useGSAP } from '@gsap/react';
-
-gsap.registerPlugin(useGSAP);
-
 const Nav = () => {
 
   return (

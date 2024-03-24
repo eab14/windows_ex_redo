@@ -1,4 +1,5 @@
 import { useWindowsEX } from "../../../context/WindowContext";
+import Loading from "../../Loading";
 import "./index.css";
 
 import { useEffect, useCallback } from "react";
@@ -39,7 +40,7 @@ const Weather = () => {
 
       (!weather.loaded) && setWeather({ 
 
-        loaded: true,
+        loaded: false,
         temperature: weatherData.main.temp,
         windSpeed: weatherData.wind.speed,
         conditions: weatherData.weather[0].main
@@ -87,7 +88,7 @@ const Weather = () => {
         </>
 
       ) : (
-        <p>Currently loading weather data</p>
+        <Loading />
       )}
       
     </div>

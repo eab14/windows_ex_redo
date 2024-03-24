@@ -1,10 +1,11 @@
-require('dotenv').config();
+const router = require('express').Router()
+
 const {
   getWeather
 } = require('../controllers/weatherController');
 
-const router = require('express').Router()
-
-router.route("/").get(getWeather);
+router
+  .route("/")
+  .get(getWeather);
 
 module.exports = router;

@@ -117,25 +117,10 @@ const Calendar = () => {
 
     }
 
-    const prevMonth = () => {
+    const prevMonth = () => setDate(new Date(calculateDate(date, -1)));
+    const nextMonth = () => setDate(new Date(calculateDate(date, 1)));
 
-        setDate(new Date(calculateDate(date, -1)));
-        createDays(date);
-
-    }
-
-    const nextMonth = () => {
-
-        setDate(new Date(calculateDate(date, 1)));
-        createDays(date);
-
-    }
-
-    useEffect(() => {
-
-        createDays(date);
-
-    }, [date, createDays])
+    useEffect(() => createDays(date), [date, createDays])
 
     return (
 

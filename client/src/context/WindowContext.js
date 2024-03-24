@@ -19,6 +19,7 @@ export const WindowProvider = ({ children }) => {
     // const [ music, setMusic ] = useState({ paused: true });
     const [ date, setDate ] = useState(new Date())
     const [ account, setAccount ] = useState("login")
+    const [ weather, setWeather ] = useState({ laoded: false })
 
     useEffect(() => {
 
@@ -59,7 +60,9 @@ export const WindowProvider = ({ children }) => {
         date, 
         setDate,
         account,
-        setAccount
+        setAccount,
+        weather, 
+        setWeather
     }
 
     return (

@@ -31,6 +31,11 @@ const UserSchema = new Schema(
         admin : {
             type: Boolean,
             default: false
+        },
+
+        settings : {
+            type: Object,
+            default: { theme: "default", taskbar: [ "Account", "Files", "Utilities", "Settings" ] }
         }
 
     },

@@ -14,18 +14,22 @@ const Nav = () => {
         <div className="flex divider"></div>
 
         <div className="flex col nav_spacer">
-
-            <NavButton text="Home" />
-            <div className="flex divider"></div>
+          
             <NavButton text="Account" />
             <div className="flex divider"></div>
-            <NavButton text="Calendar" />
-            <div className="flex divider"></div>
-            <NavButton text="Weather"/>
+            <NavButton text="Files" />
             <div className="flex divider"></div>
             <NavButton text="Messages" />
             <div className="flex divider"></div>
             <NavButton text="Database" />
+            <div className="flex divider"></div>
+            <NavButton text="Settings" />
+            <div className="flex divider"></div>
+
+            {/* <NavButton text="Calendar" />
+            <div className="flex divider"></div>
+            <NavButton text="Weather"/>
+            <div className="flex divider"></div>
             <div className="flex divider"></div>
             <NavButton text="Music" />
             <div className="flex divider"></div>
@@ -34,9 +38,7 @@ const Nav = () => {
             <NavButton text="Gallery" />
             <div className="flex divider"></div>
             <NavButton text="Calculator" />
-            <div className="flex divider"></div>
-            <NavButton text="Settings" />
-            <div className="flex divider"></div>
+            <div className="flex divider"></div> */}
 
         </div>
 

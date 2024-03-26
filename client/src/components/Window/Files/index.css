@@ -45,14 +45,14 @@
     height: calc(100% - 10px);
     border-radius: 3px 0 0 3px;
     background: var(--color_green_grey);
-    right: -5px;
+    right: -4px;
     overflow: hidden;
 }
 
 .files_link .selected {
     background: var(--color_green);
     width: 4px;
-    right: 1px;
+    right: 0px!important;
 }
 
 .files_link:hover {

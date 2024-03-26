@@ -1,7 +1,7 @@
 import Window from '../Window';
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faUser, faHome, faVideo, faCalendar, faComment, faTableList, faMusic, faGear, faImages, faCalculator, faSun } from '@fortawesome/free-solid-svg-icons';
+import { faUser, faTableList, faComment, faFolder, faGear, /* faVideo, faCalendar, faMusic, faImages, faCalculator, faSun */ } from '@fortawesome/free-solid-svg-icons';
 import { faGithub } from "@fortawesome/free-brands-svg-icons"
 import { useRef } from 'react';
 
@@ -90,18 +90,19 @@ const NavButton = (props) => {
 
                     <span className="nav_icon flex center">
                         
-                        { props.text === "Home" && <FontAwesomeIcon icon={faHome} /> }
-                        { props.text === "Music" && <FontAwesomeIcon icon={faMusic} /> }
-                        { props.text === "Database" && <FontAwesomeIcon icon={faTableList} /> }
-                        { props.text === "Messages" && <FontAwesomeIcon icon={faComment} /> }
-                        { props.text === "Calendar" && <FontAwesomeIcon icon={faCalendar} /> }
                         { props.text === "Account" && <FontAwesomeIcon icon={faUser} /> }
-                        { props.text === "Video" && <FontAwesomeIcon icon={faVideo} /> }
-                        { props.text === "Settings" && <FontAwesomeIcon icon={faGear} /> }
+                        { props.text === "Messages" && <FontAwesomeIcon icon={faComment} /> }
+                        { props.text === "Database" && <FontAwesomeIcon icon={faTableList} /> }
                         { props.text === "Github" && <FontAwesomeIcon icon={faGithub} /> }
+                        { props.text === "Files" && <FontAwesomeIcon icon={faFolder} /> }
+                        { props.text === "Settings" && <FontAwesomeIcon icon={faGear} /> }
+
+                        {/* { props.text === "Music" && <FontAwesomeIcon icon={faMusic} /> }
+                        { props.text === "Calendar" && <FontAwesomeIcon icon={faCalendar} /> }
+                        { props.text === "Video" && <FontAwesomeIcon icon={faVideo} /> }
                         { props.text === "Gallery" && <FontAwesomeIcon icon={faImages} /> }
                         { props.text === "Calculator" && <FontAwesomeIcon icon={faCalculator} /> }
-                        { props.text === "Weather" && <FontAwesomeIcon icon={faSun}/> }
+                        { props.text === "Weather" && <FontAwesomeIcon icon={faSun}/> } */}
                         
                             
                     </span>

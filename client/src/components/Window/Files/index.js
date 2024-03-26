@@ -14,7 +14,7 @@ const Files = () => {
 
             <div className="files_nav flex col">
 
-                <FilesButton text="All Files" selected />
+                <FilesButton text="All Files" selected={true} />
                 <div className="files_divider"></div>
 
                 <FilesButton text="Music" type="sub" />
@@ -43,9 +43,9 @@ const Files = () => {
                     <div className="flex files_content_sub_header">Date<span className="files_sort_icon"><FontAwesomeIcon icon={faSortUp} /></span></div>
                 </div>
 
-                <div class="files_content flex col">
+                <div className="files_content flex col">
 
-                    <FilesLine fileName="music_example" fileSize="3 MB" ext=".mp3" date={"25/3/2024"} />
+                    <FilesLine fileName="music_example" fileSize="3 MB" ext=".mp3" date={"25/3/2024"} wType="Music" />
                     <FilesLine fileName="video_example" fileSize="20 MB" ext=".mp4" date={"25/3/2024"} />
                     <FilesLine fileName="photo_example" fileSize="700 KB" ext=".jpeg" date={"25/3/2024"} />
                     

@@ -4,6 +4,8 @@ import './test.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faWindowMaximize, faMinus, faXmark } from '@fortawesome/free-solid-svg-icons';
 
+import { useWindowsEX } from '../../context/WindowContext';
+
 import Calendar from './Calendar';
 import Music from './Music';
 import Database from './Database';
@@ -13,9 +15,8 @@ import Calculator from './Calculator';
 import Gallery from './Gallery';
 import Account from './Account';
 import PasswordGen from './PasswordGen';
-import Weather from './Weather'
-
-import { useWindowsEX } from '../../context/WindowContext';
+import Weather from './Weather';
+import Files from './Files';
 
 const Window = (props) => {
 
@@ -89,6 +90,7 @@ const Window = (props) => {
 					{ props.selected === "Gallery" && <Gallery /> }
 					{ props.selected === "Password Generator" && <PasswordGen /> }
 					{ props.selected === "Weather" && <Weather /> }
+					{ props.selected === "Files" && <Files /> }
 
 				</div>
 

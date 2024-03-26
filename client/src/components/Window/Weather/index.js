@@ -88,7 +88,7 @@ const Weather = () => {
         </>
 
       ) : (
-        <Loading />
+        <Loading text_color="black" />
       )}
       
     </div>

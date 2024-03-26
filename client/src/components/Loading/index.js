@@ -51,19 +51,19 @@ const Loading = (props) => {
 
     return (
         
-        <div ref={loadRef} class="flex center col loading_spacer">
+        <div ref={loadRef} className="flex center col loading_spacer">
 
-                <div class="loading_main flex center">
+                <div className="loading_main flex center">
 
-                    <span class="diamond diamond_large"></span>
-                    <span class="diamond diamond_large"></span>
-                    <span class="diamond diamond_small"></span>
-                    <span class="diamond diamond_small"></span>
+                    <span className="diamond diamond_large"></span>
+                    <span className="diamond diamond_large"></span>
+                    <span className="diamond diamond_small"></span>
+                    <span className="diamond diamond_small"></span>
 
                 </div>
 
-                <div class="flex center loading_text">
-                    <h3 className={props.text_color === "black" ? "black" : "white"}>Loading<span>.</span><span>.</span><span>.</span></h3>
+                <div className="flex center loading_text">
+                    <h3 className={props.text_color === "black" ? "black" : "white"}>Loading<span className={props.text_color === "black" ? "black" : "white"}>.</span><span>.</span><span>.</span></h3>
                 </div>
 
         </div>

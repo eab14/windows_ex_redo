@@ -82,7 +82,7 @@ const Window = (props) => {
 
 					{ props.selected === "Account" && <Account /> }
 					{ props.selected === "Calendar" && <Calendar /> }
-					{ props.selected === "Music" && <Music /> }
+					{ props.selected === "Music" && <Music file={props.file} /> }
 					{ props.selected === "Database" && <Database /> }
 					{ props.selected === "Settings" && <Settings /> }
 					{ props.selected === "Messages" && <Messages /> }

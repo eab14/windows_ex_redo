@@ -1,11 +1,11 @@
 const fs = require('fs');
 const mongoose = require('mongoose');
 const connect = require('../config/connection');
-const { User } = require('../models');
+const { User, File } = require('../models');
 const bcrypt = require('bcrypt');
 const SALT_WORK_FACTOR = 10;
 
-let users;
+let users, files;
 
 const initialize = () => {
 
@@ -14,7 +14,14 @@ const initialize = () => {
         fs.readFile("./data/users.json", "utf8", (err, data) => {
 
             if (!err) users = JSON.parse(data);
-            else { reject("Failure reading Users file..."); return }
+            else { reject("Failure reading - Users - file..."); return }
+
+        });
+
+        fs.readFile("./data/files.json", "utf8", (err, data) => {
+
+            if (!err) files = JSON.parse(data);
+            else { reject("Failure reading - Files - file..."); return }
 
         });
 
@@ -43,10 +50,28 @@ const seedUsers = async () => {
 
 }
 
+const seedFiles = async () => {
+
+    await File.deleteMany({});
+
+    for (let i = 0; i < files.length; i++) {
+
+        const query = await User.findOne({ email: files[i].user_email }).lean();
+        files[i].user = (query) ? query._id : null;
+        delete files[i].user_email;
+
+    }
+
+    await File.insertMany(files);
+
+}
+
 const seedData = async () => {
 
     await seedUsers();
     console.log("- - - Seeded User Data from JSON - - -");
+    await seedFiles();
+    console.log("- - - Seeded File Data from JSON - - -");
 
     console.log('\r');
 

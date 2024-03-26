@@ -13,7 +13,7 @@ const FilesLine = (props) => {
 
                 if (props.wType === "Music") {
             
-                w = <Window key={props.wType} selected={props.wType} />;
+                w = <Window key={props.wType} selected={props.wType} file={props.file} />;
                 s = [props.wType, "max"];
 
                 setWindows(prevWindows => [ ...prevWindows, w ]);

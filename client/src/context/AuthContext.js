@@ -9,6 +9,7 @@ export const useAuth = () => useContext(AuthContext);
 export const AuthProvider = ({ children }) => {
 
     const [ user, setUser ] = useState(null);
+    const [ files, setFiles ] = useState(null);
     const { setAccount } = useWindowsEX();
     // const [ loading, setLoading ] = useState(true);
 
@@ -19,7 +20,7 @@ export const AuthProvider = ({ children }) => {
         if (token) {
 
             axios.get('/api/users/verify', { headers: { Authorization: `Bearer ${token}` } })
-                .then(response => setUser(response.data.email))
+                .then(async response => { setUser(response.data.email); await getFiles(); })
                 .catch(error => {
                     console.error('Token invalid');
                     localStorage.removeItem('token');
@@ -40,6 +41,7 @@ export const AuthProvider = ({ children }) => {
 
             setUser(response.data.email);
             setAccount("panel");
+            await getFiles();
             
 
         } 
@@ -61,6 +63,24 @@ export const AuthProvider = ({ children }) => {
 
     }
 
+    const getFiles = async () => {
+
+        const token = localStorage.getItem('token');
+
+        if (token) {
+
+            axios.get('/api/users/files', { headers: { Authorization: `Bearer ${token}` } })
+                .then(response => { setFiles(response.data) })
+                .catch(error => {
+                    console.error('Token invalid');
+                    localStorage.removeItem('token');
+                    setFiles(null);
+                });
+
+        }
+
+    }
+
     const logout = async () => {
 
         localStorage.removeItem('token');
@@ -72,7 +92,9 @@ export const AuthProvider = ({ children }) => {
         user,
         login,
         register,
-        logout
+        logout,
+        files,
+        setFiles
     }
 
     return (

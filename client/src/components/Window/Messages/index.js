@@ -4,8 +4,11 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faChevronRight } from '@fortawesome/free-solid-svg-icons';
 
 import { gsap, Power1 } from 'gsap';
+import { useAuth } from '../../../context/AuthContext';
 
 const Messages = () => {
+
+    const { user } = useAuth();
 
     const enterHandler = ({ currentTarget }) => {
 
@@ -28,6 +31,8 @@ const Messages = () => {
     return (
         
         <div className="flex col messages_spacer">
+
+            { !user && <>
 
             <div className="flex row messages_line" onMouseEnter={enterHandler} onMouseLeave={leaveHandler}>
 
@@ -85,6 +90,8 @@ const Messages = () => {
                 </div>
 
             </div>
+
+            </>  }
 
         </div>
     )

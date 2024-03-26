@@ -50,13 +50,15 @@ const userController = {
 
             .then((user) => {
 
+                const expiresIn = '1h';
+
                 let payload = {
                     _id: user._id,
                     username: user.username,
                     email: user.email
                 };
 
-                let token = jwt.sign(payload, jwtOptions.secretOrKey);
+                let token = jwt.sign(payload, jwtOptions.secretOrKey, { expiresIn });
 
                 res.json({ message: 'login successful', email: user.email, token: token });
 
@@ -74,7 +76,7 @@ const userController = {
 
     logoutUser(req, res) {
 
-        if (req.user) req.user.destroy(() => res.status(204).end());
+        if (req.user) { delete req.user; console.log(req.user); req.logout(() =>  res.status(204).end()); }
         else res.status(404).end();
 
     },

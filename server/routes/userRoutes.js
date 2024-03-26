@@ -12,6 +12,10 @@ const {
     verifyUser
 } = require('../controllers/userController');
 
+const {
+  getFiles,
+} = require('../controllers/fileController');
+
 router
   .route('/')
   .get(getUsers)
@@ -32,6 +36,10 @@ router
 router
   .route('/logout')
   .post(userAuth, logoutUser);
+
+router
+  .route('/files')
+  .get(userAuth, getFiles);
 
 router
   .route('/:id')

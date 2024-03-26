@@ -1,10 +1,27 @@
-{
-    "user_email" : "admin@root.com",
-    "url" : "https://res.cloudinary.com/dfhe35dwt/video/upload/v1710915272/fz8culhpyje5bnej6h0s.mp3",
-    "type" : "mp3",
-    "description" : {
-        "title" : "Number One",
-        "artist" : "Hazel Fernandes feat. Shiro Sagisu"
+[
+
+    {
+        "user_email" : "admin@root.com",
+        "url" : "https://res.cloudinary.com/dfhe35dwt/video/upload/v1710915272/fz8culhpyje5bnej6h0s.mp3",
+        "type" : "mp3",
+        "description" : {
+            "name" : "db_music_example_1",
+            "title" : "Number One",
+            "artist" : "Hazel Fernandes feat. Shiro Sagisu"
+        },
+        "size" : 0
     },
-    "size" : 0
-}
+
+    {
+        "user_email" : "admin@root.com",
+        "url" : "https://res.cloudinary.com/dfhe35dwt/video/upload/v1711442074/wgvp0d3na8oy1wrkfhb2.mp3",
+        "type" : "mp3",
+        "description" : {
+            "name" : "db_music_example_2",
+            "title" : "Seven",
+            "artist" : "Jedi Mind Tricks"
+        },
+        "size" : 0
+    }
+
+]

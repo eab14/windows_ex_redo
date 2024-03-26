@@ -5,10 +5,10 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faPause, faPlay, faBackward, faForward, faVolumeHigh, faRepeat, faShuffle } from '@fortawesome/free-solid-svg-icons';
 import { useEffect, useRef, useState } from 'react';
 
-const Music = () => {
+const Music = (props) => {
 
-    const [ song ] = useState(new Audio(n1));
-    const [ info ] = useState({ title: "Number One", artist: "Hazel Fernandes feat. Shiro Sagisu" }) 
+    const [ song ] = useState(new Audio(props.file.url));
+    const [ info ] = useState({ title: props.file.description.title, artist: props.file.description.artist }) 
     const [ sliderValue, setSliderValue ] = useState(0);
     const [ timeLeft, setTimeLeft ] = useState('0:00');
     const [ timeRight, setTimeRight ] = useState('0:00');
@@ -106,6 +106,8 @@ const Music = () => {
 
     useEffect(() => {
 
+        song.crossOrigin = "anonymous";
+
         const interval = setInterval(() => {
 
             setSliderValue(song.currentTime);
@@ -116,7 +118,7 @@ const Music = () => {
 
         return () => clearInterval(interval);
 
-    }, [song]);
+    }, [ song ]);
 
     return (
         <>

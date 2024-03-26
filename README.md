@@ -45,5 +45,13 @@ npm start
 
 To sign in through the client using preset data:
 
-Username: admin@root.com
-Password: root
+Username: 
+
+```code
+admin@root.com
+```
+Password:
+
+```code
+root
+```

@@ -11,7 +11,7 @@ const FilesLine = (props) => {
 
         if (!windows.find(window => window.props.selected === props.wType)) {
 
-                if (props.wType === "Music") {
+                if (props.wType === "Music" && props.file) {
             
                 w = <Window key={props.wType} selected={props.wType} file={props.file} />;
                 s = [props.wType, "max"];

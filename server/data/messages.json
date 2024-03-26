@@ -1,0 +1,15 @@
+[
+    {
+        "sender_email"  : "admin@root.com",
+        "recipient_email"  : [ "delete@test.me" ],
+        "body"  : "Testing... 1",
+        "group" : false
+    },
+
+    {
+        "sender_email"  : "delete@test.me",
+        "recipient_email"  : [ "admin@root.com" ],
+        "body"  : "Testing... 2",
+        "group" : false
+    }
+]

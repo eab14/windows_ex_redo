@@ -16,6 +16,11 @@ const MessageSchema = new Schema(
             }
         ],
 
+        body : {
+            type: String,
+            required: true
+        },
+
         group : {
             type: Boolean,
             default: false
@@ -23,7 +28,8 @@ const MessageSchema = new Schema(
 
         date : {
             type: Date,
-            required: true
+            required: true,
+            default: Date.now()
         }
 
     },

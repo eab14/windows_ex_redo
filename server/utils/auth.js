@@ -46,6 +46,12 @@ const userAuth = (req, res, next) => {
     
 };
 
+const adminAuth = (req, res, next) => {
+
+    
+
+}
+
 const checkUser = (data) => {
 
     return new Promise(function (resolve, reject) {

@@ -70,7 +70,7 @@ export const AuthProvider = ({ children }) => {
         if (token) {
 
             axios.get('/api/users/files', { headers: { Authorization: `Bearer ${token}` } })
-                .then(response => { setFiles(response.data) })
+                .then(response => setFiles(response.data))
                 .catch(error => {
                     console.error('Token invalid');
                     localStorage.removeItem('token');

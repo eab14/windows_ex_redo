@@ -15,7 +15,7 @@ const Files = () => {
     const [ userFiles, setUserFiles ] = useState([]);
 
     const array = [ 
-        <FilesLine key={1} fileName="music_example" fileSize="3 MB" ext=".mp3" date={"25/3/2024"} wType="Music" />,
+        <FilesLine key={1} fileName="music_example" fileSize="3 MB" ext=".mp3" date={"25/3/2024"} />,
         <FilesLine key={2} fileName="video_example" fileSize="20 MB" ext=".mp4" date={"25/3/2024"} />,
         <FilesLine key={3} fileName="photo_example" fileSize="700 KB" ext=".jpeg" date={"25/3/2024"} />
     ];
@@ -93,7 +93,7 @@ const Files = () => {
 
                 <div className="flex center files_total">
                     <div className="flex files_total_play"><span><FontAwesomeIcon icon={faPlay} /></span>Play all</div>
-                    <p>Total Files: 3 | Total Size: 23.7 MB</p>
+                    <p>Total Files: {user ? userFiles.length : array.length} | Total Size: { user ? "0" : "23.7 MB"}</p>
                 </div>
 
             </div>

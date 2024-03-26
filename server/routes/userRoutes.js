@@ -12,9 +12,8 @@ const {
     verifyUser
 } = require('../controllers/userController');
 
-const {
-  getFiles,
-} = require('../controllers/fileController');
+const { getFiles } = require('../controllers/fileController');
+const { getMessages } = require('../controllers/messageController');
 
 router
   .route('/')
@@ -40,6 +39,10 @@ router
 router
   .route('/files')
   .get(userAuth, getFiles);
+
+router
+  .route('/messages')
+  .get(userAuth, getMessages);
 
 router
   .route('/:id')

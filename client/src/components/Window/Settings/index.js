@@ -1,6 +1,8 @@
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faExpand, faCompress } from '@fortawesome/free-solid-svg-icons';
 
+import Loading from '../../Loading';
+
 const Settings = () => {
 
     const clickExpand = ({ currentTarget }) => {
@@ -25,7 +27,9 @@ const Settings = () => {
                 <span className="flex center util expand" onClick={clickExpand}><FontAwesomeIcon icon={faExpand} /></span>
                 <span className="flex center util compress" onClick={clickCompress}><FontAwesomeIcon icon={faCompress} /></span>
             </div>
-            Settings utility will go here...
+            
+            <Loading />
+            
         </div>
     )
 

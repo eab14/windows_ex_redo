@@ -7,6 +7,7 @@
 }
 
 .pwg_display {
+    position: relative;
     width: 300px;
     min-height: 34px;
     padding: 10px 20px;
@@ -27,12 +28,11 @@
 }
 
 .pwg_input_line p {
-    font-weight: bold;
     letter-spacing: 1px;
     width: 120px;
     text-align: left;
-    font-size: 11px;
-    font-weight: bold;
+    font-size: 10px;
+    font-weight: 500;
 }
 
 .pwg_display .icon {
@@ -64,7 +64,7 @@
 
 .pwg_info_line p {
     color: var(--color_grey);
-    font-size: 12px;
+    font-size: 11px;
 }
 
 .pwg_divider {

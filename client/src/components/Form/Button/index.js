@@ -20,14 +20,14 @@ const Button = (props) => {
     const buttonHover = ({ currentTarget }) => {
 
         const overlay = currentTarget.parentNode.querySelector(".button_overlay");
-        gsap.to(overlay, { duration: 0.3, width: 0 })
+        gsap.to(overlay, { duration: 0.2, width: 0 })
 
     }
 
     const reverseButton = ({ currentTarget }) => {
 
         const overlay = currentTarget.parentNode.querySelector(".button_overlay");
-        gsap.to(overlay, { duration: 0.3, width: "calc(100% + 4px)" })
+        gsap.to(overlay, { duration: 0.2, width: "calc(100% + 4px)" })
 
     }
 

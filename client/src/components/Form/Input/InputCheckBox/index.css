@@ -1,7 +1,7 @@
 .general_check_label {
     position: relative;
-    width: 42px;
-    height: 18px;
+    width: 38px;
+    height: 16px;
     background: var(--color_white);
     border: 1px solid var(--color_grey);
     box-sizing: border-box;
@@ -16,7 +16,7 @@
 .general_check_label span {
     position: absolute;
     left: 1px;
-    width: 20px;
+    width: 16px;
     height: calc(100% - 2px);
     background: linear-gradient(var(--color_green), var(--color_green_grey));
     /* background: linear-gradient(#c23e3e, #7d2828); */

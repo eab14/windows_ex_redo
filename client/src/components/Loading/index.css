@@ -17,11 +17,12 @@
 
 .loading_text {
     position: relative;
-    top: -10px;
-    font-size: 12px;
+    top: -14px;
+    font-size: 10px;
     color: var(--color_white);
     letter-spacing: 1px;
     opacity: 0;
+    left: 5px;
 }
 
 .loading_text .black { color: var(--color_black)!important; }

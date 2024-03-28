@@ -1,6 +1,8 @@
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faExpand, faCompress } from '@fortawesome/free-solid-svg-icons';
 
+import Loading from '../../Loading';
+
 const Database = () => {
 
     const clickExpand = ({ currentTarget }) => {
@@ -20,12 +22,14 @@ const Database = () => {
     };
 
     return (
-        <div className="flex center test test_3">
+        <div className="flex center test test_5">
             <div className="flex col utilities">
                 <span className="flex center util expand" onClick={clickExpand}><FontAwesomeIcon icon={faExpand} /></span>
                 <span className="flex center util compress" onClick={clickCompress}><FontAwesomeIcon icon={faCompress} /></span>
             </div>
-            Database utility will go here...
+            
+            <Loading />
+
         </div>
     )
   

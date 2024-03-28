@@ -1,6 +1,6 @@
 .login_spacer {
     position: relative;
-    width: 340px;
+    width: 320px;
     height: fit-content;
     background: var(--color_black);
 }
@@ -53,6 +53,7 @@
 #page_change_account {
     position: relative;
     height: 40px;
+    margin-bottom: 10px;
 }
 
 #page_change_account:hover {
@@ -61,13 +62,15 @@
 
 #page_change_account p {
     color: var(--color_grey);
-    font-size: 13px;
+    font-size: 12px;
     font-weight: bold;
     margin-right: 10px;
     height: 20px;
 }
 
 #page_change_account span {
+    position: relative;
+    top: 3px;
     width: 20px;
     height: 20px;
     color: var(--color_green_grey);

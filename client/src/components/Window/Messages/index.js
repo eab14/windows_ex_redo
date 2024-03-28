@@ -6,9 +6,13 @@ import { faChevronRight } from '@fortawesome/free-solid-svg-icons';
 import { gsap, Power1 } from 'gsap';
 import { useAuth } from '../../../context/AuthContext';
 
+// Needs to be index for selected message, all messages, clicked user option
+
 const Messages = () => {
 
     const { user } = useAuth();
+
+    // MessageLine component animations
 
     const enterHandler = ({ currentTarget }) => {
 
@@ -28,6 +32,7 @@ const Messages = () => {
 
     }
 
+    // MessageLine compnent base below 
     return (
         
         <div className="flex col messages_spacer">

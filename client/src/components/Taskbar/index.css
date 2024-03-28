@@ -7,6 +7,7 @@ section #taskbar_spacer {
     box-sizing: border-box;
     border-top: 1px solid var(--color_grey);
     height: 41px;
+    z-index: 10;
 }
 
 #taskbar_placer {
@@ -21,7 +22,7 @@ section #taskbar_spacer {
     position: relative;
     width: 30px;
     height: 100%;
-    z-index: 5;
+    z-index: 11;
 }
 
 .taskbar_util:hover {

@@ -1,6 +1,6 @@
 .general_button {
     position: relative;
-    width: 140px;
+    width: 120px;
     height: 30px;
     margin: 10px 0;
 }
@@ -16,7 +16,7 @@
     box-sizing: border-box;
     border: 2px solid transparent;
     z-index: 9;
-    font-size: 12px;
+    font-size: 11px;
     color: var(--color_black);
     font-weight: bold;
     font-family: "Poppins";
@@ -24,7 +24,6 @@
 
 .general_button button:hover {
     background: var(--color_green_grey);
-    color: var(--color_white);
     transition: 0.3s;
     cursor: pointer;
     z-index: 9;

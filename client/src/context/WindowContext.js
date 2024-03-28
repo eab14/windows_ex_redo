@@ -7,10 +7,11 @@ export const useWindowsEX = () => useContext(WindowContext);
 
 export const WindowProvider = ({ children }) => {
 
-    const [ windows, setWindows ] = useState([ 
-        <Window key="Files" selected="Files" />,
+    const [ windows, setWindows ] = useState([
         <Window key="Account" selected="Account" />,
+        <Window key="Files" selected="Files" />,
         <Window key="Messages" selected="Messages" />,
+        <Window key="Password Generator" selected="Password Generator" />,
     ]);
 
     const [ status, setStatus ] = useState([])
@@ -22,9 +23,10 @@ export const WindowProvider = ({ children }) => {
     useEffect(() => {
 
         let array = [ 
+            [ "Account", "max" ],
             [ "Files", "max" ],
-            [ "Account", "min" ],
-            [ "Messages", "max" ],
+            [ "Messages", "min" ],
+            [ "Password Generator", "min" ],
         ];
         // sortWindows(array);
         setStatus(array);

@@ -55,7 +55,8 @@ const userController = {
                 let payload = {
                     _id: user._id,
                     username: user.username,
-                    email: user.email
+                    email: user.email,
+                    admin: user.admin
                 };
 
                 let token = jwt.sign(payload, jwtOptions.secretOrKey, { expiresIn });
@@ -70,7 +71,8 @@ const userController = {
 
     verifyUser(req, res) {
 
-        res.json(req.user);
+        try { res.json(req.user); }
+        catch(err) { res.json(err); }
 
     },
 
@@ -79,13 +81,7 @@ const userController = {
         if (req.user) { delete req.user; console.log(req.user); req.logout(() =>  res.status(204).end()); }
         else res.status(404).end();
 
-    },
-
-    restricted(req, res) {
-
-        res.json('Restricted area, logged in users only...');
-
-    },
+    }
 
 }
 

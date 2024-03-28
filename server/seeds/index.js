@@ -83,7 +83,7 @@ const seedMessages = async () => {
         const recipients = await User.find({ email: { $in: messages[i].recipient_email } }).lean();
 
         messages[i].sender = sender._id,
-        messages[i].recipients = recipients
+        messages[i].recipients = recipients;
 
         delete messages[i].sender_email;
         delete messages[i].recipients_email;

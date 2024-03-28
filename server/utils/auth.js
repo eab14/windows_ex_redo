@@ -19,7 +19,7 @@ let strategy = new JwtStrategy(jwtOptions, function (jwt_payload, next) {
             _id: jwt_payload._id,
             username: jwt_payload.username,
             email: jwt_payload.email,
-            role: jwt_payload.role,
+            admin: jwt_payload.admin,
         });
  
     
@@ -30,25 +30,31 @@ let strategy = new JwtStrategy(jwtOptions, function (jwt_payload, next) {
 const userAuth = (req, res, next) => {
 
     const token = req.headers.authorization;
-    if (!token) {
-        return res.status(401).json('Unauthorized: No token provided');
-    } else {
+    if (!token) return res.status(401).json('Unauthorized: No token provided');
+    
+    else {
+
         jwt.verify(token.split(' ')[1], jwtOptions.secretOrKey, (err, decoded) => {
+
             if (err) {
+
                 console.error('JWT verification error:', err.message);
                 return res.status(401).json('Unauthorized: Invalid token');
-            } else {
-                req.user = decoded;
-                next();
-            }
+
+            } 
+            
+            else { req.user = decoded; next(); }
+
         });
+
     }
     
 };
 
 const adminAuth = (req, res, next) => {
 
-    
+    if (req.user.admin) next();
+    else { res.status(401).json('You are not an admin...'); }
 
 }
 
@@ -57,6 +63,7 @@ const checkUser = (data) => {
     return new Promise(function (resolve, reject) {
 
         User.findOne({ email: data.email })
+
             .then((user) => {
 
                 if (!user) reject("Unable to find email " + data.email);
@@ -82,6 +89,7 @@ const checkUser = (data) => {
 
 module.exports = {
     userAuth,
+    adminAuth,
     checkUser,
     strategy,
     jwtOptions

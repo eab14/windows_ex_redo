@@ -4,8 +4,9 @@ import './assets/css/style.css';
 import Content from './components/Content';
 import Nav from './components/Nav';
 import Taskbar from './components/Taskbar';
-import { AuthProvider } from './context/AuthContext';
+import Utilities from './components/Utilities';
 
+import { AuthProvider } from './context/AuthContext';
 import { WindowProvider } from './context/WindowContext';
 
 function App() {
@@ -20,6 +21,7 @@ function App() {
 					<Nav />
 					<section className="flex col">
 					<Content />
+					<Utilities />
 					<Taskbar />
 					</section>	
 

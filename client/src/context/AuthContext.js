@@ -11,7 +11,6 @@ export const AuthProvider = ({ children }) => {
     const [ user, setUser ] = useState(null);
     const [ files, setFiles ] = useState(null);
     const { setAccount } = useWindowsEX();
-    // const [ loading, setLoading ] = useState(true);
 
     useEffect(() => {
 
@@ -20,7 +19,14 @@ export const AuthProvider = ({ children }) => {
         if (token) {
 
             axios.get('/api/users/verify', { headers: { Authorization: `Bearer ${token}` } })
-                .then(async response => { setUser(response.data.email); await getFiles(); })
+
+                .then(async response => {
+
+                    setUser(response.data.email); 
+                    await getFiles();
+
+                })
+
                 .catch(error => {
                     console.error('Token invalid');
                     localStorage.removeItem('token');
@@ -29,7 +35,7 @@ export const AuthProvider = ({ children }) => {
 
         }
 
-    }, [ setAccount ]);
+    }, [ setUser ]);
 
     const login = async (email, password) => {
 

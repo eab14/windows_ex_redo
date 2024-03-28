@@ -1,7 +1,7 @@
 import Window from '../Window';
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faUser, faTableList, faComment, faFolder, faGear, /* faVideo, faCalendar, faMusic, faImages, faCalculator, faSun */ } from '@fortawesome/free-solid-svg-icons';
+import { faUser, faTableList, faComment, faFolder, faGear, faVideo, faCalendar, faMusic, faImages, faCalculator, faSun, faScrewdriverWrench } from '@fortawesome/free-solid-svg-icons';
 import { faGithub } from "@fortawesome/free-brands-svg-icons"
 import { useRef } from 'react';
 
@@ -28,7 +28,7 @@ const NavButton = (props) => {
 
         const li = document.querySelectorAll('nav li');
 
-        if (!currentTarget.parentNode.parentNode.classList.contains("nav_footer_spacer")) {
+        if (props.text !== "Github" && props.text !== "Utilities") {
 
             for (let i = 0; i < li.length; i++) {
 
@@ -55,11 +55,15 @@ const NavButton = (props) => {
 
         if (!windows.find(window => window.props.selected === props.text)) {
 
-            const w = <Window key={props.text} selected={props.text} />;
-            const s = [props.text, "max"];
+            if (props.text !== "Github" && props.text !== "Utilities") {
 
-            setWindows(prevWindows => [ ...prevWindows, w ]);
-            setStatus(prevStatus => [ ...prevStatus, s ]);
+                const w = <Window key={props.text} selected={props.text} />;
+                const s = [props.text, "max"];
+
+                setWindows(prevWindows => [ ...prevWindows, w ]);
+                setStatus(prevStatus => [ ...prevStatus, s ]);
+
+            }
 
         }
         
@@ -84,11 +88,13 @@ const NavButton = (props) => {
 
         <>
 
+            { (props.type === "footer" && props.text !== "Github") && <div className="flex divider"></div>}
+
             <li className="flex center row" ref={linkRef} onClick={clickHandler} onMouseEnter={enterHandler} onMouseLeave={leaveHandler}>
 
                 <div className="nav_expand_spacer flex row">
 
-                    <span className="nav_icon flex center">
+                    <span className={props.text === "Github" ? "nav_icon flex center github_link" : "nav_icon flex center"}>
                         
                         { props.text === "Account" && <FontAwesomeIcon icon={faUser} /> }
                         { props.text === "Messages" && <FontAwesomeIcon icon={faComment} /> }
@@ -96,28 +102,30 @@ const NavButton = (props) => {
                         { props.text === "Github" && <FontAwesomeIcon icon={faGithub} /> }
                         { props.text === "Files" && <FontAwesomeIcon icon={faFolder} /> }
                         { props.text === "Settings" && <FontAwesomeIcon icon={faGear} /> }
-
-                        {/* { props.text === "Music" && <FontAwesomeIcon icon={faMusic} /> }
+                        { props.text === "Utilities" && <FontAwesomeIcon icon={faScrewdriverWrench} />}
+                        { props.text === "Music" && <FontAwesomeIcon icon={faMusic} /> }
                         { props.text === "Calendar" && <FontAwesomeIcon icon={faCalendar} /> }
                         { props.text === "Video" && <FontAwesomeIcon icon={faVideo} /> }
                         { props.text === "Gallery" && <FontAwesomeIcon icon={faImages} /> }
                         { props.text === "Calculator" && <FontAwesomeIcon icon={faCalculator} /> }
-                        { props.text === "Weather" && <FontAwesomeIcon icon={faSun}/> } */}
+                        { props.text === "Weather" && <FontAwesomeIcon icon={faSun}/> }
                         
                             
                     </span>
 
                     <div className="nav_text flex center">
 
-                    { props.text === "Home" ? <p className="text_selected">{props.text}</p> : <p>{props.text}</p> }
+                    { props.text === "Account" ? <p className="text_selected">{props.text}</p> : <p>{props.text}</p> }
                         
                     </div>
 
                 </div>
                 
-                { props.text === "Home" ? <span className="accent accent_selected"></span> : <span className="accent"></span> }
+                { props.text === "Account" ? <span className="accent accent_selected"></span> : <span className="accent"></span> }
                     
             </li>
+
+            { props.type === "nav" && <div className="flex divider"></div>}
 
         </>
         

@@ -1,5 +1,5 @@
 const router = require('express').Router();
-const { userAuth } = require('../utils/auth');
+const { userAuth, adminAuth } = require('../utils/auth');
 
 const {
     getUsers,
@@ -17,7 +17,7 @@ const { getMessages } = require('../controllers/messageController');
 
 router
   .route('/')
-  .get(getUsers)
+  .get(userAuth, adminAuth, getUsers)
   .post(postUser);
 
 router
@@ -26,7 +26,7 @@ router
 
 router
   .route('/edit/:id')
-  .put(editUser);
+  .put(userAuth, editUser);
 
 router
   .route('/login')
@@ -44,9 +44,14 @@ router
   .route('/messages')
   .get(userAuth, getMessages);
 
+  // Maybe not the right function name >.>
+// router
+//   .route('/delete')
+//   .get(userAuth, deleteSelf);
+
 router
   .route('/:id')
-  .get(getUserById)
-  .delete(deleteUser);
+  .get(userAuth, adminAuth, getUserById)
+  .delete(userAuth, adminAuth, deleteUser);
 
 module.exports = router;

@@ -33,9 +33,24 @@ const UserSchema = new Schema(
             default: false
         },
 
+        avatar : {
+            type: String,
+            default: "image url goes here..."
+        },
+
+        location : {
+            type: String,
+            default: "Toronto, CA"
+        },
+
         settings : {
             type: Object,
-            default: { theme: "default", taskbar: [ "Account", "Files", "Utilities", "Settings" ] }
+            default: { 
+                theme: "default", 
+                nav: [ "Account", "Files", "Utilities", "Settings" ], 
+                max: [ "Account", "Files" ], 
+                min: [ "Weather", "Messages", "Database", "Settings" ] 
+            }
         }
 
     },

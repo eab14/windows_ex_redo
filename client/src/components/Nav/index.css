@@ -139,7 +139,7 @@ nav {
     bottom: 0;
 }
 
-.nav_footer_spacer li .nav_icon {
+.nav_footer_spacer li .github_link {
     color: var(--color_green);
 }
 

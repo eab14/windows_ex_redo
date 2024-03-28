@@ -1,0 +1,14 @@
+.terminal_example {
+    position: absolute;
+    bottom: 10px;
+    left: 10px;
+    font-family: monospace;
+    align-items: center;
+}
+
+.indicator {
+    position: relative;
+    width: 12px;
+    height: 14px;
+    background: var(--color_grey);
+}

@@ -17,6 +17,7 @@ import Account from './Account';
 import PasswordGen from './PasswordGen';
 import Weather from './Weather';
 import Files from './Files';
+import Terminal from './Terminal';
 
 const Window = (props) => {
 
@@ -91,6 +92,7 @@ const Window = (props) => {
 					{ props.selected === "Password Generator" && <PasswordGen /> }
 					{ props.selected === "Weather" && <Weather /> }
 					{ props.selected === "Files" && <Files /> }
+					{ props.selected === "Terminal" && <Terminal /> }
 
 				</div>
 

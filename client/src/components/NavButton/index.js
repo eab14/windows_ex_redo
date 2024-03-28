@@ -1,7 +1,7 @@
 import Window from '../Window';
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faUser, faTableList, faComment, faFolder, faGear, faScrewdriverWrench } from '@fortawesome/free-solid-svg-icons';
+import { faUser, faTableList, faComment, faFolder, faGear, faScrewdriverWrench, faTerminal } from '@fortawesome/free-solid-svg-icons';
 import { faGithub } from "@fortawesome/free-brands-svg-icons"
 import { useRef } from 'react';
 
@@ -115,6 +115,7 @@ const NavButton = (props) => {
                         { props.text === "Files" && <FontAwesomeIcon icon={faFolder} /> }
                         { props.text === "Settings" && <FontAwesomeIcon icon={faGear} /> }
                         { props.text === "Utilities" && <FontAwesomeIcon icon={faScrewdriverWrench} />}
+                        { props.text === "Terminal" && <FontAwesomeIcon icon={faTerminal} /> }
                         
                             
                     </span>

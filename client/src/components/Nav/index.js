@@ -3,10 +3,14 @@ import './index.css';
 import NavButton from '../NavButton';
 import Logo from '../Logo';
 
+import { useAuth } from '../../context/AuthContext';
+
 const Nav = () => {
 
+  const { user } = useAuth();
+
   // To be changed to the logged in users settings
-  const array = [ "Account", "Files", "Messages", "Database", "Settings", "Calendar", "Weather", "Calculator" ];
+  const array = (user) ? [ "Account", "Files", "Messages", "Database", "Settings", "Calendar", "Weather", "Calculator" ] : [ "Account" ];
 
   return (
 

@@ -32,14 +32,14 @@
 }
 
 #cal_spacer .cal_header h2 {
-    font-size: 14px;
+    font-size: 12px;
     font-weight: 700;
     color: var(--color_white);
 }
 
 .cal_header h3 {
     position: relative;
-    font-size: 10px;
+    font-size: 9px;
     font-weight: normal;
     margin-left: 8px;
     top: -4px;
@@ -73,7 +73,7 @@
 .cal_content .cal_content_line .box {
     position: relative;
     width: calc((100% / 7));
-    height: 32px;
+    height: 30px;
     background: var(--color_grey);
     opacity: 0;
     border-right: 1px solid var(--color_white);
@@ -95,7 +95,7 @@
     position: absolute;
     top: 4px;
     right: 4px;
-    font-size: 10px;
+    font-size: 9px;
     font-weight: bold;
 }
 

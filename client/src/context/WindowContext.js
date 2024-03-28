@@ -7,26 +7,28 @@ export const useWindowsEX = () => useContext(WindowContext);
 
 export const WindowProvider = ({ children }) => {
 
+    // This will get more complicated shortly...
+    // { window: <Window key="Account" selected="Account" />, name: "Account", size: "max", loggedIn: false, status: "login" }
+
     const [ windows, setWindows ] = useState([
         <Window key="Account" selected="Account" />,
         <Window key="Files" selected="Files" />,
         <Window key="Messages" selected="Messages" />,
-        <Window key="Password Generator" selected="Password Generator" />,
     ]);
 
     const [ status, setStatus ] = useState([])
     // const [ music, setMusic ] = useState({ paused: true });
     const [ date, setDate ] = useState(new Date())
     const [ account, setAccount ] = useState("login")
-    const [ weather, setWeather ] = useState({ laoded: false })
+    const [ weather, setWeather ] = useState({ loaded: false })
+    const [ utilities, setUtilities ] = useState(false);
 
     useEffect(() => {
 
         let array = [ 
             [ "Account", "max" ],
-            [ "Files", "max" ],
-            [ "Messages", "min" ],
-            [ "Password Generator", "min" ],
+            [ "Files", "min" ],
+            [ "Messages", "min" ]
         ];
         // sortWindows(array);
         setStatus(array);
@@ -60,7 +62,9 @@ export const WindowProvider = ({ children }) => {
         account,
         setAccount,
         weather, 
-        setWeather
+        setWeather,
+        utilities, 
+        setUtilities
     }
 
     return (

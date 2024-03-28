@@ -1,28 +1,20 @@
 import Window from '../Window';
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faUser, faTableList, faComment, faFolder, faGear, faVideo, faCalendar, faMusic, faImages, faCalculator, faSun, faScrewdriverWrench } from '@fortawesome/free-solid-svg-icons';
+import { faUser, faTableList, faComment, faFolder, faGear, faScrewdriverWrench } from '@fortawesome/free-solid-svg-icons';
 import { faGithub } from "@fortawesome/free-brands-svg-icons"
 import { useRef } from 'react';
 
 import { gsap, Power1 } from 'gsap';
-import { useGSAP } from '@gsap/react';
 import { useWindowsEX } from '../../context/WindowContext';
 
-gsap.registerPlugin(useGSAP);
+import Utilities from '../Utilities';
 
 const NavButton = (props) => {
 
-    const { windows, setStatus, setWindows } = useWindowsEX();
+    const { windows, setStatus, setWindows, setUtilities } = useWindowsEX();
 
     const linkRef = useRef(null);
-
-    useGSAP(() => { 
-
-        let hoverCtx = gsap.context(() => { gsap.to(".accent", { width: 0 }) }, linkRef);
-        return () => hoverCtx.revert();
-
-    }, []);
 
     const clickHandler = ({ currentTarget }) => {
 
@@ -70,17 +62,37 @@ const NavButton = (props) => {
 
     }
 
+    const utilOpen = ({ currentTarget }) => {
+
+        let q = gsap.utils.selector(currentTarget);
+        gsap.to(q(".utils_spacer"), { border: "1px solid var(--color_grey)", duration: 0 });
+        gsap.to(q(".utils_spacer"), { width: 54, height: 152, borderRadius: "0 7px 7px 0", background: "#424242", ease:Power1.easeInOut, duration: 0.3 });
+        setUtilities(true);
+
+    }
+
     const enterHandler = ({ currentTarget }) => {
 
         let q = gsap.utils.selector(currentTarget);
-        gsap.to(q(".accent"), { width: 4, ease:Power1.easeInOut, duration: 0.3 });
+        (props.text !== "Utilities") && gsap.to(q(".accent"), { width: 4, ease:Power1.easeInOut, duration: 0.3 });
+        (props.text === "Utilities") && gsap.to(q(".utils_spacer"), { width: 5, ease:Power1.easeInOut, duration: 0.3 });
 
     }
 
     const leaveHandler = ({ currentTarget }) => {
 
         let q = gsap.utils.selector(currentTarget);
-        gsap.to(q(".accent"), { width: 0, ease:Power1.easeInOut, duration: 0.3 });
+
+        (props.text !== "Utilities") && gsap.to(q(".accent"), { width: 0, ease:Power1.easeInOut, duration: 0.3 });
+
+        if (props.text === "Utilities") { 
+            
+            gsap.to(q(".utils_spacer"), { border: "none", duration: 0 });
+            gsap.to(q(".utils_spacer"), { borderLeft: "1px solid var(--color_grey)", duration: 0 });
+            gsap.to(q(".utils_spacer"), { width: 0, height: 30, borderRadius: "0 3px 3px 0", background: "#6b957e", ease:Power1.easeInOut, duration: 0.3 });
+            setUtilities(false);
+
+        }
 
     }
 
@@ -90,7 +102,7 @@ const NavButton = (props) => {
 
             { (props.type === "footer" && props.text !== "Github") && <div className="flex divider"></div>}
 
-            <li className="flex center row" ref={linkRef} onClick={clickHandler} onMouseEnter={enterHandler} onMouseLeave={leaveHandler}>
+            <li className="flex center row" ref={linkRef} onClick={props.text !== "Utilities" ? clickHandler : utilOpen } onMouseEnter={enterHandler} onMouseLeave={leaveHandler}>
 
                 <div className="nav_expand_spacer flex row">
 
@@ -103,12 +115,6 @@ const NavButton = (props) => {
                         { props.text === "Files" && <FontAwesomeIcon icon={faFolder} /> }
                         { props.text === "Settings" && <FontAwesomeIcon icon={faGear} /> }
                         { props.text === "Utilities" && <FontAwesomeIcon icon={faScrewdriverWrench} />}
-                        { props.text === "Music" && <FontAwesomeIcon icon={faMusic} /> }
-                        { props.text === "Calendar" && <FontAwesomeIcon icon={faCalendar} /> }
-                        { props.text === "Video" && <FontAwesomeIcon icon={faVideo} /> }
-                        { props.text === "Gallery" && <FontAwesomeIcon icon={faImages} /> }
-                        { props.text === "Calculator" && <FontAwesomeIcon icon={faCalculator} /> }
-                        { props.text === "Weather" && <FontAwesomeIcon icon={faSun}/> }
                         
                             
                     </span>
@@ -120,8 +126,21 @@ const NavButton = (props) => {
                     </div>
 
                 </div>
+                {
+
+                    (props.text !== "Utilities")
+
+                        ?
+
+                        (props.text === "Account") ? <span className="accent accent_selected"></span> : <span className="accent"></span>
+
+                        :
+
+                        <Utilities />
+
+                }
                 
-                { props.text === "Account" ? <span className="accent accent_selected"></span> : <span className="accent"></span> }
+                
                     
             </li>
 

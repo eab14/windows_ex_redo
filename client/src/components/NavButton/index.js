@@ -18,9 +18,9 @@ const NavButton = (props) => {
 
     const clickHandler = ({ currentTarget }) => {
 
-        const li = document.querySelectorAll('nav li');
-
         if (props.text !== "Github" && props.text !== "Utilities") {
+
+            const li = currentTarget.parentNode.querySelectorAll('nav li');
 
             for (let i = 0; i < li.length; i++) {
 

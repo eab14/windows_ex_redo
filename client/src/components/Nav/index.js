@@ -10,7 +10,7 @@ const Nav = () => {
   const { user } = useAuth();
 
   // To be changed to the logged in users settings
-  const array = (user) ? [ "Account", "Files", "Messages", "Terminal", "Database", "Settings" ] : [ "Account" ];
+  const array = (user) ? [ "Account", "Files", "Messages", "Terminal", "Database", "Settings" ] : [ "Account", "Terminal" ];
 
   return (
 

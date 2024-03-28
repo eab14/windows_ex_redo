@@ -8,6 +8,7 @@ const Terminal = () => {
 
     const blinkRef = useRef(null);
     const textRef = useRef(null);
+    const windowRef = useRef(null);
 
     const blink = useCallback(() => {
 
@@ -17,7 +18,12 @@ const Terminal = () => {
     
         const intervalId = setInterval(() => {
 
-            if (i < text.length) { textRef.current.textContent += text[i]; i++; } 
+            let verify;
+
+            if (windowRef.current) verify = (window.getComputedStyle(windowRef.current).getPropertyValue("display"))
+            else verify = "none";
+
+            if (i < text.length && verify !== "none") { textRef.current.textContent += text[i]; i++; } 
             else clearInterval(intervalId);
 
         }, 250);
@@ -29,7 +35,7 @@ const Terminal = () => {
     useEffect(() => blink(), [ blink ])
 
     return (
-        <div className="flex center test test_1">
+        <div ref={windowRef} className="flex center test test_1">
             <div className="flex row wrap terminal_example">
                 <p ref={textRef}></p>
                 <span ref={blinkRef} className="flex indicator"></span>

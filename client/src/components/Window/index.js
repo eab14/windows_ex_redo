@@ -21,7 +21,7 @@ import Terminal from './Terminal';
 
 const Window = (props) => {
 
-	const { status, setStatus, setWindows } = useWindowsEX();
+	const { status, setStatus, closeWindow } = useWindowsEX();
 	const ws = status.find(([ name ]) => name === props.selected);
 
 	const minClick = () => {
@@ -46,12 +46,7 @@ const Window = (props) => {
 
 	}
 
-	const closeClick = () => {
-
-		setStatus(prevStatus => prevStatus.filter(([name]) => name !== props.selected));
-		setWindows(prevWindows => prevWindows.filter(window => window.props.selected !== props.selected));
-
-	};
+	const closeClick = () => closeWindow(props.selected);
 
 	return (
 

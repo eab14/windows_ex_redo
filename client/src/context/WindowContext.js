@@ -11,6 +11,7 @@ export const WindowProvider = ({ children }) => {
     // { window: <Window key="Account" selected="Account" />, name: "Account", size: "max", loggedIn: false, status: "login" }
 
     const [ windows, setWindows ] = useState([
+        <Window key="Terminal" selected="Terminal" />,
         <Window key="Account" selected="Account" />,
         <Window key="Files" selected="Files" />,
         <Window key="Messages" selected="Messages" />,
@@ -25,8 +26,9 @@ export const WindowProvider = ({ children }) => {
 
     useEffect(() => {
 
-        let array = [ 
-            [ "Account", "max" ],
+        let array = [
+            [ "Terminal", "max" ],
+            [ "Account", "min" ],
             [ "Files", "min" ],
             [ "Messages", "min" ]
         ];
@@ -34,6 +36,27 @@ export const WindowProvider = ({ children }) => {
         setStatus(array);
 
     }, [])
+
+    const openWindow = (str) => {
+
+        if (!windows.find(window => window.props.selected === str)) {
+
+            const w = <Window key={str} selected={str} />;
+            const s = [str, "max"];
+
+            setWindows(prevWindows => [ ...prevWindows, w ]);
+            setStatus(prevStatus => [ ...prevStatus, s ]);
+
+        }
+
+    }
+
+    const closeWindow = (str) => {
+
+        setStatus(prevStatus => prevStatus.filter(([name]) => name !== str));
+		setWindows(prevWindows => prevWindows.filter(window => window.props.selected !== str));
+
+    }
 
     const sortWindows = (array) => {
 
@@ -56,6 +79,8 @@ export const WindowProvider = ({ children }) => {
         setWindows,
         status,
         setStatus,
+        openWindow,
+        closeWindow,
         sortWindows,
         date, 
         setDate,

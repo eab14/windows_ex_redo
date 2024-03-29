@@ -1,5 +1,3 @@
-import Window from '../Window';
-
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faUser, faTableList, faComment, faFolder, faGear, faScrewdriverWrench, faTerminal } from '@fortawesome/free-solid-svg-icons';
 import { faGithub } from "@fortawesome/free-brands-svg-icons"
@@ -12,7 +10,7 @@ import Utilities from '../Utilities';
 
 const NavButton = (props) => {
 
-    const { windows, setStatus, setWindows, setUtilities } = useWindowsEX();
+    const { openWindow, setUtilities } = useWindowsEX();
 
     const linkRef = useRef(null);
 
@@ -45,19 +43,7 @@ const NavButton = (props) => {
 
         }
 
-        if (!windows.find(window => window.props.selected === props.text)) {
-
-            if (props.text !== "Github" && props.text !== "Utilities") {
-
-                const w = <Window key={props.text} selected={props.text} />;
-                const s = [props.text, "max"];
-
-                setWindows(prevWindows => [ ...prevWindows, w ]);
-                setStatus(prevStatus => [ ...prevStatus, s ]);
-
-            }
-
-        }
+        openWindow(props.text);
         
 
     }
@@ -122,7 +108,7 @@ const NavButton = (props) => {
 
                     <div className="nav_text flex center">
 
-                    { props.text === "Account" ? <p className="text_selected">{props.text}</p> : <p>{props.text}</p> }
+                    { props.text === "Terminal" ? <p className="text_selected">{props.text}</p> : <p>{props.text}</p> }
                         
                     </div>
 
@@ -133,7 +119,7 @@ const NavButton = (props) => {
 
                         ?
 
-                        (props.text === "Account") ? <span className="accent accent_selected"></span> : <span className="accent"></span>
+                        (props.text === "Terminal") ? <span className="accent accent_selected"></span> : <span className="accent"></span>
 
                         :
 

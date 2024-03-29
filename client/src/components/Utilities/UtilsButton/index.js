@@ -3,29 +3,11 @@ import { faCalendar, faCalculator, faCloud, faShieldHalved } from '@fortawesome/
 
 import { useWindowsEX } from '../../../context/WindowContext';
 
-import Window from '../../Window';
-
 const UtilsButton = (props) => {
 
-    const { windows, setWindows, setStatus } = useWindowsEX();
+    const { openWindow } = useWindowsEX();
 
-    const clickHandler = () => {
-
-        if (!windows.find(window => window.props.selected === props.icon)) {
-
-            if (props.text !== "Github" && props.text !== "Utilities") {
-
-                const w = <Window key={props.icon} selected={props.icon} />;
-                const s = [props.icon, "max"];
-
-                setWindows(prevWindows => [ ...prevWindows, w ]);
-                setStatus(prevStatus => [ ...prevStatus, s ]);
-
-            }
-
-        }
-
-    }
+    const clickHandler = () => openWindow(props.icon);
 
     return (
 

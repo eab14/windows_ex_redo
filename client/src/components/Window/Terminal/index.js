@@ -106,6 +106,7 @@ const Terminal = () => {
                 <p>open <span className="terminal_gg">{"<Window>"}</span></p>
                 <p>close <span className="terminal_gg">{"<Window>"}</span></p>
                 <p>account login <span className="terminal_gg">{"<email> <password>"}</span></p>
+                <p>account logout</p>
                 <p>cd <span className="terminal_gg">{"<folder> | <../> | <..> | </>"}</span></p>
                 <p>- - -</p>
                 <p className="terminal_green">Available windows: </p>

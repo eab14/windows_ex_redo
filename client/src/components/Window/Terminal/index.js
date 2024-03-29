@@ -3,15 +3,16 @@ import { gsap } from 'gsap';
 
 // import Loading from "../../Loading";
 
-import { useCallback, useRef, useEffect } from 'react';
+import { useCallback, useRef, useEffect, useState } from 'react';
 
 import { useAuth } from '../../../context/AuthContext';
 import { useWindowsEX } from '../../../context/WindowContext';
 
 const Terminal = () => {
 
-    const { user, login } = useAuth();
+    const { user, login, logout } = useAuth();
     const { openWindow, closeWindow } = useWindowsEX();
+    const [ dir, setDir ] = useState("");
 
     const blinkRef = useRef(null);
     const inputRef = useRef(null);
@@ -40,8 +41,9 @@ const Terminal = () => {
     // likely need to be external...
     const processCommand = (value) => {
 
+        const dValues = [ "music", "videos", "photos" ]
         const wValues = [ "calculator", "calendar", "password-generator", "weather" ];
-        const aValues = [ "login" ]
+        const aValues = [ "login", "logout" ]
         let commands = value.split(' ');
 
         switch (commands[0]) {
@@ -59,6 +61,12 @@ const Terminal = () => {
             case "account":
 
                 ((aValues.includes(commands[1]) && commands[2] && commands[3])) && login(commands[2], commands[3]);
+                (commands[1] === "logout") && logout();
+                break;
+
+            case "cd":
+                (dValues.includes(commands[1]) && dir === "") && setDir(`/${commands[1]}`);
+                (commands[1] === ".." || commands[1] === "/" || commands[1] === "../") && setDir("");
                 break;
 
             default:
@@ -97,11 +105,16 @@ const Terminal = () => {
                 <p>- - -</p>
                 <p>open <span className="terminal_gg">{"<Window>"}</span></p>
                 <p>close <span className="terminal_gg">{"<Window>"}</span></p>
-                <p>account login <span className="terminal_gg">admin@root.com root</span></p>
+                <p>account login <span className="terminal_gg">{"<email> <password>"}</span></p>
+                <p>cd <span className="terminal_gg">{"<folder> | <../> | <..> | </>"}</span></p>
                 <p>- - -</p>
                 <p className="terminal_green">Available windows: </p>
                 <p>- - -</p>
                 <p>calculator | caldendar | password-generator | weather</p>
+                <p>- - -</p>
+                <p className="terminal_green">Available folders: </p>
+                <p>- - -</p>
+                <p>music | photos | videos</p>
             </div>
 
             <div className="flex row terminal_display">
@@ -109,7 +122,7 @@ const Terminal = () => {
             </div>
 
             <div className="flex row wrap terminal_input">
-                <p ref={userRef} className="flex terminal_user">{ user ? `${removeAt(user)}` : "guest" }<span>$</span></p>
+                <p ref={userRef} className="flex terminal_user">{ user ? `${removeAt(user)}` + dir : "guest" + dir }<span>$</span></p>
                 <input type="text" ref={inputRef} onChange={resizeInput} onKeyDown={enterCommand} />
                 <span ref={blinkRef} className="flex indicator"></span>
             </div>

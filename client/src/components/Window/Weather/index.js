@@ -5,6 +5,7 @@ import { useEffect, useCallback, useState } from "react";
 
 import Loading from "../../Loading";
 import Search from "../../Form/Search";
+import WeatherCard from "./WeatherCard";
 
 const Weather = () => {
 
@@ -22,6 +23,13 @@ const Weather = () => {
 				const weatherData = await response.json();
 
 				weatherData.current.dt = new Date(weatherData.current.dt * 1000);
+				weatherData.daily.daily.forEach(item => item.dt = new Date(item.dt * 1000));
+
+				weatherData.selected = {};
+				weatherData.selected.dt = weatherData.current.dt;
+				weatherData.selected.location = `${weatherData.current.name}, ${weatherData.current.sys.country}`;
+				weatherData.selected.temp = `${parseInt(weatherData.current.main.temp)}  \u00B0C`;
+				weatherData.selected.icon = `${weatherData.daily.daily[0].weather[0].icon}`;
 
 				setWeather(weatherData);
 				setLoading(false);
@@ -67,39 +75,17 @@ const Weather = () => {
 
                     <div className="flex row weather_data">
 
-                        <div className="flex" id="weather_date">{weather.current.dt.toLocaleString("en-us", { month: "long", day: "numeric", year: "numeric" })}</div>
-                        <div className="flex" id="weather_location">{`${weather.current.name}, ${weather.current.sys.country}`}</div>
-                        <div className="flex" id="weather_temp">{`${parseInt(weather.current.main.temp)}  \u00B0C`}</div>
-                        <div className="flex" id="weather_icon"><img src={`http://openweathermap.org/img/wn/${weather.daily.daily[0].weather[0].icon}@2x.png`} alt="" /></div>
+                        <div className="flex" id="weather_date">{weather.selected.dt.toLocaleString("en-us", { month: "long", day: "numeric", year: "numeric" })}</div>
+                        <div className="flex" id="weather_location">{weather.selected.location}</div>
+                        <div className="flex" id="weather_temp">{weather.selected.temp}</div>
+                        <div className="flex" id="weather_icon"><img src={`http://openweathermap.org/img/wn/${weather.selected.icon}@2x.png`} alt="" /></div>
 
                     </div>
 
                     <div className="flex row center weather_select">
 
-                        <div className="flex center weather_select_day">
-                            <div className="flex weather_daily_date"></div>
-                            <div className="flex weather_daily_temp"></div>
-                        </div>
-
-                        <div className="flex center weather_select_day">
-                            <div className="flex weather_daily_date"></div>
-                            <div className="flex weather_daily_temp"></div>
-                        </div>
-
-                        <div className="flex center weather_select_day">
-                            <div className="flex weather_daily_date"></div>
-                            <div className="flex weather_daily_temp"></div>
-                        </div>
-
-                        <div className="flex center weather_select_day">
-                            <div className="flex weather_daily_date"></div>
-                            <div className="flex weather_daily_temp"></div>
-                        </div>
-
-                        <div className="flex center weather_select_day">
-                            <div className="flex weather_daily_date"></div>
-                            <div className="flex weather_daily_temp"></div>
-                        </div>
+						{/* ... */}
+						{ weather.daily.daily.slice(0, 5).map((item, index) => <WeatherCard key={index} data={weather} index={index} /> ) }
 
                     </div>
 

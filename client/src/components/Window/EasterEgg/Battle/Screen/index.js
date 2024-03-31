@@ -66,7 +66,17 @@ const Screen = () => {
                     <img ref={trainerRef} src={mewGif} alt="mew trainer animation"></img>
                 </div>
                 <div ref={trainerStatsRef} className="flex trainer_stats_overlay">
-                    <div className="flex col trainer_stats"></div>
+                    <div className="flex col trainer_stats">
+                        <div className="flex row trainer_pokemon_line">
+                            <h3>Mew</h3>
+                            <h4>Lv<span>5</span></h4>
+                        </div>
+                        <div className="flex row center trainer_hp_line">
+                            <h3>HP</h3>
+                            <span className="hp_bar"></span>
+                        </div>
+                        <div className="flex trainer_exp_bar"></div>
+                    </div>
                 </div>
             </div>
 

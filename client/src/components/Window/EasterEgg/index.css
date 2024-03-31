@@ -135,3 +135,50 @@
     height: 170px;
     object-fit: contain;
 }
+
+.input_accent {
+    position: absolute;
+    width: 14px;
+    height: 14px;
+}
+
+.input_accent_top {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 10px;
+    border-top: 3px solid var(--color_black);
+    box-sizing: border-box;
+}
+
+.input_accent_bottom {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 10px;
+    border-left: 3px solid var(--color_black);
+    box-sizing: border-box;
+}
+
+.top_left {
+    left: -9px;
+    top: -9px;
+}
+
+.top_right {
+    right: -9px;
+    top: -9px;
+    transform: rotateY(180deg);
+}
+
+.bottom_left {
+    left: -9px;
+    bottom: -9px;
+    transform: rotateX(180deg);
+}
+
+.bottom_right {
+    right: -9px;
+    bottom: -9px;
+    transform: rotateX(180deg) rotateY(180deg);
+}

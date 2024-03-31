@@ -1,8 +1,10 @@
-import { useWindowsEX } from "../../../context/WindowContext";
-import Loading from "../../Loading";
 import "./index.css";
 
+import { useWindowsEX } from "../../../context/WindowContext";
 import { useEffect, useCallback, useState } from "react";
+
+import Loading from "../../Loading";
+import Search from "../../Form/Search";
 
 const Weather = () => {
 
@@ -26,7 +28,12 @@ const Weather = () => {
 
 			}
 
-			else return;
+			else { 
+				
+				setWeather(weather);
+				setLoading(false);
+				
+			}
 
 		} 
 		
@@ -52,9 +59,15 @@ const Weather = () => {
 				
 					<>
 
+					<div className="flex weather_search">
+
+						<Search />
+
+					</div>
+
                     <div className="flex row weather_data">
 
-                        <div className="flex" id="weather_date">{weather.current.dt.toLocaleString("en-us")}</div>
+                        <div className="flex" id="weather_date">{weather.current.dt.toLocaleString("en-us", { month: "long", day: "numeric", year: "numeric" })}</div>
                         <div className="flex" id="weather_location">{`${weather.current.name}, ${weather.current.sys.country}`}</div>
                         <div className="flex" id="weather_temp">{`${parseInt(weather.current.main.temp)}  \u00B0C`}</div>
                         <div className="flex" id="weather_icon"><img src={`http://openweathermap.org/img/wn/${weather.daily.daily[0].weather[0].icon}@2x.png`} alt="" /></div>

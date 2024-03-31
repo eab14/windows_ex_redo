@@ -1,12 +1,25 @@
 .weather_spacer {
   width: 380px;
-  height: 200px;
+  height: fit-content;
   background: var(--color_grey);
 }
 
 .weather_select {
   width: 100%;
   margin-bottom: 10px;
+}
+
+.weather_search {
+  position: relative;
+  height: 50px;
+  align-items: center;
+  width: calc(100% - 20px);
+}
+
+.weather_data {
+  position: relative;
+  width: 100%;
+  height: 100px;
 }
 
 .weather_select .weather_select_day {
@@ -23,21 +36,19 @@
   cursor: pointer;
 }
 
-.weather_data {
-  height: 120px;
-}
-
 #weather_date {
   position: absolute;
-  top: 10px;
+  top: -18px;
   right: 10px;
+  font-size: 14px;
+  font-weight: 500;
   color: var(--color_green_grey);
 }
 
 #weather_location {
   position: absolute;
-  top: 10px;
-  left: 10px;
+  top: -40px;
+  right: 10px;
   color: var(--color_black);
   font-weight: bold;
   z-index: 9;
@@ -45,7 +56,7 @@
 
 #weather_temp {
   position: absolute;
-  top: 40px;
+  top: 0px;
   right: 10px;
   font-size: 40px;
   color: var(--color_green);
@@ -53,7 +64,7 @@
 
 #weather_icon {
   position: absolute;
-  top: 34px;
+  top: 24px;
   left: 60px;
   scale: 3;
   opacity: 0.4;

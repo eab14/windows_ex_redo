@@ -15,7 +15,6 @@ const WeatherCard = (props) => {
             temp: (index === 0) ? `${parseInt(props.data.current.main.temp)}  \u00B0C` : `${parseInt(props.data.daily.daily[props.index].temp.day)}  \u00B0C`,
             icon: `${props.data.daily.daily[index].weather[0].icon}`,
             location: `${props.data.current.name}, ${props.data.current.sys.country}`
-            
         }
         
         setWeather(prevWeather => ({ ...prevWeather, selected: selectedWeather }));
@@ -25,13 +24,17 @@ const WeatherCard = (props) => {
     return (
         <div className="flex center weather_select_day" onClick={() => clickHandler(props.index)} onMouseEnter={enterHandler} onMouseLeave={leaveHandler}>
             <div className="flex weather_daily_date">
-                { props.index === 0 ? 
+
+                { props.index === 0 ?
+
                     props.data.current.dt.toLocaleString("en-us", { month: "short", day: "numeric"})
 
                     :
 
                     props.data.daily.daily[props.index].dt.toLocaleString("en-us", { month: "short", day: "numeric"})
+                    
                 }
+
             </div>
             <div className="flex weather_daily_temp">
 
@@ -42,6 +45,7 @@ const WeatherCard = (props) => {
                     :
                     
                     `${parseInt(props.data.daily.daily[props.index].temp.day)}  \u00B0C`
+
                 }
 
             </div>

@@ -21,6 +21,13 @@
     background: var(--color_green);
 }
 
+.test_component {
+    width: 360px;
+    height: 200px;
+    background: var(--color_white);
+    color: var(--color_black);
+}
+
 .test_1 {
     width: 380px;
     height: 240px;

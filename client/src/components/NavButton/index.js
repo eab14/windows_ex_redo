@@ -41,9 +41,9 @@ const NavButton = (props) => {
             selected_icon.classList.add("selected");
             selected_text.classList.add("text_selected");
 
-        }
+            openWindow(props.text);
 
-        openWindow(props.text);
+        }
         
 
     }

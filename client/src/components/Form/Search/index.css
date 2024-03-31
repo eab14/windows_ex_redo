@@ -1,0 +1,31 @@
+.general_search_input {
+    position: relative;
+    width: 160px;
+    height: 30px;
+    border: 2px solid var(--color_black);
+    border-radius: 7px;
+    align-items: center;
+}
+
+.general_search_input span {
+    position: relative;
+    left: 4px;
+    color: var(--color_green);
+    background: var(--color_white);
+    min-width: 24px;
+    height: 24px;
+    border-radius: 50%;
+}
+
+.general_search_input input {
+    position: relative;
+    border: 0;
+    background: none;
+    outline: none;
+    font-family: "Poppins", sans-serif;
+    font-weight: bold;
+    font-size: 12px;
+    left: 6px;
+    top: 2px;
+    width: 120px;
+}

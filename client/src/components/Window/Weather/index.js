@@ -6,41 +6,39 @@ import { useEffect, useCallback } from "react";
 
 const Weather = () => {
 
-  // Changing to Window context for weather, setWeather, using an object
+	// Changing to Window context for weather, setWeather, using an object
+	const { weather, setWeather } = useWindowsEX();
 
-  const { weather } = useWindowsEX();
+	const getWeather = useCallback(async (weather) => {
 
-  const getWeather = useCallback(async (weather) => {
+		try {
 
-    try {
+			// const position = await new Promise((resolve, reject) => navigator.geolocation.getCurrentPosition(resolve, reject));
+			
+			const response = await fetch(`/api/weather`);
+			const weatherData = await response.json();
 
-      const position = await new Promise((resolve, reject) => navigator.geolocation.getCurrentPosition(resolve, reject));
-      const response = await fetch(`/api/weather?long=${position.coords.longitude}&lat=${position.coords.latitude}`);
-      const weatherData = await response.json();
+		} 
+		
+		catch (error) { console.error("Error fetching weather data:", error); }
 
-      console.log(weatherData);
+	}, []);
 
-    } 
-    
-    catch (error) { console.error("Error fetching weather data:", error); }
+	useEffect(() => {
 
-  }, []);
+		const fetchData = async () => await getWeather(weather);
+		fetchData();
 
-  useEffect(() => {
+	}, [ getWeather, weather ]);
 
-    const fetchData = async () => await getWeather(weather);
-    fetchData();
-  
-  }, [ getWeather, weather ]);
+	return (
 
-  return (
+		<div id="weather_spacer" className="flex col center">
 
-    <div id="weather_spacer" className="flex col">
+			<Loading text_color="black" />
+		
+		</div>
 
-        <Loading text_color="black" />
-      
-    </div>
-
-  );
+	);
 };
 export default Weather;

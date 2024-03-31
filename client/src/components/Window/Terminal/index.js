@@ -42,7 +42,7 @@ const Terminal = () => {
     const processCommand = (value) => {
 
         const dValues = [ "music", "videos", "photos" ]
-        const wValues = [ "calculator", "calendar", "password-generator", "weather" ];
+        const wValues = [ "calculator", "calendar", "password-generator", "weather", "easter-egg" ];
         const aValues = [ "login", "logout" ]
         let commands = value.split(' ');
 
@@ -68,6 +68,10 @@ const Terminal = () => {
                 (dValues.includes(commands[1]) && dir === "") && setDir(`/${commands[1]}`);
                 (commands[1] === ".." || commands[1] === "/" || commands[1] === "../") && setDir("");
                 break;
+
+            case "clear":
+                    console.log("test");
+                    break;
 
             default:
                 return "Invalid...";
@@ -98,9 +102,9 @@ const Terminal = () => {
     }, [ blink, focusInput ])
 
     return (
-        <div ref={windowRef} className="flex center terminal_spacer" onClick={focusInput}>
+        <div ref={windowRef} className="flex center col terminal_spacer" onClick={focusInput}>
 
-            <div className="flex col test_options">
+            <div className="flex col test_display">
                 <p className="terminal_green">Options:</p>
                 <p>- - -</p>
                 <p>open <span className="terminal_gg">{"<Window>"}</span></p>
@@ -116,6 +120,7 @@ const Terminal = () => {
                 <p className="terminal_green">Available folders: </p>
                 <p>- - -</p>
                 <p>music | photos | videos</p>
+                <p>- - -</p>
             </div>
 
             <div className="flex row terminal_display">

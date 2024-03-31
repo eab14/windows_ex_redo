@@ -4,7 +4,10 @@ import './test.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faWindowMaximize, faMinus, faXmark } from '@fortawesome/free-solid-svg-icons';
 
+import { /*useLayoutEffect,*/ useRef } from 'react';
 import { useWindowsEX } from '../../context/WindowContext';
+import { gsap } from 'gsap';
+import { Draggable } from "gsap/Draggable";
 
 import Calendar from './Calendar';
 import Music from './Music';
@@ -18,10 +21,15 @@ import PasswordGen from './PasswordGen';
 import Weather from './Weather';
 import Files from './Files';
 import Terminal from './Terminal';
+import EasterEgg from './EasterEgg';
+
+gsap.registerPlugin(Draggable);
 
 const Window = (props) => {
 
-	const { status, setStatus, closeWindow } = useWindowsEX();
+	const windowRef = useRef();
+
+	const { status, setStatus, openWindow, closeWindow } = useWindowsEX();
 	const ws = status.find(([ name ]) => name === props.selected);
 
 	const minClick = () => {
@@ -35,24 +43,38 @@ const Window = (props) => {
 
 	};
 
-	const maxClick = () => {
-
-		setStatus(prev => {
-
-			const updated = prev.map(([name, current]) => name === props.selected ? [name, "max"] : [name, current]);
-			return updated;
-  
-		});
-
-	}
-
+	const maxClick = () => openWindow(props.selected);
 	const closeClick = () => closeWindow(props.selected);
+
+	// useLayoutEffect(() => {
+
+	// 	let ctx = gsap.context(() => {
+
+	// 	  Draggable.create(windowRef.current, {
+	// 		bounds: document.querySelector("section"),
+	// 		type: "x,y",
+	// 		liveSnap: {
+	// 			points: [
+	// 			  { x: 0, y: 0 },
+	// 			  { x: 300, y: 0 },
+	// 			  { x: 500, y: 0 },
+	// 			],
+	// 			radius: 100,
+	// 		  },
+
+	// 	});
+	
+	// 	}, );
+		
+	// 	return () => ctx.revert();
+
+	// }, []);
 
 	return (
 
 		<>
 
-			<div className="window flex col">
+			<div ref={windowRef} className="window flex col">
 
 				<div className="flex row window_header">
 
@@ -88,6 +110,7 @@ const Window = (props) => {
 					{ props.selected === "Weather" && <Weather /> }
 					{ props.selected === "Files" && <Files /> }
 					{ props.selected === "Terminal" && <Terminal /> }
+					{ props.selected === "Easter Egg" && <EasterEgg /> }
 
 				</div>
 

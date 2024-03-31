@@ -14,7 +14,7 @@ export const WindowProvider = ({ children }) => {
         <Window key="Terminal" selected="Terminal" />,
         <Window key="Account" selected="Account" />,
         <Window key="Files" selected="Files" />,
-        <Window key="Messages" selected="Messages" />,
+        <Window key="Messages" selected="Messages" />
     ]);
 
     const [ status, setStatus ] = useState([])
@@ -46,6 +46,17 @@ export const WindowProvider = ({ children }) => {
 
             setWindows(prevWindows => [ ...prevWindows, w ]);
             setStatus(prevStatus => [ ...prevStatus, s ]);
+
+        }
+
+        else if (windows.find(window => window.props.selected === str)) {
+
+            setStatus(prev => {
+
+                const updated = prev.map(([name, current]) => name === str ? [name, "max"] : [name, current]);
+                return updated;
+      
+            });
 
         }
 

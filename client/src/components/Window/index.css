@@ -78,11 +78,13 @@
 }
 
 .window_header h2 {
-    font-size: 13px;
+    font-size: 12px;
     font-family: "Roboto", sans-serif;
     font-weight: 500;
     color: var(--color_white);
     align-self: center;
+    position: relative;
+    top: calc(50% - 14px);
 }
 
 .window_content {

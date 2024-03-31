@@ -1,7 +1,4 @@
 #weather_spacer {
-  width:296px;
-  
-}
-#weather_spacer p{
-  color: black;
+  height: 200px;
+  width: 380px;
 }

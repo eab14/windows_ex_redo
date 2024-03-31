@@ -17,11 +17,11 @@ export const WindowProvider = ({ children }) => {
         <Window key="Messages" selected="Messages" />
     ]);
 
-    const [ status, setStatus ] = useState([])
+    const [ status, setStatus ] = useState([]);
     // const [ music, setMusic ] = useState({ paused: true });
-    const [ date, setDate ] = useState(new Date())
-    const [ account, setAccount ] = useState("login")
-    const [ weather, setWeather ] = useState({ loaded: false })
+    const [ date, setDate ] = useState(new Date());
+    const [ account, setAccount ] = useState("login");
+    const [ weather, setWeather ] = useState(null);
     const [ utilities, setUtilities ] = useState(false);
 
     useEffect(() => {

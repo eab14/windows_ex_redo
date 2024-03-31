@@ -1,4 +1,79 @@
-#weather_spacer {
-  height: 200px;
+.weather_spacer {
   width: 380px;
+  height: 200px;
+  background: var(--color_grey);
+}
+
+.weather_select {
+  width: 100%;
+  margin-bottom: 10px;
+}
+
+.weather_select .weather_select_day {
+  position: relative;
+  width: 60px;
+  height: 50px;
+  background: var(--color_white);
+  margin: 5px;
+  border-radius: 7px;
+  z-index: 9;
+}
+
+.weather_select_day:hover {
+  cursor: pointer;
+}
+
+.weather_data {
+  height: 120px;
+}
+
+#weather_date {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  color: var(--color_green_grey);
+}
+
+#weather_location {
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  color: var(--color_black);
+  font-weight: bold;
+  z-index: 9;
+}
+
+#weather_temp {
+  position: absolute;
+  top: 40px;
+  right: 10px;
+  font-size: 40px;
+  color: var(--color_green);
+}
+
+#weather_icon {
+  position: absolute;
+  top: 34px;
+  left: 60px;
+  scale: 3;
+  opacity: 0.4;
+  filter: blur(1px);
+  z-index: 1;
+  pointer-events: none;
+}
+
+.weather_daily_date {
+  position: absolute;
+  right: 4px;
+  top: 4px;
+  font-size: 10px;
+  font-weight: bold;
+}
+
+.weather_daily_temp {
+  position: relative;
+  top: 14px;
+  color: var(--color_green_grey);
+  font-size: 12px;
+  font-weight: bold;
 }

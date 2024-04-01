@@ -1,4 +1,4 @@
-const { File} = require("../models");
+const { File } = require("../models");
 
 const fileController = {
 

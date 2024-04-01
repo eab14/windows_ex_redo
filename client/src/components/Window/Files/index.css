@@ -1,6 +1,6 @@
 .files_spacer {
-    width: 740px;
-    height: 300px;
+    width: 860px;
+    height: 430px;
     background: var(--color_white);
 }
 
@@ -108,13 +108,13 @@
 }
 
 .files_content_sub_header:nth-child(1) {
-    width: 40%;
+    width: 70%;
 }
 
 .files_content_sub_header:nth-child(2), 
 .files_content_sub_header:nth-child(3), 
 .files_content_sub_header:nth-child(4) {
-    width: 20%;
+    width: 10%;
 }
 
 .files_content_sub_header .files_sort_icon {
@@ -129,6 +129,7 @@
     border-bottom: 1px solid var(--color_black);
     color: var(--color_black);
     font-size: 10px;
+    font-weight: bold;
     /* font-family: "Roboto", sans-serif; */
 }
 
@@ -138,13 +139,13 @@
 }
 
 .files_file_name {
-    width: 40%;
+    width: 70%;
     padding: 0 14px;
     align-items: center;
 }
 
 .files_file_size, .files_file_ext, .files_file_date {
-    width: 20%;
+    width: 10%;
     padding: 0 14px;
     align-items: center;
 }

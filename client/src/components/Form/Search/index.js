@@ -12,13 +12,11 @@ const Search = (props) => {
     const inputRef = useRef();
 
     const animateInput = () => {
-        gsap.to(iconRef.current, { left: "-10px", top: "-10px", fontSize: "18px", duration: 0.3 });
-        gsap.to(inputRef.current, { left: "-8px", width: "140px", duration: 0.3 });
+        gsap.to(iconRef.current, { fontSize: "18px", duration: 0.3 });
     }
 
     const unAnimateInput = () => {
-        gsap.to(iconRef.current, { left: "4px", top: "0", fontSize: "16px", duration: 0.3 });
-        gsap.to(inputRef.current, { left: "6px", width: "120px", duration: 0.3 });
+        gsap.to(iconRef.current, { fontSize: "16px", duration: 0.3 });
     }
 
     const focusInput = () => inputRef.current.focus();

@@ -14,6 +14,7 @@ const reducer = (state, action) => {
 
         case 'SET_USER': return { ...state, user: action.payload };
         case 'SET_FILES': return { ...state, files: action.payload };
+        case 'SET_DB_STATS': return { ...state, db_stats: action.payload };
         default: return state;
 
     }
@@ -23,7 +24,7 @@ const reducer = (state, action) => {
 export const AuthProvider = ({ children }) => {
 
     const [ state, dispatch ] = useReducer(reducer, initialState);
-    const { user, files } = state;
+    const { user, files, db_stats } = state;
     const { setAccount } = useWindowsEX();
 
     useEffect(() => {
@@ -38,6 +39,8 @@ export const AuthProvider = ({ children }) => {
 
                     dispatch({ type: 'SET_USER', payload: response.data.email }); 
                     await getFiles();
+
+                    (response.data.admin) && await getDBstats();
 
                 })
 
@@ -101,6 +104,24 @@ export const AuthProvider = ({ children }) => {
 
     }
 
+    const getDBstats = async () => {
+
+        const token = localStorage.getItem('token');
+
+        if (token) {
+
+            axios.get('/api/db/stats', { headers: { Authorization: `Bearer ${token}` } })
+                .then(response => dispatch({ type: 'SET_DB_STATS', payload: response.data }))
+                .catch(error => {
+                    console.error('Token invalid');
+                    localStorage.removeItem('token');
+                    dispatch({ type: 'SET_DB_STATS', payload: null });
+                });
+
+        }
+
+    }
+
     const logout = async () => {
 
         localStorage.removeItem('token');
@@ -114,6 +135,7 @@ export const AuthProvider = ({ children }) => {
         register,
         logout,
         files,
+        db_stats
     }
 
     return (

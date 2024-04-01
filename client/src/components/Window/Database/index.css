@@ -1,0 +1,92 @@
+.database_spacer {
+    position: relative;
+    width: 540px;
+    height: fit-content;
+    background: var(--color_white);
+}
+
+.database_header_spacer {
+    position: relative;
+    height: fit-content;
+    width: calc(100% - 8px);
+    background: var(--color_black);
+    margin: 2px 4px;
+    border-radius: 7px;
+    color: var(--color_white);
+    font-family: "Roboto", sans-serif;
+    font-size: 12px;
+    padding: 5px 0;
+}
+
+.database_header_spacer .header_line {
+    align-items: center;
+    margin: 3px 10px;
+}
+
+.database_spacer i {
+    display: flex;
+    height: calc(100% - 2px);
+    width: 3px;
+    border-radius: 1px;
+    background: var(--color_green_grey);
+    margin: 0 5px;
+}
+
+.database_header_spacer .header_line p {
+    width: 160px;
+}
+
+.database_header_spacer .header_line span {
+    color: var(--color_green);
+    font-weight: bold;
+}
+
+.database_entry {
+    position: relative;
+    width: calc(100% - 8px);
+    height: 48px;
+    align-items: center;
+    margin: 2px 4px;
+    background: var(--color_grey);
+    border-radius: 7px;
+    /* box-shadow: 2px 2px 2px rgba(0,0,0,0.2); */
+}
+
+.database_entry:last-child {
+    margin-bottom: 10px;
+}
+
+.database_entry:hover {
+    background: var(--color_white);
+    cursor: pointer;
+}
+
+.entry_collection {
+    height: 24px;
+    margin-left: 10px;
+}
+
+.database_entry h3 {
+    position: relative;
+    font-size: 12px;
+    font-weight: bold;
+    text-transform: capitalize;
+    margin-left: 5px;
+}
+
+.database_entry span {
+    position: absolute;
+    font-size: 12px;
+    font-weight: 500;
+    right: 10px;
+    top: 5px;
+}
+
+.database_entry p {
+    position: absolute;
+    font-size: 12px;
+    font-weight: bold;
+    right: 10px;
+    bottom: 5px;
+    color: var(--color_green_grey);
+}

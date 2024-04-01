@@ -2,16 +2,19 @@
     position: relative;
     width: 160px;
     height: 30px;
-    border: 2px solid var(--color_black);
+    border: 2px solid var(--color_grey);
+    outline: 2px solid var(--color_black);
+    background: var(--color_white);
     border-radius: 7px;
     align-items: center;
 }
 
+.general_search_input input::placeholder { color: var(--color_black); }
+
 .general_search_input span {
     position: relative;
     left: 4px;
-    color: var(--color_green);
-    background: var(--color_grey);
+    color: var(--color_black);
     min-width: 24px;
     height: 24px;
     border-radius: 50%;

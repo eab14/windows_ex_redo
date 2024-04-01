@@ -1,0 +1,35 @@
+.easter_egg_select_spacer {
+    height: 100%;
+    width: 100%;
+    background: var(--color_black);
+}
+
+.select_starter {
+    position: relative;
+    width: 100%;
+}
+
+.select_starter .choice {
+    width: calc(100% / 3);
+    height: 100px;
+}
+
+.select_starter .selected_pokemon_spacer {
+    position: absolute;
+    top: -40px;
+    width: calc(100% / 3);
+    height: 100px;
+}
+
+.choice:hover { cursor: pointer; }
+
+.selected_pokemon_spacer img {
+    opacity: 0;
+}
+
+.select_message {
+    color: var(--color_white);
+    height: 100px;
+    width: 100%;
+    font-family: "pokemon";
+}

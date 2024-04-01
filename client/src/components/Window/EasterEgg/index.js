@@ -1,6 +1,7 @@
 import './index.css';
 
 import Battle from './Battle';
+import Select from './Select';
 
 const EasterEgg = () => {
 
@@ -8,7 +9,7 @@ const EasterEgg = () => {
     
         <div className="flex col easter_egg_spacer">
 
-            <Battle />
+            <Select />
 
         </div>
         

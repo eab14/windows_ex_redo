@@ -1,4 +1,4 @@
-import { createContext, useContext, useState, useEffect } from "react";
+import { createContext, useContext, useEffect, useReducer } from "react";
 import axios from 'axios';
 import { useWindowsEX } from "./WindowContext";
 
@@ -6,10 +6,24 @@ const AuthContext = createContext();
 
 export const useAuth = () => useContext(AuthContext);
 
+const initialState = { user: null, files: null }
+
+const reducer = (state, action) => {
+
+    switch (action.type) {
+
+        case 'SET_USER': return { ...state, user: action.payload };
+        case 'SET_FILES': return { ...state, files: action.payload };
+        default: return state;
+
+    }
+
+}
+
 export const AuthProvider = ({ children }) => {
 
-    const [ user, setUser ] = useState(null);
-    const [ files, setFiles ] = useState(null);
+    const [ state, dispatch ] = useReducer(reducer, initialState);
+    const { user, files } = state;
     const { setAccount } = useWindowsEX();
 
     useEffect(() => {
@@ -22,7 +36,7 @@ export const AuthProvider = ({ children }) => {
 
                 .then(async response => {
 
-                    setUser(response.data.email); 
+                    dispatch({ type: 'SET_USER', payload: response.data.email }); 
                     await getFiles();
 
                 })
@@ -30,12 +44,12 @@ export const AuthProvider = ({ children }) => {
                 .catch(error => {
                     console.error('Token invalid');
                     localStorage.removeItem('token');
-                    setUser(null);
+                    dispatch({ type: 'SET_USER', payload: null });
                 });
 
         }
 
-    }, [ setUser ]);
+    }, []);
 
     const login = async (email, password) => {
 
@@ -45,7 +59,7 @@ export const AuthProvider = ({ children }) => {
             const token = response.data.token;
             localStorage.setItem('token', token);
 
-            setUser(response.data.email);
+            dispatch({ type: 'SET_USER', payload: response.data.email });
             setAccount("panel");
             await getFiles();
             
@@ -76,11 +90,11 @@ export const AuthProvider = ({ children }) => {
         if (token) {
 
             axios.get('/api/users/files', { headers: { Authorization: `Bearer ${token}` } })
-                .then(response => setFiles(response.data))
+                .then(response => dispatch({ type: 'SET_FILES', payload: response.data }))
                 .catch(error => {
                     console.error('Token invalid');
                     localStorage.removeItem('token');
-                    setFiles(null);
+                    dispatch({ type: 'SET_FILES', payload: null });
                 });
 
         }
@@ -90,7 +104,7 @@ export const AuthProvider = ({ children }) => {
     const logout = async () => {
 
         localStorage.removeItem('token');
-        setUser(null);
+        dispatch({ type: 'SET_USER', payload: null });
 
     }
 
@@ -100,7 +114,6 @@ export const AuthProvider = ({ children }) => {
         register,
         logout,
         files,
-        setFiles
     }
 
     return (

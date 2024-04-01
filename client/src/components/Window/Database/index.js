@@ -1,20 +1,20 @@
 import './index.css';
 
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useAuth } from '../../../context/AuthContext';
 
 import Loading from '../../Loading';
 
 const Database = () => {
 
-    const [ loading, setLoading ] = useState(false);
     const { user, db_stats } = useAuth();
 
     return (
         <div className="flex col database_spacer">
             
-            { 
-                loading ? 
+            {
+
+                    !user ?
                 
                     <Loading text_color="black" /> 
             

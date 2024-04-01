@@ -51,7 +51,7 @@ const Select = () => {
         <div className="flex center col easter_egg_select_spacer">
 
             <div className="flex center col select_message">
-                <p>Pokemon Battle Simulation</p>
+                <p>Pokémon Battle Simulation</p>
             </div>
 
             <div className="select_starter flex row">

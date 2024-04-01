@@ -84,7 +84,7 @@ const Weather = () => {
 					<div className="flex weather_search">
 
 						<form onSubmit={submitHandler}>
-							<Search />
+							<Search placeholder={weather.selected.location} />
 						</form>
 
 					</div>

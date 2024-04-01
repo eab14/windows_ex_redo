@@ -24,7 +24,7 @@ const Search = (props) => {
     return (
         <div className="flex row general_search_input" onClick={focusInput}>
             <span className="flex center" ref={iconRef}><FontAwesomeIcon icon={faMagnifyingGlass} /></span>
-            <input ref={inputRef} type="text" placeholder="Toronto, CA" onFocus={animateInput} onBlur={unAnimateInput} />
+            <input ref={inputRef} type="text" placeholder={props.placeholder} onFocus={animateInput} onBlur={unAnimateInput} />
         </div>
     )
 

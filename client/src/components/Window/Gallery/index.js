@@ -1,32 +1,12 @@
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faExpand, faCompress } from '@fortawesome/free-solid-svg-icons';
+import './index.css';
 
-const Gallery = () => {
+const Gallery = (props) => {
 
-    const clickExpand = ({ currentTarget }) => {
-
-        const w = currentTarget.parentNode.parentNode;
-        console.log(w)
-        w.style.width = "80vw";
-        w.style.height = "80vh";
-
-    };
-
-    const clickCompress = ({ currentTarget }) => {
-
-        const w = currentTarget.parentNode.parentNode;
-        w.style.width = "630px";
-        w.style.height = "340px";
-
-    };
+    console.log(props)
 
     return (
-        <div className="flex center test test_5">
-            <div className="flex col utilities">
-                <span className="flex center util expand" onClick={clickExpand}><FontAwesomeIcon icon={faExpand} /></span>
-                <span className="flex center util compress" onClick={clickCompress}><FontAwesomeIcon icon={faCompress} /></span>
-            </div>
-            Gallery will go here...
+        <div className="flex center gallery_spacer">
+            <img src={props.file.url} alt="Description" />
         </div>
     )
 

@@ -106,7 +106,7 @@ const Window = (props) => {
 					{ props.selected === "Settings" && <Settings /> }
 					{ props.selected === "Messages" && <Messages /> }
 					{ props.selected === "Calculator" && <Calculator /> }
-					{ props.selected === "Gallery" && <Gallery /> }
+					{ props.selected === "Gallery" && <Gallery file={props.file} /> }
 					{ props.selected === "Password Generator" && <PasswordGen /> }
 					{ props.selected === "Weather" && <Weather /> }
 					{ props.selected === "Files" && <Files /> }

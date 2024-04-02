@@ -32,6 +32,16 @@
             "name" : "db_video_example_1"
         },
         "size" : 0
+    },
+
+    {
+        "user_email" : "admin@root.com",
+        "url" : "https://res.cloudinary.com/dfhe35dwt/image/upload/v1707163058/ycu7uldkgzkayeaxuxp5.jpg",
+        "type" : "jpg",
+        "description" : {
+            "name" : "db_photo_example_1"
+        },
+        "size" : 0
     }
 
 ]

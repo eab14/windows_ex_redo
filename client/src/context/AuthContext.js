@@ -6,7 +6,7 @@ const AuthContext = createContext();
 
 export const useAuth = () => useContext(AuthContext);
 
-const initialState = { user: null, files: null }
+const initialState = { user: null, files: null, messages: null, db_stats: null }
 
 const reducer = (state, action) => {
 

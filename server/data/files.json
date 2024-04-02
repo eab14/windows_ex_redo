@@ -36,6 +36,17 @@
 
     {
         "user_email" : "admin@root.com",
+        "url" : "https://res.cloudinary.com/dfhe35dwt/video/upload/v1712037537/ezk0jtowpwcjo4i55vj2.mp4",
+        "type" : "mp4",
+        "description" : {
+            "name" : "db_video_example_2",
+            "description" : "I destroyed this character at one point..."
+        },
+        "size" : 0
+    },
+
+    {
+        "user_email" : "admin@root.com",
         "url" : "https://res.cloudinary.com/dfhe35dwt/image/upload/v1707163058/ycu7uldkgzkayeaxuxp5.jpg",
         "type" : "jpg",
         "description" : {

@@ -4,7 +4,7 @@ import './test.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faWindowMaximize, faMinus, faXmark } from '@fortawesome/free-solid-svg-icons';
 
-import { /*useLayoutEffect,*/ useRef } from 'react';
+import { useLayoutEffect, useRef } from 'react';
 import { useWindowsEX } from '../../context/WindowContext';
 import { gsap } from 'gsap';
 import { Draggable } from "gsap/Draggable";
@@ -47,29 +47,29 @@ const Window = (props) => {
 	const maxClick = () => openWindow(props.selected);
 	const closeClick = () => closeWindow(props.selected);
 
-	// useLayoutEffect(() => {
+	useLayoutEffect(() => {
 
-	// 	let ctx = gsap.context(() => {
+		let ctx = gsap.context(() => {
 
-	// 	  Draggable.create(windowRef.current, {
-	// 		bounds: document.querySelector("section"),
-	// 		type: "x,y",
-	// 		liveSnap: {
-	// 			points: [
-	// 			  { x: 0, y: 0 },
-	// 			  { x: 300, y: 0 },
-	// 			  { x: 500, y: 0 },
-	// 			],
-	// 			radius: 100,
-	// 		  },
+		  Draggable.create(windowRef.current, {
+			bounds: document.querySelector("section"),
+			type: "x,y",
+			liveSnap: {
+				points: [
+				  { x: 0, y: 0 },
+				  { x: 300, y: 0 },
+				  { x: 500, y: 0 },
+				],
+				radius: 100,
+			  },
 
-	// 	});
+		});
 	
-	// 	}, );
+		}, );
 		
-	// 	return () => ctx.revert();
+		return () => ctx.revert();
 
-	// }, []);
+	}, []);
 
 	return (
 

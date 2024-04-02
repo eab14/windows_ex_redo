@@ -1,4 +1,4 @@
-import { createContext, useContext, useEffect, useReducer } from "react";
+import { createContext, useContext, useEffect, useReducer, useCallback } from "react";
 import axios from 'axios';
 import { useWindowsEX } from "./WindowContext";
 
@@ -14,6 +14,7 @@ const reducer = (state, action) => {
 
         case 'SET_USER': return { ...state, user: action.payload };
         case 'SET_FILES': return { ...state, files: action.payload };
+        case 'SET_MESSAGES': return { ...state, messages: action.payload }
         case 'SET_DB_STATS': return { ...state, db_stats: action.payload };
         default: return state;
 
@@ -24,35 +25,33 @@ const reducer = (state, action) => {
 export const AuthProvider = ({ children }) => {
 
     const [ state, dispatch ] = useReducer(reducer, initialState);
-    const { user, files, db_stats } = state;
+    const { user, files, messages, db_stats } = state;
     const { setAccount } = useWindowsEX();
 
-    useEffect(() => {
+    const setNull = useCallback(async () => {
+
+        const array = [ 'SET_USER', 'SET_FILES', 'SET_MESSAGES', 'SET_DB_STATS' ];
+        for (let i = 0; i < array.length; i++) dispatch({ type: array[i], payload: null });
+
+    }, [])
+
+    const get = useCallback( async (url, type) => {
 
         const token = localStorage.getItem('token');
 
         if (token) {
 
-            axios.get('/api/users/verify', { headers: { Authorization: `Bearer ${token}` } })
-
-                .then(async response => {
-
-                    dispatch({ type: 'SET_USER', payload: response.data.email }); 
-                    await getFiles();
-
-                    (response.data.admin) && await getDBstats();
-
-                })
-
+            axios.get(url, { headers: { Authorization: `Bearer ${token}` } })
+                .then(response => dispatch({ type, payload: response.data }))
                 .catch(error => {
                     console.error('Token invalid');
                     localStorage.removeItem('token');
-                    dispatch({ type: 'SET_USER', payload: null });
+                    setNull();
                 });
 
         }
 
-    }, []);
+    }, [ setNull ])
 
     const login = async (email, password) => {
 
@@ -64,9 +63,10 @@ export const AuthProvider = ({ children }) => {
 
             dispatch({ type: 'SET_USER', payload: response.data.email });
             setAccount("panel");
-            await getFiles();
 
-            (response.data.admin) && await getDBstats();
+            await get('/api/users/files', 'SET_FILES');
+            await get('/api/users/messages', 'SET_MESSAGES');
+            (response.data.admin) && await get('/api/db/stats');
             
 
         } 
@@ -88,48 +88,39 @@ export const AuthProvider = ({ children }) => {
 
     }
 
-    const getFiles = async () => {
-
-        const token = localStorage.getItem('token');
-
-        if (token) {
-
-            axios.get('/api/users/files', { headers: { Authorization: `Bearer ${token}` } })
-                .then(response => dispatch({ type: 'SET_FILES', payload: response.data }))
-                .catch(error => {
-                    console.error('Token invalid');
-                    localStorage.removeItem('token');
-                    dispatch({ type: 'SET_FILES', payload: null });
-                });
-
-        }
-
-    }
-
-    const getDBstats = async () => {
-
-        const token = localStorage.getItem('token');
-
-        if (token) {
-
-            axios.get('/api/db/stats', { headers: { Authorization: `Bearer ${token}` } })
-                .then(response => dispatch({ type: 'SET_DB_STATS', payload: response.data }))
-                .catch(error => {
-                    console.error('Token invalid');
-                    localStorage.removeItem('token');
-                    dispatch({ type: 'SET_DB_STATS', payload: null });
-                });
-
-        }
-
-    }
-
     const logout = async () => {
 
         localStorage.removeItem('token');
-        dispatch({ type: 'SET_USER', payload: null });
+        setNull();
 
     }
+
+    useEffect(() => {
+
+        const token = localStorage.getItem('token');
+
+        if (token) {
+
+            axios.get('/api/users/verify', { headers: { Authorization: `Bearer ${token}` } })
+
+                .then(async response => {
+
+                    dispatch({ type: 'SET_USER', payload: response.data.email }); 
+                    await get('/api/users/files', 'SET_FILES');
+                    await get('/api/users/messages', 'SET_MESSAGES');
+                    (response.data.admin) && await get('/api/db/stats');
+
+                })
+
+                .catch(error => {
+                    console.error('Token invalid');
+                    localStorage.removeItem('token');
+                    setNull();
+                });
+
+        }
+
+    }, [ get, setNull ]);
 
     const context = {
         user,
@@ -137,6 +128,7 @@ export const AuthProvider = ({ children }) => {
         register,
         logout,
         files,
+        messages,
         db_stats
     }
 

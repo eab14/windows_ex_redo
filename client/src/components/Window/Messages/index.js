@@ -1,102 +1,36 @@
 import './index.css';
 
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faChevronRight } from '@fortawesome/free-solid-svg-icons';
-
-import { gsap, Power1 } from 'gsap';
 import { useAuth } from '../../../context/AuthContext';
+import MessageLine from './MessageLine';
 
 // Needs to be index for selected message, all messages, clicked user option
 
 const Messages = () => {
 
-    const { user } = useAuth();
+    const { user, messages } = useAuth();
 
-    // MessageLine component animations
-
-    const enterHandler = ({ currentTarget }) => {
-
-        const accent = currentTarget.querySelector('.message_accent');
-
-        gsap.to(currentTarget, { background: "#333", ease:Power1.easeInOut, duration: 0.3 })
-        gsap.to(accent, { opacity: 1, ease:Power1.easeInOut, duration: 0.3 })
-
-    }
-
-    const leaveHandler = ({ currentTarget }) => {
-
-        const accent = currentTarget.querySelector('.message_accent');
-
-        gsap.to(currentTarget, { background: "#242424", ease:Power1.easeInOut, duration: 0.3 })
-        gsap.to(accent, { opacity: 0.5, ease:Power1.easeInOut, duration: 0.3 })
-
-    }
-
-    // MessageLine compnent base below 
+    // MessageLine compnent base below
     return (
         
         <div className="flex col messages_spacer">
 
-            { !user && <>
+            { user ? <>
 
-            <div className="flex row messages_line" onMouseEnter={enterHandler} onMouseLeave={leaveHandler}>
+                { messages && messages.map((message, index) => <MessageLine key={index} user={`${"Test User #" + (index + 1)}`} date="12:00 AM" msg={message.body} /> ) }
 
-                <div className="message_avatar flex"></div>
-                <div className="message_info flex row">
-                    <div className="message_description flex col">
-                        <h3>Test User #1</h3>
-                        <p>The things I waste my time on, I swear...</p>
-                    </div>
-                    <div className="message_status flex col">
-                        <h4>3:26 AM</h4>
-                        <span className="flex center message_notification">1</span>
-                    </div>
-                    <div className="message_accent flex center">
-                        <FontAwesomeIcon icon={faChevronRight} />
-                    </div>
-                </div>
+            </>  
+            
+            :
 
-            </div>
+            <>
 
-            <div className="flex row messages_line" onMouseEnter={enterHandler} onMouseLeave={leaveHandler}>
+            <MessageLine key={8} user="Test User #1" date="3:26 AM" msg="The things I waste my time on, I swear..." />
+            <MessageLine key={9} user="Test User #2" date="1:23 AM" msg="So when's this website gonna be done?"/>
+            <MessageLine key={10} user="Test User #3" date="Wednesday" msg="LOL @ that error last night" />
 
-                <div className="message_avatar flex"></div>
-                <div className="message_info flex row">
-                    <div className="message_description flex col">
-                        <h3>Test User #2</h3>
-                        <p>So when's this website gonna be done?</p>
-                    </div>
-                    <div className="message_status flex col">
-                        <h4>1:23 AM</h4>
-                        <span className="flex center message_notification">5</span>
-                    </div>
-                    <div className="message_accent flex center">
-                        <FontAwesomeIcon icon={faChevronRight} />
-                    </div>
-                </div>
-
-            </div>
-
-            <div className="flex row messages_line" onMouseEnter={enterHandler} onMouseLeave={leaveHandler}>
-
-                <div className="message_avatar flex"></div>
-                <div className="message_info flex row">
-                    <div className="message_description flex col">
-                        <h3>Test User #3</h3>
-                        <p>LOL @ that error last night</p>
-                    </div>
-                    <div className="message_status flex col">
-                        <h4>Wednesday</h4>
-                        <span className="flex center message_notification">2</span>
-                    </div>
-                    <div className="message_accent flex center">
-                        <FontAwesomeIcon icon={faChevronRight} />
-                    </div>
-                </div>
-
-            </div>
-
-            </>  }
+            </>
+            
+            }
 
         </div>
     )

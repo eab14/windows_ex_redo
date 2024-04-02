@@ -1,7 +1,7 @@
 import './index.css';
 
-import NavButton from '../NavButton';
-import Logo from '../Logo';
+import NavButton from './NavButton';
+import Logo from './Logo';
 
 import { useAuth } from '../../context/AuthContext';
 

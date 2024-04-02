@@ -3,7 +3,7 @@ import './index.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faSortUp, faPlay } from '@fortawesome/free-solid-svg-icons';
 
-import { useEffect, useState } from 'react';
+import { useEffect, useMemo, useState } from 'react';
 
 import FilesLine from './FilesLine';
 import FilesButton from './FilesButton';
@@ -14,11 +14,28 @@ const Files = () => {
     const { user, files } = useAuth();
     const [ userFiles, setUserFiles ] = useState([]);
 
-    const array = [ 
-        <FilesLine key={1} fileName="music_example" fileSize="3 MB" ext=".mp3" date={"25/3/2024"} />,
-        <FilesLine key={2} fileName="video_example" fileSize="20 MB" ext=".mp4" date={"25/3/2024"} />,
-        <FilesLine key={3} fileName="photo_example" fileSize="700 KB" ext=".jpeg" date={"25/3/2024"} />
-    ];
+    const array = useMemo(() =>  [ 
+        <FilesLine key={1} fileName="static_music_example" fileSize="3 MB" ext=".mp3" date={"25/3/2024"} wType="Music" file={{ url: "./music/n_1.mp3", description: { title: "Number One", artist: "Hazel Fernandes feat. Shiro Sagisu"  } }} />,
+        <FilesLine key={2} fileName="static_video_example" fileSize="20 MB" ext=".mp4" date={"25/3/2024"} wType="Video" file={{ url: "./video/b.mp4"}} />,
+        <FilesLine key={3} fileName="static_photo_example" fileSize="700 KB" ext=".jpeg" date={"25/3/2024"} />
+    ], []);
+
+    const determineMediaType = (type) => {
+
+        switch (type) {
+
+            case "mp3":
+            case "wav":
+                return "Music";
+
+            case "mp4":
+                return "Video";
+
+            default: return null;
+
+        }
+
+    }
 
     useEffect(() => {
 
@@ -36,7 +53,8 @@ const Files = () => {
                         key={files[i]._id} 
                         fileName={files[i].description.name} 
                         fileSize={files[i].size} ext={"." + files[i].type} 
-                        date={"26/3/2024"} wType={files[i].type === "mp3" ? "Music" : null}
+                        date={"26/3/2024"} 
+                        wType={determineMediaType(files[i].type)}
                         file={files[i]}
                     />
     
@@ -44,11 +62,11 @@ const Files = () => {
     
             }
     
-            setUserFiles(filesArray);
+            setUserFiles([ ...array, ...filesArray ]);
 
         }
 
-    }, [ files, setUserFiles ])
+    }, [ files, setUserFiles, array ])
 
     return (
 
@@ -93,7 +111,7 @@ const Files = () => {
 
                 <div className="flex center files_total">
                     <div className="flex files_total_play"><span><FontAwesomeIcon icon={faPlay} /></span>Play all</div>
-                    <p>Total Files: {user ? userFiles.length : array.length} | Total Size: { user ? "0" : "23.7 MB"}</p>
+                    <p>Total Files: {user ? userFiles.length : array.length} | Total Size: 23.7 MB</p>
                 </div>
 
             </div>

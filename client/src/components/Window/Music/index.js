@@ -1,5 +1,4 @@
 import './index.css';
-import n1 from './n_1.mp3';
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faPause, faPlay, faBackward, faForward, faVolumeHigh, faRepeat, faShuffle } from '@fortawesome/free-solid-svg-icons';

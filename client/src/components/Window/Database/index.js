@@ -1,6 +1,5 @@
 import './index.css';
 
-import { useEffect, useState } from 'react';
 import { useAuth } from '../../../context/AuthContext';
 
 import Loading from '../../Loading';
@@ -19,6 +18,8 @@ const Database = () => {
                     <Loading text_color="black" /> 
             
                     :
+
+                    db_stats &&
 
                     <>
                     <div className="flex col database_header_spacer">

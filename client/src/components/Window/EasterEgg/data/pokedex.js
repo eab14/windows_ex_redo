@@ -16,8 +16,8 @@ export const pokedex = [
             { "name" : "Growl", "effect" : { "attribute" : "damage", "targetOpponent" : true, "effectInt" : 10 }, "accuracy" : 100, "type" : "Effect" }
         ],
         "images" : { 
-            "sprite" : "./images/bulbasaur.gif", 
-            "sprite_shiny" : "./images/bulbasaur-shiny.gif"
+            "sprite" : "./images/easter_egg/bulbasaur.gif", 
+            "sprite_shiny" : "./images/easter_egg/bulbasaur-shiny.gif"
         },
 
     },
@@ -38,8 +38,8 @@ export const pokedex = [
             { "name" : "Growl", "effect" : { "attribute" : "attack", "targetOpponent" : true, "effectInt" : 10 }, "accuracy" : 100, "type" : "Effect" }
         ],
         "images" : { 
-            "sprite" : "./images/charmander.gif", 
-            "sprite_shiny" : "./images/charmander-shiny.gif" 
+            "sprite" : "./images/easter_egg/charmander.gif", 
+            "sprite_shiny" : "./images/easter_egg/charmander-shiny.gif" 
         },
 
     },
@@ -60,8 +60,8 @@ export const pokedex = [
             { "name" : "Tail Whip", "effect" : { "attribute" : "defense", "targetOpponent" : true, "effectInt" : 10 }, "type" : "Effect" }
         ],
         "images" : { 
-            "sprite" : "./images/squirtle.gif", 
-            "sprite_shiny" : "./images/squirtle-shiny.gif" 
+            "sprite" : "./images/easter_egg/squirtle.gif", 
+            "sprite_shiny" : "./images/easter_egg/squirtle-shiny.gif" 
         },
 
     },
@@ -82,7 +82,7 @@ export const pokedex = [
             { "name" : "Psychic", "power" : 90, "accuracy" : 100, "type" : "Psychic" }
         ],
         "images" : { 
-            "sprite_shiny" : "./images/mew-shiny.gif" 
+            "sprite_shiny" : "./images/easter_egg/mew-shiny.gif" 
         },
         
     }

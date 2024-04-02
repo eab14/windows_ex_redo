@@ -3,6 +3,8 @@ import "./index.css";
 import { useWindowsEX } from "../../../context/WindowContext";
 import { useEffect, useCallback, useState } from "react";
 
+import axios from "axios";
+
 import Loading from "../../Loading";
 import Search from "../../Form/Search";
 import WeatherCard from "./WeatherCard";
@@ -33,8 +35,8 @@ const Weather = () => {
 			if (!weather) {
 
 				// const position = await new Promise((resolve, reject) => navigator.geolocation.getCurrentPosition(resolve, reject));
-				const response = await fetch(`/api/weather?location=${location}`);
-				const weatherData = await response.json();
+				const response = await axios.get(`/api/weather?location=${location}`);
+				const weatherData = response.data;
 
 				weatherData.current.dt = new Date(weatherData.current.dt * 1000);
 				weatherData.daily.daily.forEach(item => item.dt = new Date(item.dt * 1000));

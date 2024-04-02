@@ -22,6 +22,7 @@ import Weather from './Weather';
 import Files from './Files';
 import Terminal from './Terminal';
 import EasterEgg from './EasterEgg';
+import Video from './Video';
 
 gsap.registerPlugin(Draggable);
 
@@ -111,6 +112,7 @@ const Window = (props) => {
 					{ props.selected === "Files" && <Files /> }
 					{ props.selected === "Terminal" && <Terminal /> }
 					{ props.selected === "Easter Egg" && <EasterEgg /> }
+					{ props.selected === "Video" && <Video file={props.file}/> }
 
 				</div>
 

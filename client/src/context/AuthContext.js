@@ -65,6 +65,8 @@ export const AuthProvider = ({ children }) => {
             dispatch({ type: 'SET_USER', payload: response.data.email });
             setAccount("panel");
             await getFiles();
+
+            (response.data.admin) && await getDBstats();
             
 
         } 

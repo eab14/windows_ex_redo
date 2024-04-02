@@ -3,13 +3,10 @@ import './index.css';
 import { useAuth } from '../../../context/AuthContext';
 import MessageLine from './MessageLine';
 
-// Needs to be index for selected message, all messages, clicked user option
-
 const Messages = () => {
 
     const { user, messages } = useAuth();
-
-    // MessageLine compnent base below
+    
     return (
         
         <div className="flex col messages_spacer">

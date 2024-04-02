@@ -66,7 +66,7 @@ export const AuthProvider = ({ children }) => {
 
             await get('/api/users/files', 'SET_FILES');
             await get('/api/users/messages', 'SET_MESSAGES');
-            (response.data.admin) && await get('/api/db/stats');
+            (response.data.admin) && await get('/api/db/stats', 'SET_DB_STATS');
             
 
         } 
@@ -108,7 +108,7 @@ export const AuthProvider = ({ children }) => {
                     dispatch({ type: 'SET_USER', payload: response.data.email }); 
                     await get('/api/users/files', 'SET_FILES');
                     await get('/api/users/messages', 'SET_MESSAGES');
-                    (response.data.admin) && await get('/api/db/stats');
+                    (response.data.admin) && await get('/api/db/stats', 'SET_DB_STATS');
 
                 })
 

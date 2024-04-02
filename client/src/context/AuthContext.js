@@ -1,4 +1,4 @@
-import { createContext, useContext, useEffect, useReducer, useCallback } from "react";
+import { createContext, useContext, useEffect, useReducer, useCallback, useState } from "react";
 import axios from 'axios';
 import { useWindowsEX } from "./WindowContext";
 
@@ -14,7 +14,7 @@ const reducer = (state, action) => {
 
         case 'SET_USER': return { ...state, user: action.payload };
         case 'SET_FILES': return { ...state, files: action.payload };
-        case 'SET_MESSAGES': return { ...state, messages: action.payload }
+        case 'SET_MESSAGES': return { ...state, messages: action.payload };
         case 'SET_DB_STATS': return { ...state, db_stats: action.payload };
         default: return state;
 
@@ -26,6 +26,7 @@ export const AuthProvider = ({ children }) => {
 
     const [ state, dispatch ] = useReducer(reducer, initialState);
     const { user, files, messages, db_stats } = state;
+    const [ admin, setAdmin ] = useState(false);
     const { setAccount } = useWindowsEX();
 
     const setNull = useCallback(async () => {
@@ -42,7 +43,7 @@ export const AuthProvider = ({ children }) => {
         if (token) {
 
             axios.get(url, { headers: { Authorization: `Bearer ${token}` } })
-                .then(response => dispatch({ type, payload: response.data }))
+                .then(response => dispatch({ type, payload: response.data })) 
                 .catch(error => {
                     console.error('Token invalid');
                     localStorage.removeItem('token');
@@ -59,14 +60,18 @@ export const AuthProvider = ({ children }) => {
 
             const response = await axios.post('/api/users/login', { email, password });
             const token = response.data.token;
+
             localStorage.setItem('token', token);
 
             dispatch({ type: 'SET_USER', payload: response.data.email });
+
+            setAdmin(response.data.admin);
             setAccount("panel");
 
+            (admin) && await get('/api/db/stats', 'SET_DB_STATS');
+            await get('/api/db/stats', 'SET_DB_STATS');
             await get('/api/users/files', 'SET_FILES');
             await get('/api/users/messages', 'SET_MESSAGES');
-            (response.data.admin) && await get('/api/db/stats', 'SET_DB_STATS');
             
 
         } 
@@ -105,10 +110,12 @@ export const AuthProvider = ({ children }) => {
 
                 .then(async response => {
 
-                    dispatch({ type: 'SET_USER', payload: response.data.email }); 
+                    dispatch({ type: 'SET_USER', payload: response.data.email });
+                    setAdmin(response.data.admin);
+                    
+                    (admin) && await get('/api/db/stats', 'SET_DB_STATS');
                     await get('/api/users/files', 'SET_FILES');
                     await get('/api/users/messages', 'SET_MESSAGES');
-                    (response.data.admin) && await get('/api/db/stats', 'SET_DB_STATS');
 
                 })
 
@@ -120,7 +127,7 @@ export const AuthProvider = ({ children }) => {
 
         }
 
-    }, [ get, setNull ]);
+    }, [ get, setNull, admin, setAdmin ]);
 
     const context = {
         user,

@@ -6,9 +6,9 @@
 
 .files_spacer .files_nav {
     position: relative;
-    min-width: 140px;
+    min-width: 170px;
     height: 100%;
-    background: var(--color_black);
+    background: #343434;
     overflow: hidden;
 }
 
@@ -17,6 +17,7 @@
     width: 100%;
     height: 40px;
     color: var(--color_white);
+    background: linear-gradient(#242424 80%, #343434);
 }
 
 .files_link_text {
@@ -25,8 +26,9 @@
     font-family: "Roboto", sans-serif;
     font-size: 12px;
     font-weight: bold;
+    bottom: -2px;
     letter-spacing: 1px;
-    margin-left: 10px;
+    margin-left: 14px;
 }
 
 .files_link span {

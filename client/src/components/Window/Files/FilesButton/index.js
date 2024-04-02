@@ -19,7 +19,9 @@ const FilesButton = (props) => {
 
     }, []);
 
-    const clickHandler = ({ currentTarget }) => {
+    const clickHandler = (e) => {
+
+        (props.onClick) && props.onClick(e);
 
         const li = document.querySelectorAll('.files_link');
 
@@ -31,7 +33,7 @@ const FilesButton = (props) => {
 
         }
 
-        const accent = currentTarget.querySelector('.files_nav_accent');
+        const accent = e.currentTarget.querySelector('.files_nav_accent');
         accent.classList.add("selected");
 
     }

@@ -13,6 +13,7 @@ const Files = () => {
 
     const { user, files } = useAuth();
     const [ userFiles, setUserFiles ] = useState([]);
+    const [ filter, setFilter ] = useState(null);
 
     const array = useMemo(() =>  [ 
         <FilesLine key={1} fileName="static_music_example" fileSize="6.33 MB" ext=".mp3" date={"25/3/2024"} wType="Music" file={{ url: "./music/n_1.mp3", description: { title: "Number One", artist: "Hazel Fernandes feat. Shiro Sagisu"  } }} />,
@@ -45,32 +46,35 @@ const Files = () => {
 
         let filesArray = [];
 
-        // Testing...
-
-        if (files) {
+        if (user && files) {
 
             for (let i = 0; i < files.length; i++) {
 
-                filesArray.push(
-    
-                    <FilesLine 
-                        key={files[i]._id} 
-                        fileName={files[i].description.name} 
-                        fileSize={files[i].size} ext={"." + files[i].type} 
-                        date={"2/4/2024"} 
-                        wType={determineMediaType(files[i].type)}
-                        file={files[i]}
-                    />
-    
-                )
-    
+                if (!filter || determineMediaType(files[i].type) === filter) {
+
+                    filesArray.push(
+
+                        <FilesLine 
+                            key={files[i]._id} 
+                            fileName={files[i].description.name} 
+                            fileSize={files[i].size} ext={"." + files[i].type} 
+                            date={"2/4/2024"} 
+                            wType={determineMediaType(files[i].type)}
+                            file={files[i]}
+                        />
+
+                    )
+
+                }
             }
-    
-            setUserFiles([ ...array, ...filesArray ]);
 
         }
 
-    }, [ files, setUserFiles, array ])
+        let filteredArray = array.filter(item => !filter || item.props.wType === filter);
+
+        setUserFiles([ ...filteredArray, ...filesArray ]);
+
+    }, [ user, files, setUserFiles, array, filter ])
 
     return (
 
@@ -78,16 +82,16 @@ const Files = () => {
 
             <div className="files_nav flex col">
 
-                <FilesButton text="All Files" selected={true} />
+                <FilesButton text="All Files" selected={true} onClick={() => setFilter(null)} />
                 <div className="files_divider"></div>
 
-                <FilesButton text="Music" type="sub" />
+                <FilesButton text="Music" type="sub" onClick={() => setFilter("Music")} />
                 <div className="files_divider"></div>
 
-                <FilesButton text="Photos" type="sub" />
+                <FilesButton text="Photos" type="sub" onClick={() => setFilter("Gallery")} />
                 <div className="files_divider"></div>
 
-                <FilesButton text="Videos" type="sub" />
+                <FilesButton text="Videos" type="sub" onClick={() => setFilter("Video")} />
                 <div className="files_divider"></div>
 
                 <div className="flex col files_upload_spacer">
@@ -109,7 +113,7 @@ const Files = () => {
 
                 <div className="files_content flex col">
 
-                    { user ? userFiles : array }
+                    { userFiles }
                     
                 </div>
 

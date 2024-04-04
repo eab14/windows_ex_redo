@@ -15,6 +15,7 @@ const Terminal = () => {
     const { openWindow, closeWindow, terminal, setTerminal } = useWindowsEX();
 
     const [ dir, setDir ] = useState("");
+    const [ index, setIndex ] = useState(0);
 
     const blinkRef = useRef(null);
     const inputRef = useRef(null);
@@ -38,7 +39,14 @@ const Terminal = () => {
 
     }
     
-    const focusInput = useCallback(() => inputRef.current.focus(), []);
+    const focusInput = useCallback(() => {
+
+        setTimeout(() => {
+            inputRef.current.focus();
+            inputRef.current.setSelectionRange(inputRef.current.value.length, inputRef.current.value.length);
+        }, 50);
+
+    }, []);
 
     // likely need to be external...
     const processCommand = (value) => {
@@ -48,7 +56,7 @@ const Terminal = () => {
         const aValues = [ "login", "logout" ]
         let commands = value.split(' ');
 
-        const line = <TerminalLine type="command" name={user ? `${removeAt(user)}` + dir : "guest" + dir} command={value} />;
+        const line = <TerminalLine key={terminal.length + 1} type="command" name={user ? `${removeAt(user)}` + dir : "guest" + dir} command={value} />;
         
         setTerminal(prevState => [ line, ...prevState ]);
 
@@ -83,8 +91,13 @@ const Terminal = () => {
                 setTerminal([]);
                 break;
 
+            case "--help":
+                setTerminal(prevState => [ <TerminalLine key={terminal.length + 2} type="details" command="--help" />, ...prevState ] )
+                break;
+
             default:
-                return "Invalid...";
+                setTerminal(prevState => [ <TerminalLine key={terminal.length + 2} type="details" command="invalid" />, ...prevState ] )
+                break;
 
         }
 
@@ -97,6 +110,37 @@ const Terminal = () => {
             processCommand(inputRef.current.value);
             inputRef.current.value = "";
             inputRef.current.style.width = 0;
+            setIndex(0);
+
+        }
+
+        if (e.key === "ArrowUp") {
+
+            let commands = terminal.filter((command) => command.props.type === "command");
+            
+            if (commands.length > 0 && index < commands.length) {
+
+                inputRef.current.value = commands[index].props.command;
+                resizeInput({ currentTarget: inputRef.current });
+                setIndex(index + 1);
+                focusInput();
+
+            }
+
+        }
+
+        if (e.key === "ArrowDown") {
+
+            let commands = terminal.filter((command) => command.props.type === "command");
+            
+            if (commands.length > 0 && index <= commands.length && index >= 1) {
+
+                inputRef.current.value = commands[index - 1].props.command;
+                resizeInput({ currentTarget: inputRef.current });
+                setIndex(index - 1);
+                focusInput();
+
+            }
 
         }
 

@@ -58,7 +58,10 @@
     font-size: 13px;
     color: var(--color_white);
     flex-direction: column-reverse;
+    overflow: scroll;
 }
+
+.terminal_display::-webkit-scrollbar { display: none; }
 
 .terminal_line { min-height: 17px; }
 

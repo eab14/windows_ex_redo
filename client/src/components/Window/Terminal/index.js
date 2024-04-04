@@ -11,11 +11,12 @@ import TerminalLine from './TerminalLine';
 
 const Terminal = () => {
 
-    const { user, login, logout } = useAuth();
+    const { user, admin, login, logout } = useAuth();
     const { openWindow, closeWindow, terminal, setTerminal } = useWindowsEX();
 
     const [ dir, setDir ] = useState("");
     const [ index, setIndex ] = useState(0);
+    const [ blinkPlacement, setBlinkPlacement ] = useState(0);
 
     const blinkRef = useRef(null);
     const inputRef = useRef(null);
@@ -52,7 +53,7 @@ const Terminal = () => {
     const processCommand = (value) => {
 
         const dValues = [ "music", "videos", "photos" ]
-        const wValues = [ "calculator", "calendar", "password-generator", "weather", "easter-egg" ];
+        const wValues = [ "account", "calculator", "calendar", (user && "files"), (user && "messages"), "password-generator", (user && "settings"), "weather", "easter-egg", (admin && "database") ]
         const aValues = [ "login", "logout" ]
         let commands = value.split(' ');
 
@@ -84,7 +85,21 @@ const Terminal = () => {
                 break;
 
             case "ls":
-                console.log("test");
+
+                if (dir === '/music') {
+
+                }
+
+                else if (dir === '/photos') {
+
+                }
+
+                else if (dir === '/videos') {
+
+                }
+
+                setTerminal(prevState => [ <TerminalLine key={terminal.length + 2} type="folder" command={dir} />, ...prevState ] )
+
                 break;
 
             case "clear":
@@ -143,6 +158,30 @@ const Terminal = () => {
             }
 
         }
+
+        if (e.key === "ArrowLeft") {
+
+            if (blinkPlacement > inputRef.current.value.length *- 7.2)  {
+
+                setBlinkPlacement(blinkPlacement - 7.2);
+                gsap.to(blinkRef.current, { duration: 0, x : blinkPlacement - 7.2 })
+
+            }
+
+        }
+
+        if (e.key === "ArrowRight") {
+
+            if (inputRef.current.value.length * ((blinkPlacement) + 7.2) < 0) {
+
+                setBlinkPlacement(blinkPlacement + 7.2);
+                gsap.to(blinkRef.current, { duration: 0, x : blinkPlacement + 7.2 });
+
+            }
+
+        }
+
+        // if (e.key === "Delete") {}
 
     }
 

@@ -33,6 +33,7 @@ export const AuthProvider = ({ children }) => {
 
         const array = [ 'SET_USER', 'SET_FILES', 'SET_MESSAGES', 'SET_DB_STATS' ];
         for (let i = 0; i < array.length; i++) dispatch({ type: array[i], payload: null });
+        setAdmin(false);
 
     }, [])
 
@@ -131,6 +132,7 @@ export const AuthProvider = ({ children }) => {
 
     const context = {
         user,
+        admin,
         login,
         register,
         logout,

@@ -1,7 +1,9 @@
 import { useEffect, useState } from "react";
+import { useAuth } from "../../../../context/AuthContext";
 
 const TerminalLine = (props) => {
 
+    const { user, admin } = useAuth();
     const [ details, setDetails ] = useState(null);
 
     useEffect(() => {
@@ -12,7 +14,7 @@ const TerminalLine = (props) => {
                 <>
                 <p>&nbsp;</p>
                 <p className="terminal_green">Options</p>
-                <p>- - -</p>
+                <p>&nbsp;</p>
                 <p>open <i className="terminal_gg">{"<Window Name>"}</i></p>
                 <p>close <i className="terminal_gg">{"<Window Name>"}</i></p>
                 <p>cd <i className="terminal_gg">{"<Folder Name>"}</i></p>
@@ -20,22 +22,67 @@ const TerminalLine = (props) => {
                 <p>account logout</p>
                 <p>clear</p>
                 <p>&nbsp;</p>
+                <p className="terminal_green">Available Windows</p>
+                {
+                    
+                        <>
+                        <p>&nbsp;</p>
+                        <p>
+                            <i className="terminal_gg">account</i>&nbsp;|&nbsp;
+                            <i className="terminal_gg">calculator</i>&nbsp;|&nbsp;
+                            <i className="terminal_gg">caldendar</i>&nbsp;|&nbsp;
+                            { admin && <><i className="terminal_gg">database</i>&nbsp;|&nbsp;</> }
+                            <i className="terminal_gg">easter-egg</i>&nbsp;|&nbsp;
+                        </p>
+                        <p>
+                            { user && <><i className="terminal_gg">files</i>&nbsp;|&nbsp;</> }
+                            { user && <><i className="terminal_gg">messages</i>&nbsp;|&nbsp;</> }
+                            <i className="terminal_gg">password-generator</i>&nbsp;|&nbsp;
+                            { user && <><i className="terminal_gg">settings</i>&nbsp;|&nbsp;</> }
+                            <i className="terminal_gg">weather</i>
+                        </p>
+                        </>
+                
+                }
+                <p>&nbsp;</p>
+                <p className="terminal_green">Available Folders</p>
+                <p>&nbsp;</p>
+                <p><i className="terminal_gg">music</i> | <i className="terminal_gg">photos</i> | <i className="terminal_gg">videos</i></p>
+                <p>&nbsp;</p>
                 </>
             )
+
+        }
+
+        else if (props.type === "folder") {
+
+            if (props.command === "") {
+
+                setDetails(
+                    <>
+                    <p>&nbsp;</p>
+                    <p>- music</p>
+                    <p>- photos</p>
+                    <p>- videos</p>
+                    <p>&nbsp;</p>
+                    </>
+                )
+
+            }
 
         }
 
         else if (props.command === "invalid") {
             setDetails(
                 <>
+                <p>&nbsp;</p>
                 <p><i className="terminal_gg">Invalid Input: </i>--help for a list of available commands</p>
+                <p>&nbsp;</p>
                 </>
             )
         }
 
-        else setDetails(null);
-
-    }, [ props.command ])
+    }, [ props, user, admin ])
 
     return (
         <>
@@ -52,7 +99,7 @@ const TerminalLine = (props) => {
 
             {
 
-                props.type === "details" && 
+                (props.type === "details" || props.type === "folder") && 
 
                 <div className="flex col terminal_details">
 

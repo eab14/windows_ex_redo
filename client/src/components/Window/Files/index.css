@@ -17,7 +17,7 @@
     width: 100%;
     height: 40px;
     color: var(--color_white);
-    background: linear-gradient(#242424 80%, #343434);
+    background: linear-gradient(#242424 70%, #343434);
 }
 
 .files_link_text {
@@ -110,13 +110,13 @@
 }
 
 .files_content_sub_header:nth-child(1) {
-    width: 70%;
+    width: 64%;
 }
 
 .files_content_sub_header:nth-child(2), 
 .files_content_sub_header:nth-child(3), 
 .files_content_sub_header:nth-child(4) {
-    width: 10%;
+    width: 12%;
 }
 
 .files_content_sub_header .files_sort_icon {
@@ -141,13 +141,13 @@
 }
 
 .files_file_name {
-    width: 70%;
+    width: 64%;
     padding: 0 14px;
     align-items: center;
 }
 
 .files_file_size, .files_file_ext, .files_file_date {
-    width: 10%;
+    width: 12%;
     padding: 0 14px;
     align-items: center;
 }

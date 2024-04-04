@@ -1,8 +1,8 @@
 .general_search_input {
     position: relative;
     width: 160px;
-    height: 30px;
-    border: 2px solid var(--color_grey);
+    height: 28px;
+    border: 3px solid var(--color_grey);
     outline: 2px solid var(--color_black);
     background: var(--color_white);
     border-radius: 7px;

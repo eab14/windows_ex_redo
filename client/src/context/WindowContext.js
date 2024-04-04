@@ -23,6 +23,7 @@ export const WindowProvider = ({ children }) => {
     const [ account, setAccount ] = useState("login");
     const [ weather, setWeather ] = useState(null);
     const [ utilities, setUtilities ] = useState(false);
+    const [ terminal, setTerminal ] = useState([]);
 
     useEffect(() => {
 
@@ -100,7 +101,9 @@ export const WindowProvider = ({ children }) => {
         weather, 
         setWeather,
         utilities, 
-        setUtilities
+        setUtilities,
+        terminal,
+        setTerminal
     }
 
     return (

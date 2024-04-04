@@ -9,6 +9,7 @@ const Database = () => {
     const { db_stats } = useAuth();
 
     return (
+
         <div className="flex col database_spacer">
             
             {
@@ -49,9 +50,11 @@ const Database = () => {
                 </div>
 
                 </>
+                
             }
 
         </div>
+        
     )
   
 }

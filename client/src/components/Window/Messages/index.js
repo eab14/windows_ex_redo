@@ -22,7 +22,7 @@ const Messages = () => {
             <>
 
             <MessageLine key={8} user="Test User #1" date="3:26 AM" msg="The things I waste my time on, I swear..." />
-            <MessageLine key={9} user="Test User #2" date="1:23 AM" msg="So when's this website gonna be done?"/>
+            <MessageLine key={9} user="Test User #2" date="1:23 AM" msg="So when's this website gonna be done?" />
             <MessageLine key={10} user="Test User #3" date="Wednesday" msg="LOL @ that error last night" />
 
             </>

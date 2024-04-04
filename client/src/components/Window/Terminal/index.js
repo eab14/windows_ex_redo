@@ -7,11 +7,13 @@ import { useCallback, useRef, useEffect, useState } from 'react';
 
 import { useAuth } from '../../../context/AuthContext';
 import { useWindowsEX } from '../../../context/WindowContext';
+import TerminalLine from './TerminalLine';
 
 const Terminal = () => {
 
     const { user, login, logout } = useAuth();
-    const { openWindow, closeWindow } = useWindowsEX();
+    const { openWindow, closeWindow, terminal, setTerminal } = useWindowsEX();
+
     const [ dir, setDir ] = useState("");
 
     const blinkRef = useRef(null);
@@ -46,6 +48,10 @@ const Terminal = () => {
         const aValues = [ "login", "logout" ]
         let commands = value.split(' ');
 
+        const line = <TerminalLine type="command" name={user ? `${removeAt(user)}` + dir : "guest" + dir} command={value} />;
+        
+        setTerminal(prevState => [ line, ...prevState ]);
+
         switch (commands[0]) {
 
             case "open":
@@ -69,9 +75,13 @@ const Terminal = () => {
                 (commands[1] === ".." || commands[1] === "/" || commands[1] === "../") && setDir("");
                 break;
 
+            case "ls":
+                console.log("test");
+                break;
+
             case "clear":
-                    console.log("test");
-                    break;
+                setTerminal([]);
+                break;
 
             default:
                 return "Invalid...";
@@ -102,28 +112,11 @@ const Terminal = () => {
     }, [ blink, focusInput ])
 
     return (
-        <div ref={windowRef} className="flex center col terminal_spacer" onClick={focusInput}>
+        <div ref={windowRef} className="flex col terminal_spacer" onClick={focusInput}>
 
-            <div className="flex col test_display">
-                <p className="terminal_green">Options:</p>
-                <p>- - -</p>
-                <p>open <span className="terminal_gg">{"<Window>"}</span></p>
-                <p>close <span className="terminal_gg">{"<Window>"}</span></p>
-                <p>account login <span className="terminal_gg">{"<email> <password>"}</span></p>
-                <p>account logout</p>
-                <p>cd <span className="terminal_gg">{"<folder> | <../> | <..> | </>"}</span></p>
-                <p>- - -</p>
-                <p className="terminal_green">Available windows: </p>
-                <p>- - -</p>
-                <p>calculator | caldendar | password-generator | weather</p>
-                <p>- - -</p>
-                <p className="terminal_green">Available folders: </p>
-                <p>- - -</p>
-                <p>music | photos | videos</p>
-                <p>- - -</p>
-            </div>
+            <div className="flex col terminal_display">
 
-            <div className="flex row terminal_display">
+                { terminal }
 
             </div>
 

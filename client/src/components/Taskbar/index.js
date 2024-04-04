@@ -6,9 +6,10 @@ import { useWindowsEX } from '../../context/WindowContext';
 
 const Taskbar = () => {
 
-    const { windows, status } = useWindowsEX();
-    const array = windows.filter(w => status.find(([name, status]) => name === w.props.selected && status === "min")).map(w => w);
+    const { windows } = useWindowsEX();
 
+    const array = windows.filter(w => w.status === "min");
+    
     return (
 
         <div id="taskbar_spacer" className="flex row">
@@ -19,7 +20,7 @@ const Taskbar = () => {
 
             <div id="taskbar_placer" className="flex row">
 
-                { array }
+                { array.map(w => w.window) }
 
             </div>
 

@@ -2,13 +2,14 @@ import { useWindowsEX } from '../../context/WindowContext';
 
 const Content = () => {
 
-    const { windows, status } = useWindowsEX();
-	const array = windows.filter(w => status.find(([name, status]) => name === w.props.selected && status === "max")).map(w => w);
+    const { windows } = useWindowsEX();
+    
+    const array = windows.filter(w => w.status === "max");
 
     return (
         <div id="content_spacer" className="flex row wrap">
 
-            { array }
+            { array.map(w => w.window) }
 
         </div>
     );

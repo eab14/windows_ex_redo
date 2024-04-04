@@ -1,29 +1,10 @@
-import Window from '../../';
 import { useWindowsEX } from '../../../../context/WindowContext';
 
 const FilesLine = (props) => {
 
-    const { windows, setStatus, setWindows } = useWindowsEX();
+    const { openWindow } = useWindowsEX();
 
-    const clickHandler = () => {
-
-        let w, s;
-
-        if (!windows.find(window => window.props.selected === props.wType)) {
-
-            if ((props.wType === "Music" || props.wType === "Video" || props.wType === "Gallery") && props.file) {
-        
-                w = <Window key={props.wType} selected={props.wType} file={props.file} />;
-                s = [props.wType, "max"];
-
-                setWindows(prevWindows => [ ...prevWindows, w ]);
-                setStatus(prevStatus => [ ...prevStatus, s ]);
-
-            }
-
-        }
-
-    }
+    const clickHandler = () => (["Music", "Video", "Gallery"].includes(props.wType)) && openWindow(props.wType, props.file);
 
     return (
     

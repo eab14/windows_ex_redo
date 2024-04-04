@@ -65,7 +65,7 @@
 
 .terminal_display::-webkit-scrollbar { display: none; }
 
-.terminal_line { min-height: 17px; }
+.terminal_line { min-height: 16px; }
 
 .terminal_green { color: var(--color_green); }
 .terminal_gg { color: var(--color_green_grey); }

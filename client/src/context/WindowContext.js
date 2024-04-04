@@ -1,23 +1,34 @@
-import { createContext, useContext, useEffect, useState } from "react";
+import { createContext, useContext, useState, useReducer } from "react";
 import Window from "../components/Window";
 
 const WindowContext = createContext();
 
 export const useWindowsEX = () => useContext(WindowContext);
 
+const initialState = { windows : [
+    { window: <Window key="Terminal" selected="Terminal" />, status: "max" },
+    { window: <Window key="Account" selected="Account" />, status: "min" },
+    { window: <Window key="Files" selected="Files" />, status: "min" },
+    { window: <Window key="Messages" selected="Messages" />, status: "min" },
+] }
+
+const reducer = (state, action) => {
+
+    switch (action.type) {
+
+        case 'SET_WINDOWS': return { ...state, windows: action.payload };
+        default: return state;
+
+    }
+
+}
+
 export const WindowProvider = ({ children }) => {
 
-    // This will get more complicated shortly...
-    // { window: <Window key="Account" selected="Account" />, name: "Account", size: "max", loggedIn: false, status: "login" }
 
-    const [ windows, setWindows ] = useState([
-        <Window key="Terminal" selected="Terminal" />,
-        <Window key="Account" selected="Account" />,
-        <Window key="Files" selected="Files" />,
-        <Window key="Messages" selected="Messages" />
-    ]);
+    const [ state, dispatch ] = useReducer(reducer, initialState);
+    const { windows } = state;
 
-    const [ status, setStatus ] = useState([]);
     // const [ music, setMusic ] = useState({ paused: true });
     const [ date, setDate ] = useState(new Date());
     const [ account, setAccount ] = useState("login");
@@ -25,75 +36,42 @@ export const WindowProvider = ({ children }) => {
     const [ utilities, setUtilities ] = useState(false);
     const [ terminal, setTerminal ] = useState([]);
 
-    useEffect(() => {
+    const openWindow = (str, file = null) => {
 
-        let array = [
-            [ "Terminal", "max" ],
-            [ "Account", "min" ],
-            [ "Files", "min" ],
-            [ "Messages", "min" ]
-        ];
-        // sortWindows(array);
-        setStatus(array);
+        if (!windows.find(w => w.window.props.selected === str))
+            dispatch({ type: 'SET_WINDOWS', payload: [ ...windows, { window: <Window key={str} selected={str} file={file}/>, status: "max" } ] });
 
-    }, [])
+        else if (windows.find(w => w.window.props.selected === str)) {
 
-    const openWindow = (str) => {
+            const updated =  windows.map(w => {
+                if (w.window.props.selected === str) return { ...w, status: "max" }
+                else return w;
+            })
 
-        if (!windows.find(window => window.props.selected === str)) {
-
-            const w = <Window key={str} selected={str} />;
-            const s = [str, "max"];
-
-            setWindows(prevWindows => [ ...prevWindows, w ]);
-            setStatus(prevStatus => [ ...prevStatus, s ]);
-
-        }
-
-        else if (windows.find(window => window.props.selected === str)) {
-
-            setStatus(prev => {
-
-                const updated = prev.map(([name, current]) => name === str ? [name, "max"] : [name, current]);
-                return updated;
-      
-            });
+            dispatch({ type: 'SET_WINDOWS', payload: updated });
 
         }
 
     }
 
-    const closeWindow = (str) => {
+    const minWindow = (str) => {
 
-        setStatus(prevStatus => prevStatus.filter(([name]) => name !== str));
-		setWindows(prevWindows => prevWindows.filter(window => window.props.selected !== str));
+        const updated =  windows.map(w => {
+            if (w.window.props.selected === str) return { ...w, status: "min" }
+            else return w;
+        })
+        
+        dispatch({ type: 'SET_WINDOWS', payload: updated });
 
     }
 
-    const sortWindows = (array) => {
-
-        array.sort((a, b) => {
-
-            if (a[1] === "max" && b[1] === "max") return 0;
-            if (a[1] === "max") return -1;
-            if (b[1] === "max") return 1;
-
-            return 0;
-
-        });
-      
-        return array;
-
-    };
+    const closeWindow = (str) => dispatch({ type: 'SET_WINDOWS', payload: windows.filter(w => w.window.props.selected !== str) });
 
     const context = {
         windows,
-        setWindows,
-        status,
-        setStatus,
         openWindow,
+        minWindow,
         closeWindow,
-        sortWindows,
         date, 
         setDate,
         account,

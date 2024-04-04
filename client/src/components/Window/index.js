@@ -30,20 +30,12 @@ const Window = (props) => {
 
 	const windowRef = useRef();
 
-	const { status, setStatus, openWindow, closeWindow } = useWindowsEX();
-	const ws = status.find(([ name ]) => name === props.selected);
+	const { openWindow, closeWindow, minWindow, windows } = useWindowsEX();
 
-	const minClick = () => {
+	const ws = windows.find(w => w.window.props.selected === props.selected);
+	
 
-		setStatus(prev => {
-
-			const updated = prev.map(([name, current]) => name === props.selected ? [name, "min"] : [name, current]);
-			return updated;
-
-		});
-
-	};
-
+	const minClick = () => minWindow(props.selected);
 	const maxClick = () => openWindow(props.selected);
 	const closeClick = () => closeWindow(props.selected);
 
@@ -89,15 +81,15 @@ const Window = (props) => {
 
 					<div className="flex row window_utilities">
 						
-						{ (ws && ws[1] === "max") && <div className="flex center icon min" onClick={minClick}><FontAwesomeIcon icon={faMinus} /></div> }
-						{ (ws && ws[1] === "min") && <div className="flex center icon max" onClick={maxClick}><FontAwesomeIcon icon={faWindowMaximize} /></div> }
+						{ (ws && ws.status === "max") && <div className="flex center icon min" onClick={minClick}><FontAwesomeIcon icon={faMinus} /></div> }
+						{ (ws && ws.status === "min") && <div className="flex center icon max" onClick={maxClick}><FontAwesomeIcon icon={faWindowMaximize} /></div> }
 						<div className="flex center icon close" onClick={closeClick}><FontAwesomeIcon icon={faXmark} /></div>
 
 					</div>
 
 				</div>
 
-				<div className={`flex col window_content ${ (ws[1] === "max") ? 'full' : 'none'}`}>
+				<div className={`flex col window_content ${ (ws.status === "max") ? 'full' : 'none'}`}>
 
 					{ props.selected === "Account" && <Account /> }
 					{ props.selected === "Calendar" && <Calendar /> }

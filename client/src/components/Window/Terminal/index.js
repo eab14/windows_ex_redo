@@ -181,7 +181,17 @@ const Terminal = () => {
 
         }
 
-        // if (e.key === "Delete") {}
+        if (e.key === "Delete") {
+
+            if (inputRef.current.value.length > 0 && blinkPlacement < 0) {
+                
+                setBlinkPlacement(blinkPlacement + 7.2);
+                gsap.to(blinkRef.current, { duration: 0, x : blinkPlacement + 7.2 });
+                resizeInput({ currentTarget: inputRef.current });
+
+            }
+
+        }
 
     }
 

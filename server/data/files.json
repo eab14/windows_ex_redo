@@ -29,7 +29,9 @@
         "url" : "https://res.cloudinary.com/dfhe35dwt/video/upload/v1712030996/u8ceqjvpjokjwjggl04w.mp4",
         "type" : "mp4",
         "description" : {
-            "name" : "db_video_example_1"
+            "name" : "db_video_example_1",
+            "title" : "Movie 9 - Bojack Unbound",
+            "info" : "Dragon Ball Z"
         },
         "size" : 0
     },
@@ -40,7 +42,8 @@
         "type" : "mp4",
         "description" : {
             "name" : "db_video_example_2",
-            "description" : "I destroyed this character at one point..."
+            "title" : "Teen Gohan Combo Video",
+            "info" : "Dragon Ball FighterZ"
         },
         "size" : 0
     },

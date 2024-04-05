@@ -17,7 +17,7 @@ const Files = () => {
 
     const array = useMemo(() =>  [ 
         <FilesLine key={1} fileName="static_music_example" fileSize="6.33 MB" ext=".mp3" date={"25/3/2024"} wType="Music" file={{ url: "./music/n_1.mp3", description: { title: "Number One", artist: "Hazel Fernandes feat. Shiro Sagisu"  } }} />,
-        <FilesLine key={2} fileName="static_video_example" fileSize="35.2 MB" ext=".mp4" date={"1/4/2024"} wType="Video" file={{ url: "./video/b.mp4"}} />,
+        <FilesLine key={2} fileName="static_video_example" fileSize="35.2 MB" ext=".mp4" date={"1/4/2024"} wType="Video" file={{ url: "./video/b.mp4", description: { title: "Thousand Year Blood War - Episode 21", info: "Bleach" } }}/>,
         <FilesLine key={3} fileName="static_photo_example" fileSize="141 KB" ext=".jpg" date={"2/4/2024"} wType="Gallery" file={{ url: "./images/gallery/ff7_r.jpg" }} />
     ], []);
 

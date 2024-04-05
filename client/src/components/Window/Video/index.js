@@ -11,9 +11,9 @@ const Video = (props) => {
 
     const videoRef = useRef();
 
-    const [sliderValue, setSliderValue] = useState(0);
-    const [currentTime, setCurrentTime] = useState(0);
-    const [duration, setDuration] = useState(0);
+    const [ sliderValue, setSliderValue ] = useState(0);
+    const [ currentTime, setCurrentTime ] = useState(0);
+    const [ duration, setDuration ] = useState(0);
 
     const revealControls = ({ currentTarget }) => {
 
@@ -77,11 +77,11 @@ const Video = (props) => {
     }, []);
 
     return (
-        <div className="flex video_spacer">
+        <div className="flex video_spacer" onMouseEnter={revealControls} onMouseLeave={hideControls}>
 
             <video ref={videoRef} src={props.file.url}></video>
 
-            <div className="flex video_controls_spacer" onMouseEnter={revealControls} onMouseLeave={hideControls}>
+            <div className="flex video_controls_spacer">
 
                 <div className="flex video_controls">
                     <div className="flex row video_controls_overlay"></div>
@@ -103,6 +103,11 @@ const Video = (props) => {
 
                     <div className="flex center video_next_button">
                         <span><FontAwesomeIcon icon={faForward} /></span>
+                    </div>
+
+                    <div className="flex col video_info_spacer">
+                        <h3>{props.file.description.title}</h3>
+                        <p>{props.file.description.info}</p>
                     </div>
 
                     <div className="flex center video_download">

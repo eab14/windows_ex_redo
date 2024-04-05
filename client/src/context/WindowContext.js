@@ -25,7 +25,6 @@ const reducer = (state, action) => {
 
 export const WindowProvider = ({ children }) => {
 
-
     const [ state, dispatch ] = useReducer(reducer, initialState);
     const { windows } = state;
 
@@ -39,7 +38,7 @@ export const WindowProvider = ({ children }) => {
     const openWindow = (str, file = null) => {
 
         if (!windows.find(w => w.window.props.selected === str))
-            dispatch({ type: 'SET_WINDOWS', payload: [ ...windows, { window: <Window key={str} selected={str} file={file}/>, status: "max" } ] });
+            dispatch({ type: 'SET_WINDOWS', payload: [ ...windows, { window: <Window key={str} selected={str} file={file} />, status: "max" } ] });
 
         else if (windows.find(w => w.window.props.selected === str)) {
 

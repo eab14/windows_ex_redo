@@ -101,8 +101,7 @@ const Weather = () => {
                     </div>
 
                     <div className="flex row center weather_select">
-
-						{/* ... */}
+						
 						{ weather.daily.daily.slice(0, 5).map((item, index) => <WeatherCard key={index} data={weather} index={index} /> ) }
 
                     </div>

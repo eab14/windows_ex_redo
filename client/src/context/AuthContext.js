@@ -70,7 +70,6 @@ export const AuthProvider = ({ children }) => {
             setAccount("panel");
 
             (admin) && await get('/api/db/stats', 'SET_DB_STATS');
-            await get('/api/db/stats', 'SET_DB_STATS');
             await get('/api/users/files', 'SET_FILES');
             await get('/api/users/messages', 'SET_MESSAGES');
             

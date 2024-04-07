@@ -15,6 +15,10 @@ const UserSchema = new Schema(
             unique : true
         },
 
+        name : {
+            type: String,
+        },
+
         email : {
             type : String,
             required : 'E-mail is Required',
@@ -46,8 +50,9 @@ const UserSchema = new Schema(
         settings : {
             type: Object,
             default: { 
-                theme: "default", 
-                nav: [ "Account", "Files", "Utilities", "Settings" ], 
+                theme: "default",
+                wallpaper : "image url goes here",
+                nav: [ "Account", "Files", "Messages", "Terminal", "Database", "Settings" ], 
                 max: [ "Account", "Files" ], 
                 min: [ "Weather", "Messages", "Database", "Settings" ] 
             }

@@ -43,7 +43,7 @@ video { pointer-events: none;}
     width: 100%;
     margin: 0;
     padding: 0;
-    height: 1px;
+    height: 2px;
     outline: none;
     background: var(--color_grey);
     z-index: 2;

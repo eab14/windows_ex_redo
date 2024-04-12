@@ -10,6 +10,7 @@ const EasterEgg = () => {
         <div className="flex col easter_egg_spacer">
 
             <Select />
+            {/* <Battle /> */}
 
         </div>
         

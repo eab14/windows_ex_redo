@@ -29,7 +29,7 @@ const Screen = () => {
 
         const opponentTime = setTimeout(() => {
 
-            opponentRef.current.src = './images/easter_egg/opponent/mew-shiny.png';
+            opponentRef.current.src = './images/easter_egg/opponent/mew.png';
             opponentRef.current.style.width = "180px";
             opponentRef.current.style.height = "180px";
             opponentRef.current.style.top = "-14px";
@@ -52,12 +52,12 @@ const Screen = () => {
         <div className="flex battle_screen_spacer">
 
             <div className="flex opponent_spacer">
-                <img ref={opponentRef} src='./images/easter_egg/opponent/mew-shiny.gif' alt="mew opponent animation"></img>
+                <img ref={opponentRef} src='./images/easter_egg/opponent/mew.gif' alt="mew opponent animation"></img>
             </div>
 
             <div className="flex row trainer_spacer">
                 <div className="flex center trainer_img_spacer">
-                    <img ref={trainerRef} src='./images/easter_egg/triner/mew-shiny.gif' alt="mew trainer animation"></img>
+                    <img ref={trainerRef} src='./images/easter_egg/trainer/mew-shiny.gif' alt="mew trainer animation"></img>
                 </div>
                 <div ref={trainerStatsRef} className="flex trainer_stats_overlay">
                     <div className="flex col trainer_stats">

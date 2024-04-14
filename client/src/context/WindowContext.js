@@ -28,12 +28,14 @@ export const WindowProvider = ({ children }) => {
     const [ state, dispatch ] = useReducer(reducer, initialState);
     const { windows } = state;
 
+
     // const [ music, setMusic ] = useState({ paused: true });
     const [ date, setDate ] = useState(new Date());
     const [ account, setAccount ] = useState("login");
     const [ weather, setWeather ] = useState(null);
     const [ utilities, setUtilities ] = useState(false);
     const [ terminal, setTerminal ] = useState([]);
+    const [ database, setDatabase ] = useState(null);
 
     const openWindow = (str, file = null) => {
 
@@ -80,7 +82,9 @@ export const WindowProvider = ({ children }) => {
         utilities, 
         setUtilities,
         terminal,
-        setTerminal
+        setTerminal,
+        database,
+        setDatabase
     }
 
     return (

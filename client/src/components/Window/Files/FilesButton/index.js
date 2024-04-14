@@ -58,8 +58,8 @@ const FilesButton = (props) => {
             <span className="flex center">
                 { props.text === "All Files" && <FontAwesomeIcon icon={faFolderOpen} /> }
                 { props.text === "Music" && <FontAwesomeIcon icon={faMusic} /> }
-                { props.text === "Photos" && <FontAwesomeIcon icon={faVideo} /> }
-                { props.text === "Videos" && <FontAwesomeIcon icon={faImage} /> }
+                { props.text === "Photos" && <FontAwesomeIcon icon={faImage} /> }
+                { props.text === "Videos" && <FontAwesomeIcon icon={faVideo} /> }
                 { props.text === "Upload" && <FontAwesomeIcon icon={faUpload} /> }
             </span>
 

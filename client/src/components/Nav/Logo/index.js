@@ -82,8 +82,8 @@ const Logo = () => {
             for (let i = 0; i < li.length; i++) {
 
                 let nav_p = li[i].querySelector('p');
-                gsap.to(li[i], 0.3, { width: 0 })
-                gsap.to(nav_p, 0.2, { left: "-30px", opacity: 0 })
+                gsap.to(li[i], { width: 0, duration: 0.3 })
+                gsap.to(nav_p, { left: "-30px", opacity: 0, duration: 0.2 })
     
             }
 

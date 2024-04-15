@@ -53,9 +53,9 @@ admin@root.com
 Password:
 
 ```code
-root
+root    
 ```
 
 ## Video (Installation and Functionality)
 
-<video src='https://res.cloudinary.com/dfhe35dwt/video/upload/v1713197563/install_functionality_gg564w.mp4' width=600 controls></video>
+<video src='https://res.cloudinary.com/dfhe35dwt/video/upload/v1713197563/install_functionality_gg564w.mp4' width=600 controls="controls"></video>

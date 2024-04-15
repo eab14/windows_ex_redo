@@ -14,6 +14,7 @@ const {
 
 const { getFiles } = require('../controllers/fileController');
 const { getMessages } = require('../controllers/messageController');
+const { getNotes } = require('../controllers/noteController');
 
 router
   .route('/')
@@ -43,6 +44,10 @@ router
 router
   .route('/messages')
   .get(userAuth, getMessages);
+
+router
+  .route('/notes')
+  .get(userAuth, getNotes);
 
   // Maybe not the right function name >.>
 // router

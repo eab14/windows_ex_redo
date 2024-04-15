@@ -6,7 +6,7 @@ const AuthContext = createContext();
 
 export const useAuth = () => useContext(AuthContext);
 
-const initialState = { user: null, files: null, messages: null, db_stats: null }
+const initialState = { user: null, files: null, messages: null, notes: null, db_stats: null }
 
 const reducer = (state, action) => {
 
@@ -15,6 +15,7 @@ const reducer = (state, action) => {
         case 'SET_USER': return { ...state, user: action.payload };
         case 'SET_FILES': return { ...state, files: action.payload };
         case 'SET_MESSAGES': return { ...state, messages: action.payload };
+        case 'SET_NOTES': return { ...state, notes: action.payload };
         case 'SET_DB_STATS': return { ...state, db_stats: action.payload };
         default: return state;
 
@@ -31,7 +32,7 @@ export const AuthProvider = ({ children }) => {
 
     const setNull = useCallback(async () => {
 
-        const array = [ 'SET_USER', 'SET_FILES', 'SET_MESSAGES', 'SET_DB_STATS' ];
+        const array = [ 'SET_USER', 'SET_FILES', 'SET_MESSAGES', 'SET_NOTES', 'SET_DB_STATS' ];
         for (let i = 0; i < array.length; i++) dispatch({ type: array[i], payload: null });
         setAdmin(false);
 
@@ -72,6 +73,7 @@ export const AuthProvider = ({ children }) => {
             (admin) && await get('/api/db/stats', 'SET_DB_STATS');
             await get('/api/users/files', 'SET_FILES');
             await get('/api/users/messages', 'SET_MESSAGES');
+            await get('/api/users/notes', 'SET_NOTES');
             
 
         } 
@@ -116,6 +118,7 @@ export const AuthProvider = ({ children }) => {
                     (admin) && await get('/api/db/stats', 'SET_DB_STATS');
                     await get('/api/users/files', 'SET_FILES');
                     await get('/api/users/messages', 'SET_MESSAGES');
+                    await get('/api/users/notes', 'SET_NOTES');
 
                 })
 

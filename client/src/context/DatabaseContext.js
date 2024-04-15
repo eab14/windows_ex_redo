@@ -43,6 +43,10 @@ export const DatabaseProvider = ({ children }) => {
 
     }, [])
 
+    const remove = useCallback(async (url, type) => {
+
+    }, [])
+
     const context = {
         users,
         files,

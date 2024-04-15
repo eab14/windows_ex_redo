@@ -7,6 +7,7 @@
 
 .database_header_spacer {
     position: relative;
+    min-height: 22px;
     height: fit-content;
     width: calc(100% - 8px);
     background: var(--color_black);
@@ -26,8 +27,8 @@
 .database_spacer i {
     display: flex;
     height: calc(100% - 2px);
-    width: 3px;
-    border-radius: 1px;
+    width: 4px;
+    border-radius: 2px;
     background: var(--color_green_grey);
     margin: 0 5px;
 }
@@ -89,4 +90,44 @@
     right: 10px;
     bottom: 5px;
     color: var(--color_green_grey);
+}
+
+.database_header_spacer .back_button {
+    position: relative;
+    width: fit-content;
+    margin: 3px 10px;
+}
+
+.database_header_spacer .prev_button, .database_header_spacer .next_button {
+    position: absolute;
+}
+
+.database_header_spacer .prev_button {
+    left: 10px;
+    margin: 3px 0;
+}
+
+.database_header_spacer .next_button {
+    right: 10px;
+    margin: 3px 0;
+}
+
+.database_header_spacer .back_button p, .database_header_spacer .prev_button p, .database_header_spacer .next_button p {
+    position: relative;
+    font-weight: bold;
+    top: 0.5px;
+}
+
+.database_header_spacer .back_button span, .database_header_spacer .prev_button span, .database_header_spacer .next_button span {
+    color: var(--color_green_grey);
+    margin: 0 4px;
+    font-size: 15px;
+}
+
+.database_header_spacer .back_button:hover, .database_header_spacer .prev_button:hover, .database_header_spacer .next_button:hover {
+    cursor: pointer;
+}
+
+.spaced_between {
+    justify-content: space-between;
 }

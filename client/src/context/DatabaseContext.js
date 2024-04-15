@@ -43,7 +43,20 @@ export const DatabaseProvider = ({ children }) => {
 
     }, [])
 
-    const remove = useCallback(async (url, type) => {
+    const remove = useCallback(async (url) => {
+
+        const token = localStorage.getItem('token');
+
+        if (token) {
+
+            axios.delete(url, { headers: { Authorization: `Bearer ${token}` } })
+                .then(response => console.log(response.data)) 
+                .catch(error => {
+                    console.error('Token invalid');
+                    localStorage.removeItem('token');
+                });
+
+        }
 
     }, [])
 
@@ -52,7 +65,8 @@ export const DatabaseProvider = ({ children }) => {
         files,
         messages,
         notes,
-        get
+        get,
+        remove
     }
 
     return (

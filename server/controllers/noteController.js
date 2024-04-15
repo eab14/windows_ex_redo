@@ -25,7 +25,6 @@ const noteController = {
 
             res.json({
                 totalPages,
-                currentPage: page,
                 data
             });
 
@@ -36,6 +35,14 @@ const noteController = {
 
         }
         
+    },
+
+    async deleteNote({ params }, res) {
+
+        Note.deleteOne({ _id: params.id })
+            .then(data => res.json(data))
+            .catch(err => res.json(err))
+
     }
 
 }

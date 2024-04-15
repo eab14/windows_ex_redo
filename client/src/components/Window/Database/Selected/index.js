@@ -1,5 +1,5 @@
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faCaretLeft, faCaretRight } from '@fortawesome/free-solid-svg-icons';
+import { faCaretLeft, faCaretRight, faXmark } from '@fortawesome/free-solid-svg-icons';
 
 import { useEffect, useState, useRef } from "react";
 import { gsap } from 'gsap'; 
@@ -12,8 +12,9 @@ import Loading from "../../../Loading";
 const Selected = (props) => {
 
     const divRef = useRef(null);
+    const collectionRef = useRef(null);
 
-    const { get, files, notes, users, messages } = useDB();
+    const { get, remove, files, notes, users, messages } = useDB();
     const { setDatabase } = useWindowsEX();
     const [ loading, setLoading ] = useState(true);
     const [ page, setPage ] = useState(1)
@@ -22,6 +23,27 @@ const Selected = (props) => {
 
         const width = divRef.current.offsetWidth;
         gsap.to(divRef.current, { x: width, duration: 0.3, onCompleteParams: [str], onComplete: setDatabase })
+
+    }
+
+    const nextClick = (n) => {
+
+        const width =- collectionRef.current.offsetWidth;
+        gsap.to(collectionRef.current, { x: width, duration: 0.3, onCompleteParams: [n], onComplete: setPage })
+
+    }
+
+    const prevClick = (n) => {
+
+        const width = collectionRef.current.offsetWidth;
+        gsap.to(collectionRef.current, { x: width, duration: 0.3, onCompleteParams: [n], onComplete: setPage })
+
+    }
+
+    const removeClick = async (url) => {
+
+        await remove(url);
+        await get(`/api/${props.text}?page=${page}`, `SET_${props.text.toUpperCase()}`);
 
     }
 
@@ -79,13 +101,15 @@ const Selected = (props) => {
 
                     <>
 
+                    <div ref={collectionRef}>
+
                     {
 
                         notes.data.map((note, index) => 
                         
                             <div key={index} className="flex row database_entry">
                             <div className="flex row center entry_collection"><i></i><h3 className="flex">{note.body}</h3></div>
-                                <span></span>
+                                <span className="remove_icon" onClick={() => removeClick(`/api/notes/${note._id}`)}><FontAwesomeIcon icon={faXmark} /></span>
                                 <p>{`${new Date(note.date).toLocaleString("en-us", { timeZone: "UTC", weekday: "short", day: "numeric", month: "short", year: "numeric" })}`}</p>
                             </div>
 
@@ -93,23 +117,29 @@ const Selected = (props) => {
 
                     }
 
-                    <div className="flex row database_header_spacer spaced_between">
-
-                        { (page > 1 && notes.totalPages > 1) &&
-                            <div className="flex row center prev_button" onClick={() => setPage(prevState => prevState - 1)}>
-                                <span><FontAwesomeIcon icon={faCaretLeft} /></span><p>Prev</p>
-                            </div>
-                        }
-
-                        
-                        { page < notes.totalPages &&  
-                            <div className="flex row center next_button" onClick={() => setPage(prevState => prevState + 1)}>
-                                <p>Next</p><span><FontAwesomeIcon icon={faCaretRight} /></span>
-                            </div>
-                        }
-                        
-
                     </div>
+
+                    { notes.totalPages > 1 && 
+
+                        <div className="flex row database_header_spacer spaced_between">
+
+                            { (page > 1) &&
+                                <div className="flex row center prev_button" onClick={() => prevClick(page - 1)}>
+                                    <span><FontAwesomeIcon icon={faCaretLeft} /></span><p>Prev</p>
+                                </div>
+                            }
+
+                            
+                            { page < notes.totalPages &&  
+                                <div className="flex row center next_button" onClick={() => nextClick(page + 1)}>
+                                    <p>Next</p><span><FontAwesomeIcon icon={faCaretRight} /></span>
+                                </div>
+                            }
+                            
+
+                        </div>
+
+                    }
 
                     </>
                 

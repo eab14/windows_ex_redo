@@ -1,10 +1,14 @@
 const router = require('express').Router();
 const { userAuth, adminAuth } = require('../utils/auth');
 
-const { getAllNotes } = require('../controllers/noteController');
+const { getAllNotes, deleteNote } = require('../controllers/noteController');
 
 router
   .route('/')
   .get(userAuth, adminAuth, getAllNotes);
 
-  module.exports = router;
+router
+  .route('/:id')
+  .delete(userAuth, adminAuth, deleteNote);
+
+module.exports = router;

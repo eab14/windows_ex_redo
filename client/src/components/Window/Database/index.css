@@ -83,6 +83,14 @@
     top: 5px;
 }
 
+.database_entry .remove_icon {
+    color: var(--color_black);
+}
+
+.database_entry .remove_icon:hover {
+    color: #c23e3e;
+}
+
 .database_entry p {
     position: absolute;
     font-size: 12px;

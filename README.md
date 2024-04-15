@@ -56,6 +56,6 @@ Password:
 root    
 ```
 
-## Video (Installation and Functionality)
+## Video (Installation and Current (April 15, 2024) Functionality)
 
-<video src='https://res.cloudinary.com/dfhe35dwt/video/upload/v1713197563/install_functionality_gg564w.mp4' width=600 controls="controls"></video>
+- <a href='https://res.cloudinary.com/dfhe35dwt/video/upload/v1713197563/install_functionality_gg564w.mp4' target="_blank">Link to Video</a>

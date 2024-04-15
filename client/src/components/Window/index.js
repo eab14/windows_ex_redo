@@ -33,7 +33,6 @@ const Window = (props) => {
 	const { openWindow, closeWindow, minWindow, windows } = useWindowsEX();
 
 	const ws = windows.find(w => w.window.props.selected === props.selected);
-	
 
 	const minClick = () => minWindow(props.selected);
 	const maxClick = () => openWindow(props.selected);

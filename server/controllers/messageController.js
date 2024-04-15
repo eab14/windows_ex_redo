@@ -8,6 +8,14 @@ const messageController = {
             .then(data => res.json(data))
             .catch(err => res.json(err))
 
+    },
+
+    async getAllMessages(req, res) {
+
+        Message.find({}).lean()
+            .then(data => res.json(data))
+            .catch(err => res.json(err))
+
     }
 
 }

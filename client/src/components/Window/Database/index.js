@@ -4,6 +4,9 @@ import { useRef } from 'react';
 
 import { useAuth } from '../../../context/AuthContext';
 import { useWindowsEX } from '../../../context/WindowContext';
+
+import { DatabaseProvider } from '../../../context/DatabaseContext';
+
 import { gsap } from 'gsap'; 
 
 import Loading from '../../Loading';
@@ -25,6 +28,8 @@ const Database = () => {
     }
 
     return (
+
+        <DatabaseProvider>
 
         <div className="flex col database_spacer">
             
@@ -80,6 +85,8 @@ const Database = () => {
             { database && <Selected text={database} /> }
 
         </div>
+
+        </DatabaseProvider>
         
     )
   

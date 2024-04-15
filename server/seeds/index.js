@@ -1,11 +1,11 @@
 const fs = require('fs');
 const mongoose = require('mongoose');
 const connect = require('../config/connection');
-const { User, File, Message } = require('../models');
+const { User, File, Message, Note } = require('../models');
 const bcrypt = require('bcrypt');
 const SALT_WORK_FACTOR = 10;
 
-let users, files, messages;
+let users, files, messages, notes;
 
 const initialize = () => {
 
@@ -14,21 +14,28 @@ const initialize = () => {
         fs.readFile("./data/users.json", "utf8", (err, data) => {
 
             if (!err) users = JSON.parse(data);
-            else { reject("Failure reading - Users - file..."); return }
+            else { reject("Failure reading - Users file..."); return }
 
         });
 
         fs.readFile("./data/files.json", "utf8", (err, data) => {
 
             if (!err) files = JSON.parse(data);
-            else { reject("Failure reading - Files - file..."); return }
+            else { reject("Failure reading - Files file..."); return }
 
         });
 
         fs.readFile("./data/messages.json", "utf8", (err, data) => {
 
             if (!err) messages = JSON.parse(data);
-            else { reject("Failure reading - Files - file..."); return }
+            else { reject("Failure reading - Messages file..."); return }
+
+        });
+
+        fs.readFile("./data/notes.json", "utf8", (err, data) => {
+
+            if (!err) notes = JSON.parse(data);
+            else { reject("Failure reading - Notes file..."); return }
 
         });
 
@@ -94,6 +101,27 @@ const seedMessages = async () => {
 
 }
 
+const seedNotes = async () => {
+
+    await Note.deleteMany({});
+
+    for (let i = 0; i < notes.length; i++) {
+
+        const user = await User.findOne({ email: notes[i].user_email }).lean();
+        const date = new Date(notes[i].date_string);
+
+        notes[i].user = user._id
+        notes[i].date = date
+
+        delete notes[i].user_email;
+        delete notes[i].date_string;
+
+    }
+
+    await Note.insertMany(notes);
+
+}
+
 const seedData = async () => {
 
     await seedUsers();
@@ -102,6 +130,8 @@ const seedData = async () => {
     console.log("- - - Seeded File Data from JSON - - -");
     await seedMessages();
     console.log("- - - Seeded Message Data from JSON - - -");
+    await seedNotes();
+    console.log("- - - Seeded Note Data from JSON - - -");
 
     console.log('\r');
 

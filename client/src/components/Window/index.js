@@ -2,9 +2,9 @@ import './index.css';
 import './test.css';
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faWindowMaximize, faMinus, faXmark } from '@fortawesome/free-solid-svg-icons';
+import { faWindowMaximize, faMinus, faXmark, faSearch } from '@fortawesome/free-solid-svg-icons';
 
-import { /*useLayoutEffect,*/ useRef } from 'react';
+import { /*useLayoutEffect,*/ useRef, useState, useEffect } from 'react';
 import { useWindowsEX } from '../../context/WindowContext';
 import { gsap } from 'gsap';
 import { Draggable } from "gsap/Draggable";
@@ -29,6 +29,10 @@ gsap.registerPlugin(Draggable);
 const Window = (props) => {
 
 	const windowRef = useRef();
+	const optionsRef = useRef();
+	const contentRef = useRef();
+
+	const [ toggle, setToggle ] = useState(false);
 
 	const { openWindow, closeWindow, minWindow, windows } = useWindowsEX();
 
@@ -37,6 +41,8 @@ const Window = (props) => {
 	const minClick = () => minWindow(props.selected);
 	const maxClick = () => openWindow(props.selected);
 	const closeClick = () => closeWindow(props.selected);
+
+	const openOptions = () => (ws.status === "max") && setToggle(prevState => !prevState);
 
 	// useLayoutEffect(() => {
 
@@ -62,6 +68,24 @@ const Window = (props) => {
 
 	// }, []);
 
+	useEffect(() => {
+
+        if (toggle) {
+
+            optionsRef.current.style.display = "flex";
+            contentRef.current.style.opacity = 0.5;
+            contentRef.current.style.pointerEvents = "none";
+
+        } else {
+
+            optionsRef.current.style.display = "none";
+            contentRef.current.style.opacity = 1;
+            contentRef.current.style.pointerEvents = "all";
+
+        }
+
+    }, [toggle]);
+
 	return (
 
 		<>
@@ -70,7 +94,7 @@ const Window = (props) => {
 
 				<div className="flex row window_header">
 
-					<span className="flex">
+					<span className="flex" onClick={openOptions}>
 						<i className="m_diamond"></i>
 						<i className="m_diamond"></i>
 						<i className="m_diamond"></i>
@@ -84,11 +108,19 @@ const Window = (props) => {
 						{ (ws && ws.status === "min") && <div className="flex center icon max" onClick={maxClick}><FontAwesomeIcon icon={faWindowMaximize} /></div> }
 						<div className="flex center icon close" onClick={closeClick}><FontAwesomeIcon icon={faXmark} /></div>
 
+					</div>	
+
+					<div className="flex col window_options" ref={optionsRef}>
+						<div className="flex row window_options_line">
+							<span className="flex center options_icon"><FontAwesomeIcon icon={faSearch} /></span>
+							<span className="flex options_sep"></span>
+							<input className="flex" type="text" placeholder="Search" />
+						</div>
 					</div>
 
 				</div>
 
-				<div className={`flex col window_content ${ (ws.status === "max") ? 'full' : 'none'}`}>
+				<div ref={contentRef} className={`flex col window_content ${ (ws.status === "max") ? 'full' : 'none'}`}>
 
 					{ props.selected === "Account" && <Account /> }
 					{ props.selected === "Calendar" && <Calendar /> }

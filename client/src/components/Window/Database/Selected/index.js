@@ -14,10 +14,10 @@ const Selected = (props) => {
     const divRef = useRef(null);
     const collectionRef = useRef(null);
 
-    const { get, remove, files, notes, users, messages } = useDB();
+    const { get, remove, files, notes, users, messages, easterEggs } = useDB();
     const { setDatabase } = useWindowsEX();
     const [ loading, setLoading ] = useState(true);
-    const [ page, setPage ] = useState(1)
+    const [ page, setPage ] = useState(1);
 
     const backClick = (str) => {
 
@@ -47,6 +47,45 @@ const Selected = (props) => {
 
     }
 
+    const revealCells = () => {
+
+        const array = divRef.current.querySelectorAll('.test_animation');
+        
+        if (array.length > 0) {
+
+            // offset so the next one is delayed based on increased offset
+            let offset = 0.14;
+
+            for (let i = 0; i < array.length; i ++) {
+
+                gsap.to(array[i], { opacity: 1, top: 0, left: 0, delay: offset, duration: 0.3, pointerEvents: "all" });
+                offset += 0.14;
+
+            }
+
+        }
+
+    }
+
+    const hideCells = () => {
+
+        const array = divRef.current.querySelectorAll('.test_animation');
+
+        if (array.length > 0) {
+
+            let offset = 0.10
+
+            for (let i = 0; i < array.length; i ++) {
+
+                gsap.to(array[i], { opacity: 0, top: -10, left: -100, delay: offset, duration: 0.1, pointerEvents: "none" });
+                offset += 0.05;
+
+            }
+
+        }
+
+    }
+
     useEffect(() => {
 
         async function fetchData() {
@@ -62,7 +101,9 @@ const Selected = (props) => {
 
     }, [ get, props.text, page ])
 
-    return(
+    useEffect(() => { (!loading && notes) && revealCells(); (loading && notes) && hideCells() }, [ loading, notes ]);
+
+    return (
     
         <div ref={divRef}>
 
@@ -107,10 +148,12 @@ const Selected = (props) => {
 
                         notes.data.map((note, index) => 
                         
-                            <div key={index} className="flex row database_entry">
-                            <div className="flex row center entry_collection"><i></i><h3 className="flex">{note.body}</h3></div>
+                            <div className="flex row test_animation">
+
+                                <div className="flex row center entry_collection"><i></i><h3 className="flex">{note.body}</h3></div>
                                 <span className="remove_icon" onClick={() => removeClick(`/api/notes/${note._id}`)}><FontAwesomeIcon icon={faXmark} /></span>
                                 <p>{`${new Date(note.date).toLocaleString("en-us", { timeZone: "UTC", weekday: "short", day: "numeric", month: "short", year: "numeric" })}`}</p>
+
                             </div>
 
                         )
@@ -168,6 +211,18 @@ const Selected = (props) => {
                     )
 
                 }
+
+                    { (easterEggs && props.text === "eastereggs") &&
+
+                        easterEggs.map((egg, index) => 
+
+                            <div key={index} className="flex row database_entry">
+                            <div className="flex row center entry_collection"><i></i><h3 className="flex">{egg.user}</h3></div>
+                            </div>
+
+                        )
+
+                    }
             
                 </>
 

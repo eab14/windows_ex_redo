@@ -15,6 +15,7 @@ const reducer = (state, action) => {
         case 'SET_FILES': return { ...state, files: action.payload };
         case 'SET_MESSAGES': return { ...state, messages: action.payload };
         case 'SET_NOTES': return { ...state, notes: action.payload };
+        case 'SET_EASTEREGGS': return { ...state, easterEggs: action.payload };
         default: return state;
 
     }
@@ -24,7 +25,7 @@ const reducer = (state, action) => {
 export const DatabaseProvider = ({ children }) => {
 
     const [ state, dispatch ] = useReducer(reducer, initialState);
-    const { users, files, messages, notes } = state;
+    const { users, files, messages, notes, easterEggs } = state;
 
     const get = useCallback( async (url, type) => {
 
@@ -65,6 +66,7 @@ export const DatabaseProvider = ({ children }) => {
         files,
         messages,
         notes,
+        easterEggs,
         get,
         remove
     }

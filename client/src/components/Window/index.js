@@ -84,7 +84,7 @@ const Window = (props) => {
 
         }
 
-    }, [toggle]);
+    }, [ toggle ]);
 
 	return (
 

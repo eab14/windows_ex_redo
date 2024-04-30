@@ -1,32 +1,8 @@
 [
     {
         "user_email"  : "admin@root.com",
-        "date_string"  : "2024-04-19",
-        "body" : "[ Domeball ] - Coed (Playoffs) - Etobicoke",
-        "time" : 22
-    },
-    {
-        "user_email"  : "admin@root.com",
-        "date_string"  : "2024-04-26",
-        "body" : "[ Domeball ] - Coed (Playoffs) - Etobicoke",
-        "time" : 22
-    },
-    {
-        "user_email"  : "admin@root.com",
-        "date_string"  : "2024-04-27",
-        "body" : "[ Softball ] - Men (Tournament) - Toronto",
-        "time" : 8
-    },
-    {
-        "user_email"  : "admin@root.com",
-        "date_string"  : "2024-04-28",
-        "body" : "[ Softball ] - Men (Tournament) - Toronto",
-        "time" : 8
-    },
-    {
-        "user_email"  : "admin@root.com",
         "date_string"  : "2024-05-04",
-        "body" : "[ Softball ] - Mens (Tournament) - Toronto",
+        "body" : "[ Softball ] - Mens (Tournament) - Oshawa",
         "time" : 8
     },
     {
@@ -38,7 +14,7 @@
     {
         "user_email"  : "admin@root.com",
         "date_string"  : "2024-05-05",
-        "body" : "[ Softball ] - Mens (Tournament) - Toronto",
+        "body" : "[ Softball ] - Mens (Tournament) - Oshawa",
         "time" : 8
     },
     {

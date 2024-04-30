@@ -53,11 +53,23 @@
     /* box-shadow: 2px 2px 2px rgba(0,0,0,0.2); */
 }
 
-.database_entry:last-child {
+.test_animation {
+    position: relative;
+    width: calc(100% - 8px);
+    height: 48px;
+    align-items: center;
+    margin: 2px 4px;
+    background: var(--color_grey);
+    border-radius: 7px;
+    opacity: 0;
+    left: -100px;
+}
+
+.database_entry:last-child, .test_animation:last-child {
     margin-bottom: 4px;
 }
 
-.database_entry:hover {
+.database_entry:hover, .test_animation:hover {
     background: var(--color_white);
     cursor: pointer;
 }
@@ -67,7 +79,7 @@
     margin-left: 10px;
 }
 
-.database_entry h3 {
+.database_entry h3, .test_animation h3 {
     position: relative;
     font-size: 12px;
     font-weight: bold;
@@ -75,7 +87,7 @@
     margin-left: 5px;
 }
 
-.database_entry span {
+.database_entry span, .test_animation span {
     position: absolute;
     font-size: 12px;
     font-weight: 500;
@@ -83,15 +95,15 @@
     top: 5px;
 }
 
-.database_entry .remove_icon {
+.database_entry .remove_icon, .test_animation .remove_icon {
     color: var(--color_black);
 }
 
-.database_entry .remove_icon:hover {
+.database_entry .remove_icon:hover, .test_animation .remove_icon:hover {
     color: #c23e3e;
 }
 
-.database_entry p {
+.database_entry p, .test_animation p {
     position: absolute;
     font-size: 12px;
     font-weight: bold;
